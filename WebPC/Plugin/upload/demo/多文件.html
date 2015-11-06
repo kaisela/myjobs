@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>多文件上传</title>
+    <script src="../script/jquery-1.10.2.js"></script>
+    <script src="../script/util.js"></script>
+    <link href="../css/upload.css" rel="stylesheet" />
+    <script src="../jquery-upload.js"></script>
+</head>
+<body>
+    <div style="clear: both">
+        <p style="clear: both; color: rgb(194, 61, 55); font-size: 16px">多文件，音频类文件</p>
+        <div id="uploadContainer1" data-url="../handle/UploadHandler.ashx" data-accept="notlimit" data-size="6048" data-multiple="multiple" data-callback-element="testCallback1" data-path="../../../files/{0}" data-parttern="files">
+        </div>
+        <br>
+    </div>
+    <div style="clear: both;padding-top:  20px">
+        <input style="width: 250px" type="text" value="" name="testCallback1" />
+    </div>
+    <script>
+        function testCallback1(status) {
+            alert(status);
+        }
+    </script>
+</body>
+</html>

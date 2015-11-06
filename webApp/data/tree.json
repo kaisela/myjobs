@@ -1,0 +1,110 @@
+{"id":0,
+"name":"文章",
+"count":100,
+"hasChildren":true,
+"value":"10",
+"checkstate":0,
+"complete":true,
+"isexpand":true,
+"children":[
+	{
+		"id": 1,
+		"name":"热门",
+		"count":2,
+		"hasChildren":false,
+		"value":"10",
+		"checkstate":0,
+		"complete":true,
+		"isexpand":true
+	}, {
+		"id": 2,
+		"name":"科技",
+		"count":2,
+		"children": [
+			{
+				"id": 3,
+				"name":"IT",
+				"count":2,
+				"hasChildren":false,
+				"value":"10",
+				"checkstate":0,
+				"complete":true,
+				"isexpand":true
+			}, {
+				"id": 4,
+				"name":"互联网",
+				"count":2,
+				"hasChildren":false,
+				"value":"10",
+				"checkstate":0,
+				"complete":true,
+				"isexpand":true
+			}, {
+				"id": 5,
+				"name":"技术语言",
+				"count":2,
+				"children": [
+					{
+						"id": 6,
+						"name":"javascript",
+						"count":2
+					}, {
+						"id": 7,
+						"name":"C#",
+						"count":2
+					}, {
+						"id": 8,
+						"name":"Html/Css3",
+						"count":2
+					}
+				],
+				"hasChildren":true,
+				"value":"10",
+				"checkstate":0,
+				"complete":true,
+				"isexpand":true
+			}, {
+				"id": 9,
+				"name":"娱乐",
+				"count":2,
+				"hasChildren":false,
+				"value":"10",
+				"checkstate":0,
+				"complete":true,
+				"isexpand":true
+			}, {
+				"id": 10,
+				"name":"生活",
+				"count":2,
+				"hasChildren":false,
+				"value":"10",
+				"checkstate":0,
+				"complete":true,
+				"isexpand":true
+			}
+		],
+		"hasChildren":true,
+		"value":"10",
+		"checkstate":0,
+		"complete":true,
+		"isexpand":true
+	}, {
+		"id": 11,
+		"name":"情感",
+		"count":2,
+		"hasChildren":false,
+		"value":"10",
+		"checkstate":0,
+		"complete":true,
+		"isexpand":true
+	}, {
+		"id": 12,
+		"name":"游戏",
+		"count":2,
+		"hasChildren":false,
+		"value":"10",
+		"checkstate":0,
+		"complete":true,
+		"isexpand":true
+	}
+]}

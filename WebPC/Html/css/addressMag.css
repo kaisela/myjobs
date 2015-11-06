@@ -1,0 +1,206 @@
+@charset "utf-8";
+.box{
+	width: 184px;
+	position: absolute;
+	left: 50%;
+	margin-left: -92px;
+	margin-top:80px ;
+}
+
+.box span{
+	display: block;
+	width: 140px;
+	height: 120px;
+	background-image: url(../img/where.png);
+	margin: 0 auto;
+	background-size: 100% 100%;
+	text-align: center;
+	line-height: 120px;
+	color: #666666;
+	font-size: 1.5em;
+}
+.box p{
+	width: 100%;
+	margin-top:50px ;
+	line-height: 30px;
+	color: #999999;
+	text-align: center;
+	font-size: 0.875em;
+}
+
+.address{
+	width: 100%;
+	padding: 10px 20px;
+	border-bottom: 1px solid #e6e6e6;
+	background-color: white;
+}
+
+.address .tittle{
+	width: 100%;
+	color: #333333;
+	overflow: hidden;
+	padding-bottom: 10px;
+}
+.address .tittle p:nth-child(1){
+	float: left;
+	font-size: 18px;
+}
+
+.address .tittle p:nth-child(2){
+	float: right;
+	font-size: 18px;
+}
+
+.address .adrDetail{
+	width: 100%;
+}
+.address .adrDetail span:nth-child(1){
+	color: #EF5350;
+	font-size: 14px;
+}
+.address .adrDetail span:nth-child(2){
+	color: #999999;
+	font-size: 14px;
+	
+}
+
+.foot{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	padding: 10px;
+	background-color: #e6e6e6;
+}
+
+.foot input{
+	width: 100%;
+	height: 40px;
+	background-color: #ef5350;
+	border: 0;
+	border-radius: 4px;	
+	color: white;
+	font-size: 1em;
+}
+
+
+
+.edit{
+	width: 92%;
+	margin :0 auto;
+	margin-top: 20px;
+	border: 1px solid #e6e6e6;
+	background-color:white ;
+	border-radius: 2px;
+	
+}
+.edit li{
+	width: 100%;
+	border-bottom: 1px solid #e6e6e6;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+}
+.edit li:nth-child(5){
+	border: 0;
+}
+.edit li span{
+	line-height: 44px;
+	-webkit-box-flex: 2;
+	-moz-box-flex: 2;
+	flex: 2;
+	padding-left: 10px;
+}
+
+.edit li input{
+	-webkit-box-flex: 4;
+	-moz-box-flex: 4;
+	flex: 4;
+	border: 0;
+	color: #999999;
+	padding-right: 5px;
+}
+.edit .area input{
+	color: #EF5350;
+}
+.area input::-webkit-input-placeholder {
+color: #EF5350 !important; /* WebKit browsers */
+}
+.area input:-moz-placeholder {
+color: #EF5350 !important; /* Mozilla Firefox 4 to 18 */
+}
+.area input::-moz-placeholder {
+color: #EF5350 !important; /* Mozilla Firefox 19+ */
+}
+.area input:-ms-input-placeholder {
+color: #EF5350 !important; /* Internet Explorer 10+ */
+}
+.edit .street textarea{
+	-webkit-box-flex: 4;
+	-moz-box-flex: 4;
+	flex: 4;
+	border: 0;
+	color: #999999;
+	/*padding-top: 10px;*/
+	padding-right: 5px;
+	overflow-y:hidden;
+	line-height: 1.6;
+}
+.save{
+	display: block;
+	width: 92%;
+	margin :0 auto;
+	margin-top: 20px;
+	height: 44px;
+	border: 0;
+	background-color: #EF5350;
+	border-radius: 2px;
+	color: white;
+	font-size: 16px;
+}
+
+.btnBox{
+	width: 92%;
+	margin :0 auto;
+	margin-top: 20px;
+	overflow: hidden;
+}
+.btnBox .save1{
+	display: block;
+	float: right;
+	width: 45%;
+	height: 44px;
+	border: 0;
+	background-color: #EF5350;
+	border-radius: 2px;
+	color: white;
+	font-size: 16px;
+}
+.btnBox .del{
+	display: block;
+	float: left;
+	width: 45%;
+	height: 44px;
+	border: 0;
+	background-color: #f2f2f2;
+	border-radius: 2px;
+	color: #EF5350;
+	border: 1px solid #EF5350;
+	font-size: 16px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

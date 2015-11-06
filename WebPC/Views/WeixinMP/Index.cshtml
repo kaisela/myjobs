@@ -1,0 +1,39 @@
+﻿@model IList<Model.WeixinMP>
+@{
+    ViewBag.Title = "公众账号管理";
+}
+@section styles{
+    <link rel="stylesheet" href="~/Css/companyIfo.css" />
+    @* 模式窗口样式 *@
+    <link href="~/Plugin/window/css/common.css" rel="stylesheet" />
+    <style>
+        .box {
+            border-bottom: none;
+        }
+    </style>
+}
+<div class=" panel-default">
+    <div class="panel panel-body-nopadding">
+        <div class="box form-inline" style="padding: 20px 10px;margin-top: 10px;">
+            @using (Ajax.BeginForm("../WeixinMP/WeixinMPList", null, new AjaxOptions { HttpMethod = "post", OnSuccess = "success" }, new { id = "WeixinMPForm" }))
+            {
+                <input class="form-control" type="text" name="keywords" id="keywords" style="height: 34px;" placeholder="请输入公众账号名称" />
+                <button type="submit" class="btn btn-primary" style="padding: 5px 10px;">查询</button>
+            }
+        </div>
+    </div>
+    <div class="panel" style="overflow:hidden;margin-bottom: 20px;">
+        <div class="bottom">
+            <a href="javascript:void(0)" id="Create" class="btn btn-primary btn-sm winO2OPanel" data-toggle="modal" data-target=".bs-example-modal-lg" data-au="HNYSJYEdit" style="float: left;">新增公众号</a>
+        </div>
+    </div>
+    <div id="content"></div>
+</div>
+@section scripts{
+    @* 引用页面js *@
+    <script src="~/Scripts/WeixinMP/Index.js"></script>
+    @* ajax提交必须要引用 *@
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    @* 模式窗口 *@
+    <script src="~/Plugin/window/jquery-window.js"></script>
+}

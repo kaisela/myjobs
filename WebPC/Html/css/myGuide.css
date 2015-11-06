@@ -1,0 +1,181 @@
+@charset "utf-8";
+*{
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+body{
+	padding-top: 44px;
+}
+
+.ifoDetial{
+	width: 100%;
+	padding: 0 20px;
+	margin-top: 20px;
+}
+.ifoDetial ul{
+	width: 100%;
+	background-color: white;
+	border: 1px solid #e5e5e5;
+	border-radius: 4px;
+	/*margin-bottom: 20px;*/
+}
+
+.ifoDetial ul .touxiangBox{
+	width: 100%;
+	border-bottom:1px solid #e5e5e5;
+	padding: 10px;
+	overflow: hidden;
+}
+
+
+.textSalesbox{
+	width: 100%;
+	border: 1px solid #cccccc;
+	border-radius: 4px;
+	padding: 10px;
+	padding-bottom: 5px;
+	background-color: white;
+	margin-bottom:15px ;
+	overflow: hidden;
+}
+.textSales{
+	width: 100%;
+	min-height:120px; 
+	word-wrap: break-word;
+	overflow-y: hidden;
+	max-height: 200px;
+	color: #666666;
+	font-size: 0.875em;
+	border: 0;
+}
+.saveSales{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	padding:10px 20px	
+
+}
+
+.saveSales input{
+	width: 100%;
+	height: 40px;
+	background-color: #ef5350;
+	border: 0;
+	border-radius: 4px;	
+	color: white;
+	font-size: 1em;	
+}
+
+.textSalesbox p{
+	float: right;
+	color: #999999;
+	font-size: 0.756em;
+}
+
+.discuss{
+	width: 100%;
+	padding: 0 20px;
+	overflow: hidden;
+}
+.discuss img{
+	float: right;
+	line-height: 30px;
+	width: 60px;
+	margin-left: 30px;
+}
+.ifo{
+	width: 100%;
+	padding: 20px;
+	border-bottom:1px solid #e5e5e5;
+	background-color: white;
+}
+
+.ifo .ifoBox{
+	width: 100%;
+	overflow: hidden;
+	
+}
+.ifo .ifoBox img{
+	width:90px;
+	float: left;
+	margin-right: 10px;
+}
+.ifo .ifoBox .do{
+	float: left;
+	
+}
+.do .name{
+	color:#333333;
+	font-size: 16px;
+	margin-bottom: 8px;
+}
+.do .tel{
+	color: #666666;
+	font-size: 14px;
+	background: url(../img/index_phone.png) no-repeat left center;
+	padding-left: 30px;
+	background-size: 20px;
+	margin-bottom: 8px;
+}
+.do .btnGrunp{
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: space-between;
+}
+
+.do .btnGrunp span{
+	width: 50px;
+	height: 26px;
+	text-align: center;
+	line-height: 24px;
+	color:#ef5350;
+	border: 1px solid #ef5350;
+	border-radius: 2px;
+	margin-right: 10px;
+}
+.do .btnGrunp span a{
+	display: block;
+	color: #EF5350;
+	width: 100%;
+	height: 100%;
+}
+.do .btnGrunp .currentBtn{
+	background-color: #EF5350;
+	color: white;
+}
+.ifo .exp{
+	width: 100%;
+	color: #666666;
+	font-size: 12px;
+	padding: 10px 0;
+}
+.ifo .address{
+	width: 100%;
+	color: #666666;
+	font-size: 12px;
+}
+.ifo .exp .data{
+	color: #EF5350;
+}
+.ifo .exp .time{
+	color: #EF5350;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

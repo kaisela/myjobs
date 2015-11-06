@@ -1,0 +1,122 @@
+@charset "utf-8";
+*{
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+.navbar .right .save{
+	display: block;
+	width: 50px;
+	height: 26px;
+	line-height: 26px;
+	border: 1px solid white;
+	color: white;
+	text-align: center;
+	box-sizing: content-box;
+	border-radius: 4px;
+	font-size: 0.875em;
+}
+
+
+.ifoDetial ul{
+	width: 100%;
+	padding: 0 20px;
+	background-color: white;
+	margin-bottom: 20px;
+	height: 80px;
+}
+
+.ifoDetial ul .touxiangBox{
+	width: 100%;
+	height: 80px;
+	padding: 10px;
+	overflow: hidden;
+}
+.touxiangBox span{
+	display: block;
+	float: left;
+	line-height: 60px;
+}
+.touxiangBox sup{
+	float: left;
+	color: red;
+	padding-top: 10px;
+}
+.touxiangBox .touxiang{
+	float: right;
+	width: 60px;
+	height: 60px;
+}
+.touxiangBox .touxiang img{
+	width: 100%;
+	border-radius: 50%;
+}
+
+.step2{
+	width: 100%;
+	padding: 0 20px;
+	background-color: white;
+}
+.shopNameBox{
+	width: 100%;
+	border-bottom:1px solid #e5e5e5;
+	padding: 10px;
+	overflow: hidden;
+}
+
+.shopNameBox span{
+	display: block;
+	float: left;
+	height: 30px;
+	line-height: 30px;
+}
+.shopNameBox input{
+	width: 120px;
+	float: right;
+	text-align: right;
+	border: 0;
+	height: 30px;
+	line-height: 30px;
+	color: #666666;
+}
+.edBox{
+	width: 100%;
+	padding: 10px;
+	overflow: hidden;	
+}
+
+.edBox span{
+	display: block;
+	float: left;
+	height: 30px;
+	line-height: 30px;
+}
+
+.sexBox{
+	float: right;
+	overflow:hidden ;
+}
+.sexBox img{
+	width: 16px;
+	float: left;
+	margin-left: 30px;
+	margin-top: 6px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

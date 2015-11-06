@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "导购管理";
+}
+@section Styles{    
+<link href="@Url.Content("~/css/jquery.datatables.css")" rel=" stylesheet">
+<link href="@Url.Content("~/Plugin/window/css/common.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Scripts/poshytip/tip-yellowsimple/tip-yellowsimple.css")" rel="stylesheet" type="text/css" />
+<link href="~/Plugin/pager/css/pager.css" rel="stylesheet" />
+<link href="~/Css/selling.css" rel="stylesheet" />
+    }
+@section Scripts{
+    <script src="~/Areas/AgentState/Scripts/Agentpublic/GuidUn.js"></script>
+    <script src="/Plugin/pager/jquery-pager.js"></script>
+    <script src="~/Areas/AgentState/Scripts/AgentGuidUn/AgentGuidUn.js"></script>
+   <script src="/Plugin/selectall/jquery-selectall.js"></script>
+    }
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form class="form-inline" id="conditionForm">
+                <div class="form-group">
+                    <label class="sr-only" for="exampleInputEmail2">请输入导购名称等关键词</label>
+                    <input type="text" name="guidName" class="form-control input-sm" id="exampleInputEmail2" placeholder="请输入导购名称等关键词">
+                </div>
+                <button type="button" id="search" class="btn btn-primary btn-sm">查询</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <ul class="filemanager-options">
+        <li>
+            <div class="ckbox ckbox-default">
+                <input type="checkbox" id="selectall" data-func="selectall" data-name="checkbox" value="1">
+                <label for="selectall">全选</label>
+            </div>
+        </li>
+        <li>
+            <a class="btn btn-primary btn-sm white" id="BatchClose">批量关闭</a>
+        </li>
+    </ul>
+</div><!--总体操作-->
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table mb30">
+                    <thead>
+                        <tr>
+                            <th>选择</th>
+                            <th>序号</th>
+                            <th>名称</th>
+                            <th>类型</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabbody">
+                    </tbody>
+                </table>
+                <div class="dataTables_paginate paging_full_numbers" id="table2_paginate">
+                    <span class="pager"></span>
+                </div>
+            </div><!--table-responsive-->
+        </div><!--panel-body-->
+    </div><!--panel-->
+</div><!---row-->
+

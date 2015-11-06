@@ -1,0 +1,113 @@
+﻿@model Model.Brand
+@{
+    Layout = "~/Areas/Operate/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "编辑品牌";
+    System.Collections.Hashtable Enterprise = ViewBag.Enterprise as System.Collections.Hashtable;
+    IList<System.Collections.Hashtable> htBrandGC = ViewBag.htBrandGC as IList<System.Collections.Hashtable>;
+}
+@section styles{
+    <link href="@Url.Content("~/Scripts/poshytip/tip-yellowsimple/tip-yellowsimple.css")" rel="stylesheet" type="text/css" />
+}
+@section scripts
+{
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/poshytip/jquery.poshytip.min.js")" type="text/javascript"></script>
+    <script src="~/Plugin/upload/script/util.js"></script>
+    <script src="~/Plugin/upload/jquery-upload.js"></script>
+    <script src="~/Areas/Operate/Scripts/Brand/Edit.js"></script>
+}
+<div class="form-group">
+    <label class="col-sm-3 control-label">品牌图片<span class="asterisk">*</span></label>
+    <div class="col-sm-6">
+        <label>选择图片：</label>
+        <div id="uploadContainer1" data-image-type="3" data-callback-element="BIMG" data-url="/File/ImageUpload"
+             data-accept="image/png,image/jpeg" data-size="6048" data-parttern="single" data-path="/File/ShowImage/{0}" data-cross-domain="true">
+        </div>
+    </div>
+</div>
+@using (Ajax.BeginForm("../Brand/Edit", null, new AjaxOptions { OnSuccess = "CommentSuccess" }, null))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.ID)
+        <div class="form-group">
+            @Html.LabelFor(model => model.BName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BName)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">原图:</label>
+            <div class="col-md-10">
+                <img src="@ViewBag.BIMG" />
+            </div>
+        </div>
+        
+        <input data-val="true" data-val-length="图片的地址 最多12个字。" data-val-length-max="12" data-val-required="图片的地址不能为空" id="BIMG" name="BIMG" type="hidden">
+        <div class="form-group">
+            @Html.Label("所属商品分类", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <table>
+                    <tr>
+                        <td>
+                            <select name="Parentid" id="Parentid" style='width:100px'></select>
+                        </td>
+                        <td>
+                            <select name="CId" id="CId" style='width:100px'></select>
+                        </td>
+                        <td>
+                            <a class="btn" href='javascript:void(0)' id='addC'>添加</a>
+                        </td>
+
+                    </tr>
+                    @foreach (var item in htBrandGC)
+                    {
+                        <tr>
+                            <td colspan='2'>
+                                <input class='addcids' type='hidden' name='CIds[]' value='@item["GoodsClassID"]' />
+                                <span>@item["BrandGC"]</span>
+                            </td>
+                            <td><a href='#' onclick='del(this)'>删</a> </td>
+                        </tr>
+                    }
+                </table>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EnterpriseID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select name="EnterpriseID" id="EnterpriseID">
+                    @foreach (var i in Enterprise.Keys)
+                    {
+                        if (@Model.EnterpriseID.Equals(i))
+                        {
+                            <option value="@i" selected> @Enterprise[i]</option>
+                        }
+                        else
+                        {
+                            <option value="@i"> @Enterprise[i]</option>
+                        }
+
+                    }
+                </select>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,0 +1,71 @@
+@charset "utf-8";
+ul,li{
+	list-style: none;
+	padding: 0;
+}
+.textedit{
+	width: 100%;
+}
+.textedit li{
+	width: 100%;
+	overflow: hidden;
+	margin-bottom: 10px;
+}
+.textedit li span{
+	display: block;
+	float: left;
+	width: 100px;
+	line-height: 50px;	
+	text-align: right;
+	margin-right: 10px;
+}
+.textedit li textarea{
+	min-width: 500px;
+	min-height: 200px;
+}
+.textedit input[type=submit]{
+	width: 100px;
+	margin-left: 100px;
+}
+
+.jiajian{
+	overflow: hidden;
+}
+.jiajian span{
+	float: left;
+}
+.right-counts{
+	width: 200px;
+	font-size: 14px;
+	float: left;
+	overflow: hidden;
+	margin-top: 10px;
+}
+.count-mp{
+	width: 26px; 
+	height: 26px; 
+	line-height: 18px; 
+	border-radius: 2px; 
+	text-align: center;
+	display: block;
+	float: left;
+	cursor: pointer;
+}
+.count-mp-input{
+	width:60px; 
+	height: 26px; 
+	text-align: center;
+	border:1px solid #cccccc;
+	float: left;
+}
+.count-minus{
+	border: 1px solid #b3b3b3;
+	color: #b3b3b3;
+	float: left;
+	
+}
+
+.count-plus{
+	border: 1px solid #d53e41;
+	color: #d53e41;
+}

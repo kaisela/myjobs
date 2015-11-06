@@ -1,0 +1,96 @@
+﻿@model Model.KnowledgeArticle
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>预览</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/KnowledgeLibrary/css/base.css" media="all">
+    <link href="~/Content/common.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Content/KnowledgeLibrary/css/module.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/KnowledgeLibrary/css/style.css" media="all">
+    <link rel="stylesheet" type="text/css" href="~/Content/KnowledgeLibrary/css/default_color.css" media="all">
+
+
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="~/Scripts/imageUpload/ajaxfileupload.js"></script>
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
+    <script type="text/javascript" src="~/Scripts/common/Common.js"></script>
+
+    <style type='text/css'>
+        body {
+            margin: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 标题栏 -->
+    <div class="main-title">
+        <h2>知识库详情</h2>
+    </div>
+    <!-- 数据列表 -->
+    <div class="data-table table-striped detail-tb">
+        <table>
+            <tbody>
+                <tr>
+                    <td class="td-one">
+                        文章所属类目：
+                    </td>
+                    <td>@Html.Raw(ViewBag.ClassName)</td>
+                </tr>
+                <tr>
+                    <td class="td-one">
+                        文章标题:
+                    </td>
+                    <td>@Model.Title</td>
+                </tr>
+                <tr>
+                    <td class="td-one">
+                        是否置顶:
+                    </td>
+                    <td>@(Model.IsTop ? "是" : "否")</td>
+                </tr>
+                <tr>
+                    <td class="td-one">
+                        文章配图：
+                    </td>
+                    <td><img src="@(Bll.ConstConfigBll.GetConfigByKey("ImageShowUrl") + Model.Pic)_1" width="200px" height="200px" /></td>
+                </tr>
+                <tr>
+                    <td class="td-one">
+                        文章内容:
+                    </td>
+                    <td>
+                        @Html.Raw(Model.Content)
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-one">
+                        发布时间:
+                    </td>
+                    <td>
+                        @Model.AddTime.ToString("yyyy年MM月dd日 HH时mm分ss秒")
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-one">
+                        原文地址:
+                    </td>
+                    <td>@Model.Addrees</td>
+                </tr>
+                <tr>
+                    <td>二维码</td>
+                    <td>
+                        <input type=button value="点击查看" onclick="var __dfi2=document.getElementById('img1');__dfi2.style.display='';__dfi2.src='@Url.Content("~/Operate/KnowledgeLibrary/YieldEWM/" + Model.Id)';" />
+                        <img id="img1" src="#" style="display:none;" width="181px" height="181px" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

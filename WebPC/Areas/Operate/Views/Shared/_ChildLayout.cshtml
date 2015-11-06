@@ -1,0 +1,82 @@
+﻿@using Model
+@using Newtonsoft.Json
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    <link href="~/Scripts/poshytip/tip-yellowsimple/tip-yellowsimple.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/poshytip/jquery.poshytip.js"></script>
+    
+    @RenderSection("styles", required: false)
+  
+    @{
+        string publicConfig = Bll.ConstConfigBll.GetStringConfig();
+    }
+    <script type="text/javascript">
+        var _publicConfig = '@publicConfig';
+        window.publicConfig = JSON.parse($.htmlDecode(_publicConfig));;
+
+    </script>
+</head>
+<body style="background-color: white;padding: 5px">
+    <section>
+        @RenderBody()
+    </section>
+   @RenderSection("scripts", required: false)
+
+    @{
+        var permission = "";
+        UserPC userPermission = null;
+        if (Session["User"] != null)
+        {
+            userPermission = Session["User"] as UserPC;
+            if (userPermission != null && userPermission.UserBasic != null)
+            {
+                userPermission.UserBasic.UserPc = null;
+            }
+            else
+            {
+                userPermission = new UserPC()
+                {
+                    UserBasic = new UserBasic(),
+                    RolePowerList = new List<RolePower>()
+                };
+            }
+        }
+        else
+        {
+            userPermission = new UserPC()
+            {
+                UserBasic = new UserBasic(),
+                RolePowerList = new List<RolePower>()
+            };
+        }
+        permission = JsonConvert.SerializeObject(userPermission);
+    }
+    <script>
+        window.permission = '@permission';
+        $(document).ajaxStart(function () {
+            $.loading();
+        }).ajaxComplete(function () {
+            var data = arguments[1].responseJSON;
+            if (data && data.Status != undefined && data.Identify != undefined && data.Identify.expired != undefined) {
+                if ((data.Status == false || data.Status == "false") && (data.Identify.expired || data.Identify.expired == "true")) {
+                    window.top.location.href = window.top.location.origin + "?returnUrl=" + encodeURIComponent(window.top.location.href);
+                }
+            }
+            setTimeout(function () {
+                $.loadingEnd();
+            }, 200);
+
+        });
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+﻿@model Model.KnowledgeArticle
+           @{
+               Layout = null;
+           }
+<!doctype html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link href="../css/style.css" type="text/css" rel="stylesheet" />
+    <style type="text/css">
+        .container {
+            width: 100%;
+            padding: 20px;
+        }
+
+        .tittle {
+            width: 100%;
+            font-size: 20px;
+        }
+
+        .data {
+            width: 100%;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+
+            .data span {
+                font-size: 12px;
+                color: #666666;
+                float: left;
+            }
+
+            .data .name {
+                font-size: 12px;
+                color: #64b0db;
+                float: left;
+                margin-left: 10px;
+            }
+
+        .text {
+            width: 100%;
+            line-height: 1.6;
+        }
+
+        .container img {
+            width: 100%;
+            padding: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="tittle">
+            @Model.Title
+        </div>
+        <div class="data">
+            <span>@Model.AddTime.ToString("yyyy-MM-dd")</span>
+            <div class="name">云客来</div>
+        </div>
+        <div class="text">
+            @Html.Raw(Model.Content);
+        </div>
+    </div>
+</body>
+</html>

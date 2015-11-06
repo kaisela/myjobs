@@ -1,0 +1,77 @@
+﻿@{
+    Layout=null;
+}
+@{
+    IList<Model.KnowledgeClass> list = ViewBag.List as IList<Model.KnowledgeClass>;
+}
+@if(list == null)
+{
+    <div></div>
+}
+else
+{
+    <ul class="selecting-list" id="selectionClass">
+        @{
+            var first = list.Where(x=>x.Pid==0).ToList();
+            foreach (var f in first)
+            {
+                var second = list.Where(x => x.Pid == f.Id).ToList();
+                var fimg = "/Content/KnowledgeLibrary/img/closed.ico";
+                if (second.Count == 0) { fimg = "/Content/KnowledgeLibrary/img/list.ico"; }
+                    <li >
+                        <div class="clearfix"><i><img src="@fimg" /></i><a href="javascript:void(0);" classid="@f.Id" class="root01">@f.ClassName</a></div>
+                        @{
+                            
+                            if (second.Count > 0)
+                            {
+                                <ul class="selecting-list-c">
+                                    @foreach (var s in second)
+                                    {
+                                        var third = list.Where(x => x.Pid == s.Id).ToList();
+                                        var simg = "/Content/KnowledgeLibrary/img/closed.ico";
+                                        if (third.Count == 0) { simg = "/Content/KnowledgeLibrary/img/list.ico"; }
+                                        <li>
+                                            <div class="clearfix"><i><img src="@simg" /></i><a href="javascript:void(0);" classid="@s.Id">@s.ClassName</a></div>
+                                            @{
+                                       
+                                        <ul class="selecting-list-cc">
+                                            @foreach (var t in third)
+                                            {
+                                                <li class="clearfix">
+                                                    <div class="clearfix"><i><img src="~/Content/KnowledgeLibrary/img/list.ico" /></i><a href="javascript:void(0)" classid="@t.Id">@t.ClassName</a></div>
+                                                </li>
+                                            }
+                                        </ul>
+
+
+                                            }
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                            
+                           }
+                    </li>
+              }
+
+
+        }
+      </ul>
+}
+<script type="text/javascript">
+    $("#selectionClass img").click(function () {
+        var ul = $(this).parent().parent().parent().find("ul");
+        if (ul && ul.length > 0)
+        {
+            if ($(ul).is(":hidden")) {
+                $(ul).show();
+                $(this).attr("src", "/Content/KnowledgeLibrary/img/closed.ico");
+            }
+            else {
+                $(ul).hide();
+                $(this).attr("src", "/Content/KnowledgeLibrary/img/list.ico");
+            }
+        }
+
+    });
+</script>

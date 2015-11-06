@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>后台登陆</title>
+		<link rel="stylesheet" href="../Css/agencyLogin.css"  />
+		<link rel="stylesheet" href="../Css/transform.css" />
+		<script type="text/javascript" src="js/jquery-1.11.1.min.js" ></script>
+		<script type="text/javascript" src="js/login.js" ></script>
+		<script type="text/javascript" src="js/count.js" ></script>
+	</head>
+	<body>
+		<div class="content">
+			<div class="loginBox">
+				<p>家居建材O2O_代理商登录</p>
+				<div class="login">
+					<form method="post" >
+					<ul>
+						<li>
+							<label>手机号</label><br />
+							<input type="text" class="name" />
+						</li>
+						<li>
+							<label>密码</label><br />
+							<input type="password" class="pwd" />
+						</li>
+					    <li class="bottom">
+					    	<a class="col-sm-6 enroll">首次登陆</a>
+					    	<a class="col-sm-6 enroll2">忘记密码？</a>
+						</li>
+					    <li>
+					    	<input type="submit" class="submit" value="登陆" />
+						</li>
+					</ul>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+		
+		<div class="validateBox">
+			<div class="loginBox"> 
+				<p class="tittle">验证手机号</p>
+				<div class="login">
+					<form method="post" >
+					<ul>
+						<li class="row1">
+							<input type="text" class="name" placeholder="请输入手机号"/>
+							<!--<span onclick="sendmsg()">获取验证码</span>-->
+							<input class="idCode" type="button" name="btn" value="获取验证码" onclick="sendmsg()" />
+						</li>
+						<li class="row2">
+							<input type="text" class="" placeholder="请输入"/>
+							<img src="images/yanzheng.jpg" />
+							<a>看不清，换一张</a>
+						</li>
+					    <li class="row3">
+					    	<input type="text" name="" id="" value="" placeholder="请输入短信验证码"/>
+						</li>
+						<li class="user-row">
+							<input type="text" name="" id="" value="" placeholder="用户名"/>
+						</li>
+					    <li class="row4">
+					    	<input type="password" placeholder="密码"/>
+					    	<div class="tips">
+					    		<div class="tip">
+					    			6-16字符（字母、下划线、数字）
+						    		<em>&#9670;</em>
+									<span>&#9670;</span>
+								</div>
+					    	</div>
+						</li>
+						<li class="row5">
+					    	<input type="password" placeholder="请再输入一次"/>
+						</li>
+						<li>
+					    	<input type="submit" class="submit" value="确定" />
+						</li>
+					</ul>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

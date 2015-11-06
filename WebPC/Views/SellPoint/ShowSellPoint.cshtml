@@ -1,0 +1,48 @@
+﻿@using System.Collections
+@model Model.SellPoint
+@{
+    ViewBag.Title ="销售卖点详情";
+    // ViewBag.ParentCode = "";
+}
+@section styles{
+    <link href="~/Css/selling.css" rel="stylesheet" />
+}
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row1">
+                <span class="col-sm-2" style="text-align:right;">所属商品 ：</span>
+                <div class="col-sm-7">
+    @foreach (Hashtable ht in ViewBag.sg as IList<Hashtable>)
+    {
+        <span title="@ht["GName"]">@(HttpUtility.HtmlDecode(ht["GName"].ToString()))</span><br />
+    }
+</div>
+
+            </div>
+            <div class="row1">
+                <span class="col-sm-2" style="text-align:right;">销售卖点标题：</span>
+                <div class="col-sm-7">
+                    <span>@(HttpUtility.HtmlDecode(Model.Title))</span>                   
+                </div>
+            </div>
+            <div class="row1">
+                <span class="col-sm-2" style="text-align:right;">销售卖点详情:</span>
+                <div class="col-sm-7">
+                   @Html.Raw(Model.Content) 
+                </div>
+            </div>
+        </div>
+        <div class="row1 col-sm-offset-3">
+            <input type="button" class="btn btn-default btn-sm" id="btnBack" value="返回" />
+        </div>
+    </div>
+@section scripts
+{
+    <script>
+        $(function () {
+            $("#btnBack").click(function () {
+                window.top.location.href = "/SellPoint/Index";
+            });
+        })
+    </script>
+}

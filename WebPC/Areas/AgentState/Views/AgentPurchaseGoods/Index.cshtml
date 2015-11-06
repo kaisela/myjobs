@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "采购中心";
+    IList<Model.GoodsClass> gClassP = ViewBag.gClass as IList<Model.GoodsClass>;
+}
+@section styles{
+    <link href="~/Css/jquery.datatables.css" rel="stylesheet" />
+    <link href="~/Css/selling.css" rel="stylesheet" />
+    <link href="~/Plugin/window/css/common.css" rel="stylesheet" />
+    <link href="~/Plugin/pager/css/pager.css" rel="stylesheet" />
+    <style>
+        #tbodyGoods tr:hover {
+            background-color: #ddf7fc;
+        }
+    </style>
+}
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label class="sr-only" for="exampleInputEmail2">请输入商品名称</label>
+                    <input type="text" class="form-control" id="GName" placeholder="请输入商品名称">
+                </div>
+                <div class="form-group">
+                    <select class="form-control" id="GClassP">
+                        <option value="0">商品一级类目</option>
+                        @foreach (Model.GoodsClass c in gClassP)
+                        {
+                            <option value="@c.ID">@c.CName</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select class="form-control" id="GClass">
+                        <option value="0">商品二级类目</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select class="form-control" id="ddlIsSelect">
+                        <option value="0" selected="selected">未选购</option>
+                        <option value="1">已选购</option>
+                    </select>
+                </div>
+                <input type="button" class="btn btn-primary btn-sm" id="btnSearch" value="查询" />
+            </form>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <ul class="filemanager-options">
+        <li id="liBatchSelect">
+            <a class="btn btn-primary btn-sm white" id="BatchSelect">批量选购</a>
+        </li>
+    </ul>
+</div><!--总体操作-->
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table mb30">
+                    <thead>
+                        <tr style="vertical-align:middle;">
+                            <th width="6%"><div class="ckbox ckbox-default">
+    <input type="checkbox" data-func="selectall" data-name="check" name="check" id="selectall" value="">
+    <label for="selectall">全选</label>
+</div></th>
+                            <th width="6%">商品图片</th>
+                            <th width="20%">商品名称</th>
+                            <th width="10%">价格</th>
+                            <th width="7%">总销量</th>
+                            <th width="7%">评价数</th>
+                            <th width="10%">商品类目</th>
+                            <th width="8%">有货状态</th>
+                            <th width="10%">发布时间</th>
+                            <th style="text-align:center;">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbodyGoods">
+                    </tbody>
+                </table>
+                <span id="pager" class="pager" style="float:right;">
+                </span>
+            </div><!--table-responsive-->
+        </div><!--panel-body-->
+    </div>
+</div><!--panel-->
+<div id="windowShowImg" style="display: none;">
+    <br />
+    <img id="imgShowGoods" style="margin-left:18px;" src="" />
+</div>
+@section scripts
+{
+    <script src="~/Scripts/public.js"></script>
+    <script src="~/Plugin/selectall/jquery-selectall.js"></script>
+    <script src="~/Plugin/pager/jquery-pager.js"></script>
+<script src="~/Areas/AgentState/Scripts/AgentGoods/PurchaseGoodsIndex.js"></script>
+}

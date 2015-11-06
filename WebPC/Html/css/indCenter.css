@@ -1,0 +1,88 @@
+@charset "utf-8";
+.person{
+	width: 100%;
+	padding: 14px 20px;
+	background-color: white;
+	margin-bottom: 10px;
+}
+.person .inner{
+	width: 100%;
+	overflow: hidden;
+}
+.person li{
+	float: left;
+}
+.person li:nth-child(2){
+	width: 50%;
+}
+.person .customerimg{
+	width: 74px;
+	height: 74px;
+	border-radius:50% ;
+	margin-right: 20px;
+}
+.person .name{
+	width: 100%;
+	line-height: 44px;
+	color: #333333;
+}
+.person .sex{
+	width: 16px;
+	height: 16px;
+}
+.person li:nth-child(3){
+	float: right;
+}
+.person .arrow{
+	width: 12px;
+	padding-top: 22px;
+}
+
+.listMenubox{
+	width: 100%;
+	background-color: white;
+	padding-bottom: 20px;
+}
+.listMenubox .list1{
+	width: 100%;
+	overflow: hidden;
+	padding-top: 20px;
+}
+.listMenubox .list1 li{
+	float: left;
+	width: calc(100%/3);
+	width: -moz-calc(100%/3);
+	width: -webkit-calc(100%/3);
+}
+.listMenubox .list1 img{
+	width: 58px;
+	margin: 0 auto;
+}
+.listMenubox .list1 p{
+	width: 100%;
+	text-align: center;
+	margin: 5px 0;
+	font-size: 0.875em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

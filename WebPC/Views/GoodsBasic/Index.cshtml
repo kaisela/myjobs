@@ -1,0 +1,142 @@
+﻿@using System.Collections
+@{
+    var htIsNormal = ViewBag.isNormal as List<SelectListItem>;
+    IList<Model.GoodsGroup> htGGroup = ViewBag.gGroup as IList<Model.GoodsGroup>;
+    IList<Model.GoodsClass> gClassP = ViewBag.gClass as IList<Model.GoodsClass>;
+    int isSales = ViewBag.gIsSales;
+    ViewBag.Title = (isSales==0)?"出售中的商品":"仓库中的商品";
+}
+@section styles{
+    <link href="~/Css/jquery.datatables.css" rel="stylesheet" />
+    <link href="~/Css/selling.css" rel="stylesheet" />
+    <link href="~/Plugin/window/css/common.css" rel="stylesheet" />
+    <link href="~/Plugin/pager/css/pager.css" rel="stylesheet" />
+    <style>
+        #tbodyGoods tr:hover {
+        background-color:#ddf7fc;
+        }
+    </style>
+}
+<input type="hidden" id="hidIsSales" value="@isSales" />
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label class="sr-only" for="GName">请输入商品名称</label>
+                    <input type="text" class="form-control" id="GName" placeholder="请输入商品名称">
+                </div>
+                <div class="form-group">
+                    <select class="form-control" id="GClassP">
+                        <option value="0">请选择一级类目</option>
+                        @foreach (Model.GoodsClass c in gClassP)
+                        {
+                            <option value="@c.ID">@c.CName</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select class="form-control" id="GClass">
+                        <option value="0">请选择二级类目</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select class="form-control" id="GIsNormal">
+                        <option value="0">请选择有货状态</option>
+                        @foreach (SelectListItem htKey in htIsNormal)
+                        {
+                        <option value="@htKey.Value">@htKey.Text</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select class="form-control" id="GGroup">
+                        <option value="0">请选择可视分组</option>
+                        @foreach (Model.GoodsGroup gg in htGGroup)
+                        {
+                        <option value="@gg.ID">@gg.GroupName</option>
+                        }
+                    </select>
+                </div>
+                <input type="button" id="btnSearch" data-au="GoodsView" class="btn btn-primary btn-sm white" value="查询" />
+            </form>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <ul class="filemanager-options">
+        <li>
+            <div class="ckbox ckbox-default">
+                <input type="checkbox" data-func="selectall" data-name="check" name="check" id="selectall" value="">
+                <label for="selectall">全选</label>
+            </div>
+        </li>
+        <li class="inline">
+            <span>
+                <a class="btn btn-default btn-sm btn-default " data-au="GoodsDel" id="batchDel">删除</a>
+            </span>
+            <span>
+                <a class="btn btn-default btn-sm btn-default " data-au="GoodsEdit" id="aIsSale">
+                    @if (isSales == 1)
+                    {
+                        <span>上架</span> }
+                    else
+                    {
+                        <span>下架</span>  }
+                </a>
+            </span>
+            <span>
+                <select id="moveGroup" class="form-control input-sm" data-au="GoodsEdit">
+                    <option value="0">添加到可视分组</option>
+                    @foreach (Model.GoodsGroup gg in htGGroup)
+                    {
+                        <option value="@gg.ID">@gg.GroupName</option>
+                    }
+                </select>
+            </span>
+        </li>
+        <li class="filter-type">
+            <a href="/GoodsBasic/Operate" class="btn btn-primary btn-sm white" data-au="GoodsEdit" data-title="发布商品">发布商品</a>
+        </li>
+    </ul>
+</div><!--总体操作-->
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table mb30 tabSelling">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>商品名称</th>
+                            <th></th>
+                            <th>价格</th>
+                            <th>总销量</th>
+                            <th>评价数</th>
+                            <th>产品类目</th>
+                            <th>所属可视分组</th>
+                            <th>有货状态</th>
+                            <th>发布时间</th>
+                            <th style="text-align:center;">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbodyGoods"></tbody>
+                </table>
+                <span id="pager" class="pager" style="float:right;">
+                </span>
+            </div><!--table-responsive-->
+        </div><!--panel-body-->
+    </div>
+</div><!--panel-->
+<div id="windowShowImg" style="display: none;">
+    <br />
+    <img id="imgShowGoods" style="margin-left:18px;" src="" />
+    </div>
+@section scripts
+{
+    <script src="~/Scripts/public.js"></script>
+    <script src="~/Plugin/selectall/jquery-selectall.js"></script>
+    <script src="~/Plugin/pager/jquery-pager.js"></script>
+    <script src="~/Scripts/GoodsBasic/Index.js"></script>
+}
+

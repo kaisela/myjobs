@@ -1,0 +1,49 @@
+﻿@model Model.AgentView 
+
+@{
+    ViewBag.Title = "代理商详情";
+    ViewBag.MenuCode = "AgentShopIndex";
+    ViewBag.ParentCode = "ChnView";
+}
+@section styles{
+<link href="@Url.Content("~/Plugin/window/css/common.css")" rel="stylesheet" />
+    <link href="~/Css/windowbase.css" rel="stylesheet" />
+
+}
+@section Scripts{
+    <script src="/Plugin/window/jquery-window.js"></script>
+<script src="~/Scripts/ChannelpublicJs/PublicStatus.js"></script>
+    <script type="text/javascript">
+        function Agent_ShopInfo_Create(data) {
+            if (data.status) {
+                $.message("新增成功", true);
+            }
+        }
+    </script>
+    }
+
+<div class="row">
+    <div class="panel panel-body">
+        <h4 class="text-info">@Model.AgentName</h4>
+        <address>地址：@Model.Address</address>
+        <address>总机：@Model.ContactTEL                      <span style="display: inline-block; margin-left: 200px;">  联系人：@Model.Contact</span></address>
+        <address>类型：代理商</address>
+        <address>渠道分组：代理商下属门店</address>
+        <address>状态：<span id="AgentStatus">@Model.Status</span></address>
+        <div class="form-group">
+            <a href="javascript:void(0)"
+               class="btn btn-primary btn-sm white winO2OPanel"
+               data-title="新增门店窗口"
+               data-func="openWin"
+               data-id="newWinCreate"
+               data-show-btn="false"
+               data-au="ChnEdit"
+               data-callback="Agent_ShopInfo_Create"
+               data-url="/ShopInfo/Agent_Create?AgentName=@(Model.AgentName)&AgentID=@(Model.ID)"
+               data-width="800"
+               data-height="500">新增门店</a>
+            <a href="/Agent/Index" class="btn btn-primary btn-sm white winO2OPanel">返回</a>
+        </div>
+    </div>
+</div>
+

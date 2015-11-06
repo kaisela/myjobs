@@ -1,0 +1,110 @@
+﻿@model Model.WeixinMP
+@{
+    ViewBag.Title = "公众号详情页";
+    //所属菜单 对应权限名称
+    ViewBag.ParentCode = "HNYSJYView";
+    //需要来判断是否存在
+    if (Model.ID == 0)
+    {
+        <div>找不到公众号</div>
+        return;
+    }
+    int addtype = 2;
+    if (!string.IsNullOrWhiteSpace(Model.UName) &&
+            !string.IsNullOrWhiteSpace(Model.UName))
+    {
+        addtype = 1;
+    }
+}
+@section styles{
+    <link rel="stylesheet" href="~/Css/companyIfo.css" />
+    @* 引用分页样式 *@
+    <link href="~/Plugin/pager/css/pager.css" rel="stylesheet" />
+    @* 模式窗口样式 *@
+    <link href="~/Plugin/window/css/common.css" rel="stylesheet" />
+
+}
+<ul class="uldetail panel">
+    <li class="nameTittle">
+        <h3 class="col-sm-3">@(Model.MPCName)</h3>
+        @Html.Hidden("id", Model.ID)
+        <div class="col-sm-9 ">
+            <a href="javascript:void(0)" id="WeixinMPEdit" data-au="HNYSJYEdit" data-id="@Model.ID" data-addtype="@( addtype ==1? "1" : "2")" class="btn btn-primary btn-sm" style="margin-top: 5px;">修改</a>
+        </div>
+    </li>
+    @if (addtype == 1)
+    {
+        <li>
+            <span>公众账号：</span>
+            <span>@(Model.UName)</span>
+        </li>
+    }
+    else
+    {
+        <li>
+            <span>AppID(应用ID)：</span>
+            <span>@(Model.AppID)</span>
+        </li>
+        <li>
+            <span>AppSecret(应用密钥)：</span>
+            <span>@(Model.AppSecret)</span>
+        </li>
+    }
+    @if (Model.Status == 0)
+    {
+        <li>
+            <span>粉丝数：</span>
+            <span>@(Model.FanCount)</span>
+        </li>
+        <li>
+            <label><span>门店：</span><span>@(Model.AgentShopCount)</span></label>
+            <label><span>直营店：</span><span>@(Model.EnterpriseShopCount)</span></label>
+        </li>
+        <li>
+            <span class="col-sm-2">二维码使用情况：</span>
+            <div class="progress col-sm-6" style="padding-left:0;padding-right:0">
+                <div style="width: 50%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-warning">
+                    <span class="">@(Model.QRNumUsed)</span>
+                </div>
+                <div style="width: 40%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-primary">@(Model.QRNumShop)</div>
+            </div>
+            <span>@(Model.QRNum)</span>
+        </li>
+    }
+</ul>
+@if (Model.Status == 0)
+{
+    <div class="panel" style="width:100%;overflow: hidden;background: white;padding: 20px 0;">
+        <label class="col-sm-2">
+            <a class="btn btn-primary btn-sm winO2OPanel" data-id="@Model.ID" id="BindEnterpriseShop" data-au="HNYSJYEdit" data-toggle="modal" data-target=".bs-example-modal-lg" data-title="绑定直营店">绑定直营店</a>
+            <a class="btn btn-primary btn-sm winO2OPanel" data-au="HNYSJYEdit" data-toggle="modal" data-target=".bs-example-modal-lg" data-title="绑定门店">绑定门店</a>
+        </label>
+    </div>
+    <div class="panel">
+        <div class="table-responsive">
+            <table class="table mb30" id="DetailsTable">
+                <thead>
+                    <tr>
+                        <th>渠道名称</th>
+                        <th>所属区域</th>
+                        <th>归属</th>
+                        <th>二维码使用数</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            @* 分页标签 *@
+            <span class="pager"></span>
+        </div>
+    </div>
+}
+@section scripts{
+    @* 引用分页插件 *@
+    <script src="~/Plugin/pager/jquery-pager.js"></script>
+    @* 引用页面js *@
+    <script src="~/Scripts/WeixinMP/Details.js"></script>
+    @* 模式窗口 *@
+    <script src="~/Plugin/window/jquery-window.js"></script>
+}

@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Model.GoodsClass>
+@{
+    Layout = "~/Areas/Operate/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "商品分类列表";
+}
+
+@section scripts{
+    <script src="~/Areas/Operate/Scripts/GoodsClass/Index.js"></script>
+    <script src="~/Scripts/Common/Common.js"></script> 
+   
+}
+<p>
+    @Html.ActionLink("添加商品分类", "Add")
+</p>
+
+@{
+    IList<Model.GoodsClass> list = ViewBag.List as IList<Model.GoodsClass>;
+}
+@{
+  
+    if (list == null)
+    {
+        <b>获取数据出错!</b>
+    }
+    else
+    {
+        <div class="selects_" id="selects_">
+            <div class="selecting" style="width:504px;">
+                <ul>
+                    @{
+        var first = list.Where(x => x.Parentid == 0).OrderBy(x => x.Sorting).ToList();
+        int fcnt=0;
+        int ftotalcount=first.Count();
+        foreach (var f in first)
+        {
+            fcnt++;
+            var second = list.Where(x => x.Parentid == f.ID).OrderBy(x => x.Sorting).ToList();
+            string fico = "~/Content/KnowledgeLibrary/img/closed.ico";
+            if (second.Count == 0) { fico = "~/Content/KnowledgeLibrary/img/list.ico"; }
+
+            <li gcid="@f.ID" order="@f.Sorting">
+                <div class="clearfix">
+                    <img style="margin-top:5px; cursor:pointer; float:left" src="@Url.Content(fico)" />
+                    <input style=" float: left; width: 60px; margin-top: 8px; margin-left: 6px;" type="text"  value="@f.CName" name="CName" />
+                    <span class="msg"></span>
+                    <i style="float:right;">
+                        <a href="/Operate/GoodsClass/Merge?ID=@f.ID&CName=@f.CName&Parentid=@f.Parentid">合并</a>
+                        @if (fcnt != 1)
+                        {
+                            <a href="javascript:void(0)" onclick="move(this);" move="1" style="margin-right:10px;">上移</a>
+                        }
+                        @if (fcnt != ftotalcount)
+                        {
+                            <a href="javascript:void(0)" move="2" onclick="move(this);" style="margin-right:10px;">下移</a>
+                        }
+                       
+                    </i>
+                </div>
+                @{
+            if (second.Count > 0)
+            {
+                int scnt = 0;
+                int stotalcount = second.Count();
+                <ul ischild="1">
+                    @foreach (var s in second)
+                    {
+                        scnt++;
+                        string sico = "~/Content/KnowledgeLibrary/img/closed.ico";
+                        <li gcid="@s.ID" order="@s.Sorting">
+                            <div style="padding-left:24px;" class="clearfix">
+                                <img style="margin-top:5px; cursor:pointer; float:left" src="@Url.Content(sico)" />
+                                <input style=" float: left; width: 100px; margin-top: 8px; margin-left: 6px;" type="text" value="@s.CName" name="CName" />
+                                <span class="msg"></span>
+                                <i style="float:right;">
+                                    <a href="/Operate/GoodsClass/Merge?ID=@s.ID&CName=@s.CName&Parentid=@s.Parentid">合并</a>
+                                    @if (scnt != 1)
+                                    {
+                                        <a href="javascript:void(0)" onclick="move(this);" move="1" style="margin-right:10px;">上移</a>
+                                    }
+                                    @if (scnt != stotalcount)
+                                    {
+                                        <a href="javascript:void(0)" onclick="move(this);" move="2" style="margin-right:10px;">下移</a>
+                                    }
+                                </i>
+                            </div>
+
+                        </li>
+                    }
+                </ul>
+            }
+                }
+            </li>
+        }
+                    }
+                </ul>
+
+            </div>
+        </div>
+    }
+}

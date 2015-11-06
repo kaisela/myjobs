@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<form method="post">
+			<input type="text" id="myText" name="username" value="1">
+			<input type="button" value="Echo Username" id="test">
+		</form>
+		<div id="myDiv" style="margin-top: 20px;">
+			Right click or Ctrl+click me to get a custom context menu.
+			Click anywhere else to get the default context menu.
+		</div>
+		<ul id="myMenu" style="position:absolute;display:none;background-color:silver">
+			<li><a href="http://www.nczonline.net">Nicholas’ site</a></li>
+			<li><a href="http://www.wrox.com">Wrox site</a></li>
+			<li><a href="http://www.yahoo.com">Yahoo!</a></li>
+		</ul>
+	</body>
+</html>
+<script type="text/javascript" src="js/eventUtil.js" ></script>
+<script>
+//	var btn = document.getElementById("test");
+//	var handler = function(event){
+//		var e = EventUtil.getEvent(event);
+//		//console.log("1");
+//		console.log(EventUtil.getButton(e));
+//		EventUtil.stopPropagation(e);
+//		//EventUtil.preventDefault(e);
+//	}
+//	EventUtil.addHandler(btn,"mousedown",handler);
+//	var btn1 = document.getElementById("myBtn");
+//	var handler1 = function(){
+//		alert(this.id);
+//	}
+//	EventUtil.addHandler(btn1,"click",handler1);
+	
+//	var textbox = document.getElementById("myText");
+//	EventUtil.addHandler(textbox, "textInput", function(event){
+//		event = EventUtil.getEvent(event);
+//		console.log(event.data);
+//	});
+	
+	
+	var div = document.getElementById("myDiv");
+	EventUtil.addHandler(div, "contextmenu", function(event){
+		event = EventUtil.getEvent(event);
+		EventUtil.preventDefault(event);
+		var menu = document.getElementById("myMenu");
+		menu.style.left = event.clientX + "px";
+		menu.style.top = event.clientY + "px";
+		menu.style.display = "block";
+	});
+	EventUtil.addHandler(document, "click", function(event){
+		document.getElementById("myMenu").style.display = "none";
+	});
+
+
+</script>

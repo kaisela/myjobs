@@ -1,0 +1,571 @@
+<!doctype html> 
+<html> 
+<head> 
+<meta charset="utf-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<title>图片剪裁</title> 
+<script type="text/javascript" src="../js/jquery.min.js" ></script>
+<style> 
+
+</style> 
+</head> 
+
+<body> 
+
+</body> 
+</html>
+<script>
+	
+
+var selectObj = null;
+
+function ImageCrop(canvasId, imageSource, x, y, width, height) {
+
+    var canvas = $("#" + canvasId);
+
+    if (canvas.length == 0 && imageSource) {
+
+        return;
+
+    }
+
+    function canvasMouseDown(e) {
+
+        StopSelect(e);
+
+        canvas.css("cursor", "default");
+
+    }
+
+    function canvasMouseMove(e) {
+
+        var canvasOffset = canvas.offset();
+
+        var pageX = e.pageX || event.targetTouches[0].pageX;
+
+        var pageY = e.pageY || event.targetTouches[0].pageY;
+
+        iMouseX = Math.floor(pageX - canvasOffset.left);
+
+        iMouseY = Math.floor(pageY - canvasOffset.top);
+
+        canvas.css("cursor", "default");
+
+        if (selectObj.bDragAll) {
+
+            canvas.css("cursor", "move");
+
+            canvas.data("drag", true);
+
+            var cx = iMouseX - selectObj.px;
+
+            cx = cx < 0 ? 0 : cx;
+
+            mx = ctx.canvas.width - selectObj.w;
+
+            cx = cx > mx ? mx : cx;
+
+            selectObj.x = cx;
+
+            var cy = iMouseY - selectObj.py;
+
+            cy = cy < 0 ? 0 : cy;
+
+            my = ctx.canvas.height - selectObj.h;
+
+            cy = cy > my ? my : cy;
+
+            selectObj.y = cy;
+
+        }
+
+        for (var i = 0; i < 4; i++) {
+
+            selectObj.bHow[i] = false;
+
+            selectObj.iCSize[i] = selectObj.csize;
+
+        }
+
+        // hovering over resize cubes
+
+        if (iMouseX > selectObj.x - selectObj.csizeh && iMouseX < selectObj.x + selectObj.csizeh &&
+
+            iMouseY > selectObj.y - selectObj.csizeh && iMouseY < selectObj.y + selectObj.csizeh) {
+
+            canvas.css("cursor", "pointer");
+
+            selectObj.bHow[0] = true;
+
+            selectObj.iCSize[0] = selectObj.csizeh;
+
+        }
+
+        if (iMouseX > selectObj.x + selectObj.w - selectObj.csizeh && iMouseX < selectObj.x + selectObj.w + selectObj.csizeh &&
+
+            iMouseY > selectObj.y - selectObj.csizeh && iMouseY < selectObj.y + selectObj.csizeh) {
+
+            canvas.css("cursor", "pointer");
+
+            selectObj.bHow[1] = true;
+
+            selectObj.iCSize[1] = selectObj.csizeh;
+
+        }
+
+        if (iMouseX > selectObj.x + selectObj.w - selectObj.csizeh && iMouseX < selectObj.x + selectObj.w + selectObj.csizeh &&
+
+            iMouseY > selectObj.y + selectObj.h - selectObj.csizeh && iMouseY < selectObj.y + selectObj.h + selectObj.csizeh) {
+
+            canvas.css("cursor", "pointer");
+
+            selectObj.bHow[2] = true;
+
+            selectObj.iCSize[2] = selectObj.csizeh;
+
+        }
+
+        if (iMouseX > selectObj.x - selectObj.csizeh && iMouseX < selectObj.x + selectObj.csizeh &&
+
+            iMouseY > selectObj.y + selectObj.h - selectObj.csizeh && iMouseY < selectObj.y + selectObj.h + selectObj.csizeh) {
+
+            canvas.css("cursor", "pointer");
+
+            selectObj.bHow[3] = true;
+
+            selectObj.iCSize[3] = selectObj.csizeh;
+
+        }
+
+        if (iMouseX > selectObj.x && iMouseX < selectObj.x + selectObj.w && iMouseY > selectObj.y && iMouseY < selectObj.y + selectObj.h) {
+
+            canvas.css("cursor", "move");
+
+        }
+
+        // in case of dragging of resize cubes
+
+        var iFW, iFH, iFX, iFY, mx, my;
+
+        if (selectObj.bDrag[0]) {
+
+            iFX = iMouseX - selectObj.px;
+
+            iFY = iMouseY - selectObj.py;
+
+            iFW = selectObj.w + selectObj.x - iFX;
+
+            iFH = selectObj.h + selectObj.y - iFY;
+
+            canvas.data("drag", true);
+
+        }
+
+        if (selectObj.bDrag[1]) {
+
+            iFX = selectObj.x;
+
+            iFY = iMouseY - selectObj.py;
+
+            iFW = iMouseX - selectObj.px - iFX;
+
+            iFH = selectObj.h + selectObj.y - iFY;
+
+            canvas.data("drag", true);
+
+        }
+
+        if (selectObj.bDrag[2]) {
+
+            iFX = selectObj.x;
+
+            iFY = selectObj.y;
+
+            iFW = iMouseX - selectObj.px - iFX;
+
+            iFH = iMouseY - selectObj.py - iFY;
+
+            canvas.data("drag", true);
+
+        }
+
+        if (selectObj.bDrag[3]) {
+
+            iFX = iMouseX - selectObj.px;
+
+            iFY = selectObj.y;
+
+            iFW = selectObj.w + selectObj.x - iFX;
+
+            iFH = iMouseY - selectObj.py - iFY;
+
+            canvas.data("drag", true);
+
+        }
+
+        if (iFW > selectObj.csizeh * 2 && iFH > selectObj.csizeh * 2) {
+
+            selectObj.w = iFW;
+
+            selectObj.h = iFH;
+
+            selectObj.x = iFX;
+
+            selectObj.y = iFY;
+
+        }
+
+        drawScene();
+
+    }
+
+    function canvasMouseOut() {
+
+        $(canvas).trigger("mouseup");
+
+    }
+
+    function canvasMouseUp() {
+
+        selectObj.bDragAll = false;
+
+        for (var i = 0; i < 4; i++) {
+
+            selectObj.bDrag[i] = false;
+
+        }
+
+        canvas.css("cursor", "default");
+
+        canvas.data("select", {
+
+            x: selectObj.x,
+
+            y: selectObj.y,
+
+            w: selectObj.w,
+
+            h: selectObj.h
+
+        });
+
+        selectObj.px = 0;
+
+        selectObj.py = 0;
+
+    }
+
+    function Selection(x, y, w, h) {
+
+        this.x = x; // initial positions
+
+        this.y = y;
+
+        this.w = w; // and size
+
+        this.h = h;
+
+        this.px = x; // extra variables to dragging calculations
+
+        this.py = y;
+
+        this.csize = 4; // resize cubes size
+
+        this.csizeh = 6; // resize cubes size (on hover)
+
+        this.bHow = [false, false, false, false]; // hover statuses
+
+        this.iCSize = [this.csize, this.csize, this.csize, this.csize]; // resize cubes sizes
+
+        this.bDrag = [false, false, false, false]; // drag statuses
+
+        this.bDragAll = false; // drag whole selection
+
+    }
+
+    Selection.prototype.draw = function () {
+
+        ctx.strokeStyle = '#666';
+
+        ctx.lineWidth = 2;
+
+        ctx.strokeRect(this.x, this.y, this.w, this.h);
+
+        // draw part of original image
+
+        if (this.w > 0 && this.h > 0) {
+
+            ctx.drawImage(image, this.x, this.y, this.w, this.h, this.x, this.y, this.w, this.h);
+
+        }
+
+        // draw resize cubes
+
+        ctx.fillStyle = '#999';
+
+        ctx.fillRect(this.x - this.iCSize[0], this.y - this.iCSize[0], this.iCSize[0] * 2, this.iCSize[0] * 2);
+
+        ctx.fillRect(this.x + this.w - this.iCSize[1], this.y - this.iCSize[1], this.iCSize[1] * 2, this.iCSize[1] * 2);
+
+        ctx.fillRect(this.x + this.w - this.iCSize[2], this.y + this.h - this.iCSize[2], this.iCSize[2] * 2, this.iCSize[2] * 2);
+
+        ctx.fillRect(this.x - this.iCSize[3], this.y + this.h - this.iCSize[3], this.iCSize[3] * 2, this.iCSize[3] * 2);
+
+    };
+
+    var drawScene = function () {
+
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // clear canvas
+
+        // draw source image
+
+        ctx.drawImage(image, 0, 0, ctx.canvas.width, ctx.canvas.height);
+
+        // and make it darker
+
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+
+        ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+        // draw selection
+
+        selectObj.draw();
+
+        canvas.mousedown(canvasMouseDown);
+
+        canvas.on("touchstart", canvasMouseDown);
+
+    };
+
+    var createSelection = function (x, y, width, height) {
+
+        var content = $("#imagePreview");
+
+        x = x || Math.ceil((content.width() - width) / 2);
+
+        y = y || Math.ceil((content.height() - height) / 2);
+
+        return new Selection(x, y, width, height);
+
+    };
+
+    var ctx = canvas[0].getContext("2d");
+
+    var iMouseX = 1;
+
+    var iMouseY = 1;
+
+    var image = new Image();
+
+    image.onload = function () {
+
+        selectObj = createSelection(x, y, width, height);
+
+        canvas.data("select", {
+
+            x: selectObj.x,
+
+            y: selectObj.y,
+
+            w: selectObj.w,
+
+            h: selectObj.h
+
+        });
+
+        drawScene();
+
+    };
+
+    image.src = imageSource;
+
+    canvas.mousemove(canvasMouseMove);
+
+    canvas.on("touchmove", canvasMouseMove);
+
+    var StopSelect = function (e) {
+
+        var canvasOffset = $(canvas).offset();
+
+        var pageX = e.pageX || event.targetTouches[0].pageX;
+
+        var pageY = e.pageY || event.targetTouches[0].pageY;
+
+        iMouseX = Math.floor(pageX - canvasOffset.left);
+
+        iMouseY = Math.floor(pageY - canvasOffset.top);
+
+        selectObj.px = iMouseX - selectObj.x;
+
+        selectObj.py = iMouseY - selectObj.y;
+
+        if (selectObj.bHow[0]) {
+
+            selectObj.px = iMouseX - selectObj.x;
+
+            selectObj.py = iMouseY - selectObj.y;
+
+        }
+
+        if (selectObj.bHow[1]) {
+
+            selectObj.px = iMouseX - selectObj.x - selectObj.w;
+
+            selectObj.py = iMouseY - selectObj.y;
+
+        }
+
+        if (selectObj.bHow[2]) {
+
+            selectObj.px = iMouseX - selectObj.x - selectObj.w;
+
+            selectObj.py = iMouseY - selectObj.y - selectObj.h;
+
+        }
+
+        if (selectObj.bHow[3]) {
+
+            selectObj.px = iMouseX - selectObj.x;
+
+            selectObj.py = iMouseY - selectObj.y - selectObj.h;
+
+        }
+
+        if (iMouseX > selectObj.x + selectObj.csizeh &&
+
+            iMouseX < selectObj.x + selectObj.w - selectObj.csizeh &&
+
+            iMouseY > selectObj.y + selectObj.csizeh &&
+
+            iMouseY < selectObj.y + selectObj.h - selectObj.csizeh) {
+
+            selectObj.bDragAll = true;
+
+        }
+
+        for (var i = 0; i < 4; i++) {
+
+            if (selectObj.bHow[i]) {
+
+                selectObj.bDrag[i] = true;
+
+            }
+
+        }
+
+    };
+
+    canvas.mouseout(canvasMouseOut);
+
+    canvas.mouseup(canvasMouseUp);
+
+    canvas.on("touchend", canvasMouseUp);
+
+    this.getImageData = function (previewID) {
+
+        var tmpCanvas = $("<canvas></canvas>")[0];
+
+        var tmpCtx = tmpCanvas.getContext("2d");
+
+        if (tmpCanvas && selectObj) {
+
+            tmpCanvas.width = selectObj.w;
+
+            tmpCanvas.height = selectObj.h;
+
+            tmpCtx.drawImage(image, selectObj.x, selectObj.y, selectObj.w, selectObj.h, 0, 0, selectObj.w, selectObj.h);
+
+            if (document.getElementById(previewID)) {
+
+                document.getElementById(previewID).src = tmpCanvas.toDataURL();
+
+                document.getElementById(previewID).style.border = "1px solid #ccc";
+
+            }
+
+            return tmpCanvas.toDataURL();
+
+        }
+
+    };
+
+}
+
+function autoResizeImage(maxWidth, maxHeight, objImg) {
+
+    var img = new Image();
+
+    img.src = objImg.src;
+
+    var hRatio;
+
+    var wRatio;
+
+    var ratio = 1;
+
+    var w = objImg.width;
+
+    var h = objImg.height;
+
+    wRatio = maxWidth / w;
+
+    hRatio = maxHeight / h;
+
+    if (w < maxWidth && h < maxHeight) {
+
+        return;
+
+    }
+
+    if (maxWidth == 0 && maxHeight == 0) {
+
+        ratio = 1;
+
+    } else if (maxWidth == 0) {
+
+        if (hRatio < 1) {
+
+            ratio = hRatio;
+
+        }
+
+    } else if (maxHeight == 0) {
+
+        if (wRatio < 1) {
+
+            ratio = wRatio;
+
+        }
+
+    } else if (wRatio < 1 || hRatio < 1) {
+
+        ratio = (wRatio <= hRatio ? wRatio : hRatio);
+
+    } else {
+
+        ratio = (wRatio <= hRatio ? wRatio : hRatio) - Math.floor(wRatio <= hRatio ? wRatio : hRatio);
+
+    }
+
+    if (ratio < 1) {
+
+        if (ratio < 0.5 && w < maxWidth && h < maxHeight) {
+
+            ratio = 1 - ratio;
+
+        }
+
+        w = w * ratio;
+
+        h = h * ratio;
+
+    }
+
+    objImg.height = h;
+
+    objImg.width = w;
+
+}
+
+
+</script>

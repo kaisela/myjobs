@@ -1,0 +1,30 @@
+﻿@model Model.WeixinMP
+@{
+    Layout = "~/Areas/Operate/Views/Shared/_ChildLayout.cshtml";
+    //需要来判断是否存在 不存在就直接显示找不到数据
+    if (Model.ID == 0)
+    {
+        <div>找不到公众号信息</div>
+        return;
+    }
+}
+@section styles{
+    <link rel="stylesheet" href="~/Css/base.css" />
+    <link rel="stylesheet" href="~/Css/style.default.css" />
+}
+<div class="text-center form-group">
+    <p>URL：@(ViewBag.MPurl)@(Model.ID)</p>
+    <p>Token：@(Model.Token)</p>
+    <p>EncodingAESKey：@(Model.EncodingAESKey)</p>
+    <p class="text-danger">请登录微信开放平台(http://mp.weixin.qq.com)，修改服务器配置依次填入上面三个值</p>
+</div>
+<div class="form-group">
+    <div class="col-sm-8 col-sm-offset-3">
+        <button class="btn btn-primary" name="finished">完成</button>
+        <button class="btn btn-primary" name="finished">取消</button>
+    </div>
+</div>
+@section scripts{
+    @* 引用页面js *@
+    <script src="~/Areas/Operate/Scripts/Enterprise/CreateNext.js"></script>
+}

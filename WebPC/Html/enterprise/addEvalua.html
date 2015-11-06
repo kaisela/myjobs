@@ -1,0 +1,167 @@
+ 
+<link rel="stylesheet" href="../css/selling.css" />
+
+<div class="">
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<div class="row1">
+				<span class="rowTittle">商品名称:</span>
+				<div class="rowRight">
+					<a class="btn btn-primary btn-sm  winO2OPanel" data-toggle="modal" data-target=".bs-example-modal-lg" data-url="alertNew.html" data-title="选择自定义评价商品">选择自定义评价商品</a><br />
+				</div>
+			</div>
+			<div class="row1" style="padding: 0 20px;">
+				<span class="proLable">
+					<span class="proName">商品A商品A商品A商品A商品A商品A商品A</span>
+					<i class="close" onclick="deleted(this)">x</i>
+				</span>
+				<span class="proLable">
+					<span class="proName">商品B</span>
+					<i class="close" onclick="deleted(this)">x</i>
+				</span>
+				<span class="proLable">
+					<span class="proName">商品C</span>
+					<i class="close" onclick="deleted(this)">x</i>
+				</span>
+			</div>
+			
+			<div class="row1">
+				<span class="rowTittle">买家姓名:</span>
+				<div class="rowRight">
+					<input class="form-control" type="text" name="" id="" value="" placeholder="买家姓名"/>
+				</div>
+			</div>
+			
+			<div class="row1">
+				<span class="rowTittle">来源门店:</span>
+				<div class="rowRight">
+					<select class="form-control">
+						<option>选择来源门店</option>
+						<option>选择来源门店</option>
+						<option>选择来源门店</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="row1">
+				<span class="rowTittle">购买时间:</span>
+				<div class="rowRight">
+					<input type="date" class="form-control hasDatepicker input-sm0" placeholder="mm/dd/yyyy" id="datepicker">
+				</div>
+			</div>
+			
+			<div class="row1">
+				<span class="rowTittle">评论时间:</span>
+				<div class="rowRight">
+					<input class="form-control input-sm0" type="time" name="" id="" value="" />
+				</div>
+			</div>
+			
+			<div class="row1">
+				<span class="rowTittle">评论内容:</span>
+				<div class="rowRight">
+					<ul class="nav nav-tabs">
+          				<li class="active"><a data-toggle="tab" href="#home"><strong>图文</strong></a></li>
+          				<li class=""><a data-toggle="tab" href="#profile"><strong>语音</strong></a></li>
+       				 </ul>
+       				 <div class="tab-content mb30">
+				          <div id="home" class="tab-pane active">
+				            	<div class="panel-body">
+          							<form class="dropzone dz-clickable" action="files">
+         								<div class="imgBox">
+         									<span class="upLoadimg">上传图片
+	             								<input id="#file0" type="file" onchange="changeFile(this)"/>
+	             							</span>
+	             							<img id="img0" src="../images/login-bg.png" />
+	             							<img src="../images/login-bg.png" />
+	             						</div>
+          							</form>
+      			  				</div>
+      			  				<div class="texta">
+									<div class="area1">
+										<textarea class="form-control" placeholder="请在这里进行文字评价"></textarea>
+										<p>还可以输入400字</p>
+									</div>
+								</div>
+				          </div>
+				          <div id="profile" class="tab-pane">
+					          <div class="panel-body">
+          							<form class="dropzone dz-clickable" action="files">
+         								<div class="imgBox">
+         									<span class="upLoadimg">上传语音
+	             								<input type="file" />
+	             							</span>
+	             							<a href="#" class="btn btn-sm btn-default btnPo">语音1</a>
+	             							<a href="#" class="btn btn-sm btn-default btnPo">语音2</a>
+	             						</div>
+          							</form>
+      			  				</div>
+      			  				<div class="texta panel-body">
+									<div class="area1">
+										<textarea class="form-control" placeholder="请在这里进行语音翻译"></textarea>
+										<p>还可以输入400字</p>
+									</div>
+								</div>
+				          </div>
+				          
+			         </div>
+			         
+			        <div class="area2" >
+								<textarea class="form-control" placeholder="请在这里进行回复"></textarea>
+								<p>还可以输入500字</p>
+						</div>
+				</div>
+			</div>
+			
+			
+	</div>
+	<div class="row1">
+		<a class="btn btn-primary reset">发布</a>
+	</div>
+</div>
+</div>
+<style>
+.panel-default{
+	background: white;
+}
+.tab-content{
+	background: #fcfcfc;
+}
+</style>
+<script>
+
+	function changeFile(obj){
+		var objUrl = getObjectURL(obj.files[0]) ;
+//		console.log("objUrl = "+objUrl) ;
+	if (objUrl) {
+			$("<img src='objUrl' />").appendTo(".imgBox");
+//			$("#img0").attr("src", objUrl);
+		}
+	}
+
+
+	//建立一个可存取到该file的url
+	function getObjectURL(file) {
+	var url = null ; 
+	if (window.createObjectURL!=undefined) { // basic
+		url = window.createObjectURL(file) ;
+	} else if (window.URL!=undefined) { // mozilla(firefox)
+		url = window.URL.createObjectURL(file) ;
+	} else if (window.webkitURL!=undefined) { // webkit or chrome
+		url = window.webkitURL.createObjectURL(file) ;
+	}
+	return url ;
+	}
+	
+	
+	//删除商品标签
+	function deleted(obj){
+		$(obj).parent(".proLable").remove();
+	}
+</script>
+
+
+
+
+
+

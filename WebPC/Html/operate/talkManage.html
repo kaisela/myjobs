@@ -1,0 +1,265 @@
+    <link href="../../Css/jquery.datatables.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../Css/selling.css" />
+			<div class="row">
+				<div class="panel panel-default">
+				<ul class="menu-list clearfix">
+					<li>
+						<a>全部</a>
+					</li>
+					<li>
+						<a>床</a>
+					</li>
+					<li>
+						<a>沙发</a>
+					</li>
+					<li>
+						<a>板材</a>
+					</li>
+					<li >
+						<a>油漆</a>
+					</li>
+					<li >
+						<a>床</a>
+					</li>
+					<li >
+						<a>门类</a>
+					</li>
+					<li >
+						<a>吊顶</a>
+					</li>
+					<li >
+						<a>墙纸</a>
+					</li>
+					<li >
+						<a>淋浴房</a>
+					</li>
+					<li>
+						<a>卫浴</a>
+					</li>
+					<li class="inline">
+						<a>厨电</a>
+					</li>
+					<li class="inline">
+						<a>地板砖</a>
+					</li>
+				  </ul>
+				 </div>
+			</div>
+			
+			<div class="row">
+				<ul class="filemanager-options">
+					<li>
+					  <div class="ckbox ckbox-default">
+						<input type="checkbox" id="selectall" onclick="allSelect()" value="1">
+						<label for="selectall">全选</label>
+					  </div>
+					</li>
+					<li class="inline">
+						<span>
+							<a class="btn btn-default btn-sm btn-default ">删除</a>
+						</span>
+						<span>
+			                <select class="form-control input-sm">
+			                  <option>移动到渠道分组</option>
+			                  <option>渠道分组</option>
+	               		    </select>
+               		    </span>
+					</li>
+					<li class="filter-type">
+						<a class="btn btn-primary btn-sm white">导出</a>
+						<a class="btn btn-primary btn-sm white winO2OPanel" data-toggle="modal" data-target=".bs-example-modal-lg" data-url="alertShop.html" data-title="新建直营店">新建直营店</a>
+					</li>
+				  </ul>
+    	</div><!--总体操作-->
+    	<div class="row">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						 	<a class="btn btn-primary btn-sm">发表帖子</a>
+						 	<a class="btn btn-default btn-sm">举报的帖子（58）</a>
+						 	<a class="btn btn-default btn-sm">我的帖子（58）</a>
+						
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="table-responsive">
+						    <div class="talks-list">
+						    	<div class="talk">
+						    		<h4 class="clearfix"><span class="text-primary h4-l">淡淡的优雅倩影</span>  
+						    			<span class="h4-r"> 
+						    			<a class="btn btn-primary btn-sm">置顶</a>
+						    			<div class="btn btn-default btn-sm position-t" onclick="showUl(this)">屏蔽
+						    				<ul class='shelter position-c'>
+						    					<li><a>当前店铺</a></li>
+						    					<li><a>当前公众号</a></li>
+						    					<li><a>当前店铺所有人</a></li>
+						    					<li><a>当前公众号所有人</a></li>
+						    				</ul>
+						    			</div>
+						    			<a class="btn btn-danger btn-sm">删帖</a>
+						    			</span>
+						    		</h4>
+						    		<div class="talks-info">
+						    			<div class="floatLeft">发帖人：乐家--叉烧包
+						    				<div  class="btn btn-black btn-sm position-t" onclick="showUl(this)">禁言
+							    				<ul class='no-says position-c'>
+							    					<li><a>当前店铺</a></li>
+							    					<li><a>当前公众号</a></li>
+							    					<li><a>当前店铺所有人</a></li>
+							    					<li><a>当前公众号所有人</a></li>
+							    				</ul>
+						    			   </div>
+						    			</div>
+						    			
+						    			<span>发帖时间：2014-12-26 17:15:52</span>
+						    			<span>浏览次数：5874</span>
+						    			<span>回复数：854</span>
+						    			<span>点赞数：2445</span>
+						    		</div>
+						    		<article>
+						    			半年前，当准备装修这套房子的时候，我们一家人就进入暴走模式，找寻合适的设计师和装修队。由于自己之前装修过两套房子，对于装修也算是半个内行了，经过前两次的试水，这套希望是能长期住下去，装修的好些，所以不容马虎。一个偶然的机会，找到了 1917 装修设计公司，之前也看过一些他们的案例，能感觉的到与大多数公司与众不同。好奇心的驱使下，我们约见了他们。
+						    			<a class="btn btn-primary btn-sm HrefFrame" data-url="../operate/talkDetail.html" data-div=".contentpanel" data-title="帖子详情">查看详情</a>
+						    		</article>
+						    	</div>
+						    	<div class="talk">
+						    		<h4 class="clearfix"><span class="text-primary h4-l">淡淡的优雅倩影</span>  
+						    			<span class="h4-r"> 
+						    			<a class="btn btn-primary btn-sm">置顶</a>
+						    			<div class="btn btn-default btn-sm position-t">屏蔽
+						    				<ul class='shelter position-c'>
+						    					<li><a>当前店铺</a></li>
+						    					<li><a>当前公众号</a></li>
+						    					<li><a>当前店铺所有人</a></li>
+						    					<li><a>当前公众号所有人</a></li>
+						    				</ul>
+						    			</div>
+						    			<a class="btn btn-danger btn-sm">删帖</a>
+						    			</span>
+						    		</h4>
+						    		<div class="talks-info">
+						    			<div class="floatLeft">发帖人：乐家--叉烧包
+						    				<div  class="btn btn-black btn-sm position-t" >禁言
+							    				<ul class='no-says position-c'>
+							    					<li><a>当前店铺</a></li>
+							    					<li><a>当前公众号</a></li>
+							    					<li><a>当前店铺所有人</a></li>
+							    					<li><a>当前公众号所有人</a></li>
+							    				</ul>
+						    			   </div>
+						    			</div>
+						    			
+						    			<span>发帖时间：2014-12-26 17:15:52</span>
+						    			<span>浏览次数：5874</span>
+						    			<span>回复数：854</span>
+						    			<span>点赞数：2445</span>
+						    		</div>
+						    		<article>
+						    			半年前，当准备装修这套房子的时候，我们一家人就进入暴走模式，找寻合适的设计师和装修队。由于自己之前装修过两套房子，对于装修也算是半个内行了，经过前两次的试水，这套希望是能长期住下去，装修的好些，所以不容马虎。一个偶然的机会，找到了 1917 装修设计公司，之前也看过一些他们的案例，能感觉的到与大多数公司与众不同。好奇心的驱使下，我们约见了他们。
+						    			<a class="btn btn-primary btn-sm">查看详情</a>
+						    		</article>
+						    	</div>
+						    	<div class="talk">
+						    		<h4 class="clearfix"><span class="text-primary h4-l">淡淡的优雅倩影</span>  
+						    			<span class="h4-r"> 
+						    			<a class="btn btn-primary btn-sm">置顶</a>
+						    			<div class="btn btn-default btn-sm position-t" onclick="showUl(this)">屏蔽
+						    				<ul class='shelter position-c'>
+						    					<li><a>当前店铺</a></li>
+						    					<li><a>当前公众号</a></li>
+						    					<li><a>当前店铺所有人</a></li>
+						    					<li><a>当前公众号所有人</a></li>
+						    				</ul>
+						    			</div>
+						    			<a class="btn btn-danger btn-sm">删帖</a>
+						    			</span>
+						    		</h4>
+						    		<div class="talks-info">
+						    			<div class="floatLeft">发帖人：乐家--叉烧包
+						    				<div  class="btn btn-black btn-sm position-t" >禁言
+							    				<ul class='no-says position-c'>
+							    					<li><a>当前店铺</a></li>
+							    					<li><a>当前公众号</a></li>
+							    					<li><a>当前店铺所有人</a></li>
+							    					<li><a>当前公众号所有人</a></li>
+							    				</ul>
+						    			   </div>
+						    			</div>
+						    			
+						    			<span>发帖时间：2014-12-26 17:15:52</span>
+						    			<span>浏览次数：5874</span>
+						    			<span>回复数：854</span>
+						    			<span>点赞数：2445</span>
+						    		</div>
+						    		<article>
+						    			半年前，当准备装修这套房子的时候，我们一家人就进入暴走模式，找寻合适的设计师和装修队。由于自己之前装修过两套房子，对于装修也算是半个内行了，经过前两次的试水，这套希望是能长期住下去，装修的好些，所以不容马虎。一个偶然的机会，找到了 1917 装修设计公司，之前也看过一些他们的案例，能感觉的到与大多数公司与众不同。好奇心的驱使下，我们约见了他们。
+						    			<a class="btn btn-primary btn-sm HrefFrame" data-url="taklDetail.html" data-div=".contentpanel" data-title="新建老客户回访">查看详情</a>
+						    		</article>
+						    	</div>
+						    	<div class="talk">
+						    		<h4 class="clearfix"><span class="text-primary h4-l">淡淡的优雅倩影</span>  
+						    			<span class="h4-r"> 
+						    			<a class="btn btn-primary btn-sm">置顶</a>
+						    			<div class="btn btn-default btn-sm position-t">屏蔽
+						    				<ul class='shelter position-c'>
+						    					<li><a>当前店铺</a></li>
+						    					<li><a>当前公众号</a></li>
+						    					<li><a>当前店铺所有人</a></li>
+						    					<li><a>当前公众号所有人</a></li>
+						    				</ul>
+						    			</div>
+						    			<a class="btn btn-danger btn-sm">删帖</a>
+						    			</span>
+						    		</h4>
+						    		<div class="talks-info">
+						    			<div class="floatLeft">发帖人：乐家--叉烧包
+						    				<div  class="btn btn-black btn-sm position-t" >禁言
+							    				<ul class='no-says position-c'>
+							    					<li><a>当前店铺</a></li>
+							    					<li><a>当前公众号</a></li>
+							    					<li><a>当前店铺所有人</a></li>
+							    					<li><a>当前公众号所有人</a></li>
+							    				</ul>
+						    			   </div>
+						    			</div>
+						    			
+						    			<span>发帖时间：2014-12-26 17:15:52</span>
+						    			<span>浏览次数：5874</span>
+						    			<span>回复数：854</span>
+						    			<span>点赞数：2445</span>
+						    		</div>
+						    		<article>
+						    			半年前，当准备装修这套房子的时候，我们一家人就进入暴走模式，找寻合适的设计师和装修队。由于自己之前装修过两套房子，对于装修也算是半个内行了，经过前两次的试水，这套希望是能长期住下去，装修的好些，所以不容马虎。一个偶然的机会，找到了 1917 装修设计公司，之前也看过一些他们的案例，能感觉的到与大多数公司与众不同。好奇心的驱使下，我们约见了他们。
+						    			<a class="btn btn-primary btn-sm">查看详情</a>
+						    		</article>
+						    	</div>
+						    </div>
+						    
+						    
+							<div class="dataTables_info" id="table2_info" role="status" aria-live="polite">一共100条数据  每页显示 <input type="text"  value="4" style="width: 40px; text-align: center;" disabled=""> 共3页</div>
+							<div class="dataTables_paginate paging_full_numbers" id="table2_paginate">
+								<a class="paginate_button first disabled" aria-controls="table2" data-dt-idx="0" tabindex="0" id="table2_first">首页</a>
+								<a class="paginate_button previous disabled" aria-controls="table2" data-dt-idx="1" tabindex="0" id="table2_previous">上一页</a>
+								<span>
+									<a class="paginate_button current" aria-controls="table2" data-dt-idx="2" tabindex="0">1</a>
+									<a class="paginate_button " aria-controls="table2" data-dt-idx="3" tabindex="0">2</a>
+									<a class="paginate_button " aria-controls="table2" data-dt-idx="4" tabindex="0">3</a>
+									<a class="paginate_button " aria-controls="table2" data-dt-idx="5" tabindex="0">4</a>
+									<a class="paginate_button " aria-controls="table2" data-dt-idx="6" tabindex="0">5</a>
+									<a class="paginate_button " aria-controls="table2" data-dt-idx="7" tabindex="0">6</a>
+								</span>
+								<a class="paginate_button next" aria-controls="table2" data-dt-idx="8" tabindex="0" id="table2_next">下一页</a>
+								<a class="paginate_button last" aria-controls="table2" data-dt-idx="9" tabindex="0" id="table2_last">尾页</a></div>
+						</div><!--table-responsive-->
+					</div><!--panel-body-->
+					</div>
+				</div><!--panel-->
+	<script>
+		function showUl(obj){
+			var ul =  $(obj).find('ul');
+			if(ul.is(':hidden')){
+				ul.show()		
+			}else{ ul.hide()}
+		}
+	</script>

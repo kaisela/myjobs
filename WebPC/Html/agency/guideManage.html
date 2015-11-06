@@ -1,0 +1,109 @@
+   <link href="../../Css/jquery.datatables.css" rel="stylesheet">
+			<div class="row">
+				<div class="panel panel-default">
+					<div class="panel-body">
+					  <form class="form-inline">
+						<div class="form-group">
+						  <input type="text" class="form-control input-sm" id="exampleInputEmail2" placeholder="所属店铺">
+						</div>
+						<div class="form-group">
+						  <input type="text" class="form-control input-sm" id="exampleInputEmail2" placeholder="请输入导购姓名">
+						</div>
+						<button type="button" class="btn btn-primary btn-sm">查询</button>
+					  </form>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<ul class="filemanager-options">
+					<li>
+						<a class="btn btn-primary btn-sm white">批量删除</a>
+					</li>
+				  </ul>
+    	</div><!--总体操作-->
+    	
+    	<div class="row">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="table-responsive">
+						<table class="table mb30">
+							<thead>
+								<tr>
+									<th>全选</th>
+									<th>序号</th>
+									<th>名称</th>
+									<th>类型</th>
+									<th>所属店铺</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<div class="ckbox ckbox-success">
+											<input type="checkbox" id="checkbox1">
+											<label for="checkbox1"></label>
+										</div>
+									</td>
+									<td>1</td>
+									<td ><a class="HrefFrame" data-url="guideDetail.html" data-div=".contentpanel" data-title="">陈聪</a></td>
+									<td>导购</td>
+									<td>浙江店</td>
+									<td>
+										<a >暂停</a>
+										<a class="winO2OPanel" data-toggle="modal" data-target=".bs-example-modal-lg" data-url="deleteGuide.html" data-title="删除导购">删除</a>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<div class="ckbox ckbox-success">
+											<input type="checkbox" id="checkbox1">
+											<label for="checkbox1"></label>
+										</div>
+									</td>
+									<td>1</td>
+									<td>陈聪</td>
+									<td>导购</td>
+									<td>浙江店</td>
+									<td>
+										<a >暂停</a>
+										<a class="winO2OPanel" data-toggle="modal" data-target=".bs-example-modal-lg" data-url="deleteGuide.html" data-title="删除导购">删除</a>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<div class="ckbox ckbox-success">
+											<input type="checkbox" id="checkbox1">
+											<label for="checkbox1"></label>
+										</div>
+									</td>
+									<td>1</td>
+									<td>陈聪</td>
+									<td>高级导购</td>
+									<td>浙江店</td>
+									<td>
+										<a >暂停</a>
+										<a class="winO2OPanel" data-toggle="modal" data-target=".bs-example-modal-lg" data-url="deleteGuide.html" data-title="删除导购">删除</a>
+									</td>
+								</tr>
+								
+							</tbody>
+						</table>
+						<div class="dataTables_info" id="table2_info" role="status" aria-live="polite">一共100条数据  每页显示 <input type="text"  value="4" style="width: 40px; text-align: center;" disabled=""> 共3页</div>
+						<div class="dataTables_paginate paging_full_numbers" id="table2_paginate">
+							<a class="paginate_button first disabled" aria-controls="table2" data-dt-idx="0" tabindex="0" id="table2_first">首页</a>
+							<a class="paginate_button previous disabled" aria-controls="table2" data-dt-idx="1" tabindex="0" id="table2_previous">上一页</a>
+							<span>
+								<a class="paginate_button current" aria-controls="table2" data-dt-idx="2" tabindex="0">1</a>
+								<a class="paginate_button " aria-controls="table2" data-dt-idx="3" tabindex="0">2</a>
+								<a class="paginate_button " aria-controls="table2" data-dt-idx="4" tabindex="0">3</a>
+								<a class="paginate_button " aria-controls="table2" data-dt-idx="5" tabindex="0">4</a>
+								<a class="paginate_button " aria-controls="table2" data-dt-idx="6" tabindex="0">5</a>
+								<a class="paginate_button " aria-controls="table2" data-dt-idx="7" tabindex="0">6</a>
+							</span>
+							<a class="paginate_button next" aria-controls="table2" data-dt-idx="8" tabindex="0" id="table2_next">下一页</a>
+							<a class="paginate_button last" aria-controls="table2" data-dt-idx="9" tabindex="0" id="table2_last">尾页</a></div>
+					</div><!--table-responsive-->
+				</div><!--panel-body-->
+			</div><!--panel-->
+			</div><!---row-->

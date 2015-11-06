@@ -1,0 +1,60 @@
+﻿@model IList<Model.WeixinMP>
+@{
+    Layout = "~/Areas/Operate/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "公司详情";
+    ViewBag.MenuCode = "enterprisedetail";
+    ViewBag.ParentCode = "EntryIndex";
+}
+@section styles{
+    <link href="~/Css/jquery.datatables.css" rel="stylesheet">
+    @* 模式窗口样式 *@
+    <link href="~/Plugin/window/css/common.css" rel="stylesheet" />
+}
+<div class="row">
+    <div class="panel panel-default clearfix">
+        <a class="pull-left company-img">
+            <img src="../images/photos/blog2.jpg" width="220px" height="168px" />
+        </a>
+        <div class="pull-left company-intro">
+            <h4 class="text-info">杭州老板电器股份有限公司</h4>
+            <div class="addrress">
+                <div class="mute"><small>地址：浙江省余杭经济开发区临平大道592号</small></div>
+                <div class="mute"><small>总机：0571-86281888</small><small>总机：0571-86281888</small><small>联系人：陈少华</small></div>
+                <div class="mute"><small>管理员账号：admin988</small><small>企业站点：http://www.111.com</small><small>KEY：yey</small></div>
+            </div>
+            <ul class="ul-total">
+                <li>商品总数：<a>5840</a></li>
+                <li>直营店：<a>855</a></li>
+                <li>门店数：<a>855</a></li>
+                <li>代理商数：<a>855</a></li>
+                <li>品牌数：<a>855</a></li>
+                <li>订单数：<a>855</a></li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+<div class="row">
+    <div class="panel panel-default table-aSpace" style="padding: 12px;">
+        @* id不能设置成Create 否则会自动删除标签 *@
+        <a class="btn btn-primary winO2OPanel" id="WeixinMPCreate" data-au="HNYSJYEdit" data-title="添加公众号">添加公众号</a>
+        <a class="btn btn-white winO2OPanel" data-url="alertReset.html" data-title="重置管理员密码">重置管理员密码</a>
+        <a class="btn btn-default winO2OPanel" data-url="alertStopCom.html" data-title="重置管理员密码">暂停企业</a>
+        <a class="btn btn-danger winO2OPanel" data-url="alertDelComp.html" data-title="重置管理员密码">删除企业</a>
+    </div>
+</div><!--总体操作-->
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h4>企业微信公号</h4>
+            @Html.Hidden("EnterpriseID", ViewBag.EnterpriseID as string)
+            <div id="content"></div>
+        </div><!--panel-body-->
+    </div><!--panel-->
+</div>
+@section scripts{
+    @* 引用页面js *@
+    <script src="~/Areas/Operate/Scripts/Enterprise/Details.js"></script>
+    @* 模式窗口 *@
+    <script src="~/Plugin/window/jquery-window.js"></script>
+}

@@ -1,0 +1,175 @@
+    <link href="../../Css/jquery.datatables.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../Css/selling.css" />     
+          <div id="contact" class="tab-pane panel-body">
+          	<ul class="search">
+             	<li><input type="text" class="form-control" placeholder="请输入商品名称/门店名称/买家名称" /></li>
+             	<li>
+             		<select class="form-control">
+             			<option>操作人</option>
+             		</select>
+             	</li>
+             	<li><a class="btn btn-primary">查询</a></li>
+             </ul>
+             <ul class="tuisong">
+             	<div class="pulleft">
+	             	<li>排序</li>
+	             	<li>
+	             		<a class="btn btn-white btn-sm" onclick="sort(this)">交易时间</a>
+	             		<a class="btn btn-default btn-sm" onclick="sort(this)">评价时间</a>
+	             	</li>
+             	</div>
+             	<div class="pullright">
+	             	<li><a class="btn btn-primary HrefFrame btn-sm" data-url="addEvalua.html" data-div=".contentpanel" data-title="新增自定义评价">新增自定义评价</a></li>
+             	</div>
+             </ul>
+             
+              <ul class="conta">
+             	 	<div class="main">
+	              	<div class="mainLeft col-sm-2">
+		              	<ul class="choose">
+		             	  	<li class="related">
+		             	  		<input type="checkbox" name="" id="" value="" />
+		             	  		<span>ROCA 乐家卫浴 酷玛/智洁釉超旋式座便器</span>
+		             	  	</li>
+		             	  	<li class="operate">
+		             	  		<div class="tex"><h5>操作人：</h5><p>张三</p></div>
+		             	  		<div class="tex"><h5>审核人：</h5><p>张三</p></div>
+		             	  		<div class="tex" style="margin-top: 20px;font-weight:700;"><p style="margin-right: 10px;">2015-02-26</p><p>18:23</p></div>
+		             	  		<div class="tex"><p>湖南省衡阳市石鼓区</p></div>
+		             	  	</li>
+	             	  	</ul>
+             	  	</div>
+             	  	<div class="col-sm-10 mainRight ">
+	             	<li>
+	             		<div class="tittletips">
+	             			<p>
+		             			<span>评价来源:</span>
+		             			<span>自定义评价</span>
+	             			</p>
+	             		</div>
+	             		<div style="width: 100%;overflow: hidden;">
+	             			<div class="yuyingBox">
+	             				<p class="bold">语音评价</p>
+	             				<img src="../images/yuyin.png" />
+	             				<div class="yuying">
+	             					<span class="bold">语音翻译：</span>
+	             					<p>最近新家里在装修，真的是到货太及时啦啦啦啦啦，服务周到又贴心啦啦啦啦啦啦，包装很是结实啊啊啊啊啊啊啊啊，外形非常喜欢啊啊啊啊啊啊啊，拆开后马上就铺上用了哈哈哈哈哈哈。</p>
+	             				</div>
+	             			</div>
+	             			<p  class="bold">图文评价</p>
+	             			<div class="imgBox">
+	             				<img src="../images/login-bg.png" />
+	             				<img src="../images/login-bg.png" />
+	             			</div>
+	             			<p class="imgtext">真的很不错哦，摸起来很舒服，图案颜色也都很漂亮，老婆很稀饭啊哈哈哈哈哈~</p>
+	             			<div class="retext">
+	             				<p>回复</p>
+	             				<span>啊时代的啊时代的啊时代的啊时代的</span>
+	             				<!--<textarea class="form-control"></textarea>-->
+	             			</div>
+	             			<div class="btna">
+		             			<a class="btn btn-primary savepingjia">屏蔽</a>
+		             			<a class="btn btn-primary savepingjia">编辑</a>
+		            		</div>
+	             		</div>
+	             	</li>
+	             	</div>
+	             	</div>
+	             </ul>
+	             
+	             
+	             <ul class="conta">
+             	 	<div class="main">
+	              	<div class="mainLeft col-sm-2">
+		              	<ul class="choose">
+		             	  	<li class="related">
+		             	  		<input type="checkbox" name="" id="" value="" />
+		             	  		<span>ROCA 乐家卫浴 酷玛/智洁釉超旋式座便器</span>
+		             	  	</li>
+		             	  	<li class="operate">
+		             	  		<div class="tex"><h5>操作人：</h5><p>张三</p></div>
+		             	  		<div class="tex"><h5>审核人：</h5><p>张三</p></div>
+		             	  		<div class="tex" style="margin-top: 20px;font-weight:700;"><p style="margin-right: 10px;">2015-02-26</p><p>18:23</p></div>
+		             	  		<div class="tex"><p>湖南省衡阳市石鼓区</p></div>
+		             	  	</li>
+	             	  	</ul>
+             	  	</div>
+             	  	<div class="col-sm-10 mainRight ">
+	             	<li>
+	             		<div class="tittletips">
+	             			<p>
+		             			<span>评价来源:</span>
+		             			<span>自定义评价</span>
+	             			</p>
+	             		</div>
+	             		<div style="width: 100%;overflow: hidden;">
+	             			<div class="yuyingBox">
+	             				<img src="../images/yuyin.png" />
+	             				<div class="yuying">
+	             					<span class="bold">语音翻译：</span>
+	             					<p>最近新家里在装修，真的是到货太及时啦啦啦啦啦，服务周到又贴心啦啦啦啦啦啦，包装很是结实啊啊啊啊啊啊啊啊，外形非常喜欢啊啊啊啊啊啊啊，拆开后马上就铺上用了哈哈哈哈哈哈。</p>
+	             				</div>
+	             			</div>
+	             			<p class="imgtext  bold">真的很不错哦，摸起来很舒服，图案颜色也都很漂亮，老婆很稀饭啊哈哈哈哈哈~</p>
+	             			<div class="imgBox">
+	             				<img src="../images/login-bg.png" />
+	             				<img src="../images/login-bg.png" />
+	             			</div>
+	             			<div class="retext">
+	             				<p>回复</p>
+	             				<span>啊时代的啊时代的啊时代的啊时代的</span>
+	             				<!--<textarea class="form-control"></textarea>-->
+	             			</div>
+	             			<div class="btna">
+		             			<a class="btn btn-primary savepingjia">屏蔽</a>
+		             			<a class="btn btn-primary savepingjia">编辑</a>
+		            		</div>
+	             		</div>
+	             	</li>
+	             	</div>
+	             	</div>
+	             </ul>
+	             
+	             <div class="dataTables_info" id="table2_info" role="status" aria-live="polite">一共100条数据  每页显示 <input type="text"  value="4" style="width: 40px; text-align: center;" disabled=""> 共3页</div>
+			 <div class="dataTables_paginate paging_full_numbers" id="table2_paginate">
+				<a class="paginate_button first disabled" aria-controls="table2" data-dt-idx="0" tabindex="0" id="table2_first">首页</a>
+				<a class="paginate_button previous disabled" aria-controls="table2" data-dt-idx="1" tabindex="0" id="table2_previous">上一页</a>
+				<span>
+					<a class="paginate_button current" aria-controls="table2" data-dt-idx="2" tabindex="0">1</a>
+					<a class="paginate_button " aria-controls="table2" data-dt-idx="3" tabindex="0">2</a>
+					<a class="paginate_button " aria-controls="table2" data-dt-idx="4" tabindex="0">3</a>
+					<a class="paginate_button " aria-controls="table2" data-dt-idx="5" tabindex="0">4</a>
+					<a class="paginate_button " aria-controls="table2" data-dt-idx="6" tabindex="0">5</a>
+					<a class="paginate_button " aria-controls="table2" data-dt-idx="7" tabindex="0">6</a>
+				</span>
+				<a class="paginate_button next" aria-controls="table2" data-dt-idx="8" tabindex="0" id="table2_next">下一页</a>
+				<a class="paginate_button last" aria-controls="table2" data-dt-idx="9" tabindex="0" id="table2_last">尾页</a>
+			</div>
+          </div>
+	             
+
+<style>
+.panel-body{
+	background: white;
+}
+</style>
+<script>
+	function showDetali(obj){
+		$(obj).children(".orderDetali").css("display","block");
+	}
+	
+	function closese(obj){
+		
+		$(obj).parents().find(".orderDetali").css("display","none");
+	}
+	
+	
+	function sort(obj){
+		$(obj).removeClass("btn-default").addClass("btn-white");
+		$(obj).siblings("a").removeClass("btn-white").addClass("btn-default");
+	}
+
+</script>
+
+
+				

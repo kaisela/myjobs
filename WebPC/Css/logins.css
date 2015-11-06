@@ -1,0 +1,243 @@
+/** 
+ * 描述：重置页面元素并基础样式
+ * 作用范围： 全局
+ */
+
+body {
+	background: #f4f4f4;
+	min-height: 100%
+}
+body,
+p,
+pre,
+blockquote,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+form,
+select,
+input,
+textarea,
+button,
+table,
+caption,
+tr,
+th,
+td {
+	margin: 0;
+	padding: 0;
+}
+ol,
+ul {
+	list-style: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+img {
+	max-width: 100%;
+	border: 0 none;
+}
+a {
+	color: #2d7200;
+	text-decoration: none;
+}
+a:hover {
+	color: #4bbd00;
+	border-bottom: 1px solid;
+}
+input,
+button,
+textarea,
+select,
+option {
+	font-family: inherit;
+	font-size: 100%;
+	outline: 0;
+}
+textarea {
+	overflow: auto;
+	resize: none;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+.clearfix {
+	zoom: 1;
+}
+.clearfix:after {
+	width: 0;
+	height: 0;
+	display: block;
+	content: '';
+	clear: both;
+	overflow: hidden;
+}
+.container {
+	width: 960px;
+	height: 500px;
+	position: absolute;
+	top: 50%;
+	margin-top: -250px;
+	left: 50%;
+	margin-left: -480px;
+	border: 1px solid #E6E6E6;
+	border-radius: 10px;
+	background: #fff;
+}
+.container:before,
+.container:after {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	bottom: 15px;
+	left: 10px;
+	width: 50%;
+	height: 20%;
+	/*add box-shadow*/
+	
+	-webkit-box-shadow: 0 20px 30px rgba(125, 125, 125, 0.6);
+	-moz-box-shadow: 0 20px 30px rgba(125, 125, 125, 0.6);
+	box-shadow: 0 20px 30px rgba(125, 125, 125, 0.6);
+	/*add css3 transform*/
+	
+	-webkit-transform: rotate(-2deg);
+	-moz-transform: rotate(-2deg);
+	-o-transform: rotate(-2deg);
+	transform: rotate(-2deg);
+}
+.container:after {
+	right: 10px;
+	left: auto;
+	-webkit-transform: rotate(2deg);
+	-moz-transform: rotate(2deg);
+	-o-transform: rotate(2deg);
+	transform: rotate(2deg);
+}
+.container .left {
+	width: 50%;
+	height: 436px;
+	background: url(../Images/left-bg.jpg) no-repeat right center;
+	float: left;
+}
+.left > .leftMain {
+	width: 420px;
+	height: 360px;
+	margin: 44px 50px;
+	background: url(../Images/loginLogo.jpg) no-repeat center;
+}
+.container .right {
+	width: 50%;
+	height: 436px;
+	float: right;
+}
+.container .right h2 {
+	height: 58px;
+	width: 100%;
+	background: url(../Images/title-bg.jpg) no-repeat left center;
+	margin-top: 58px;
+	font: normal 26px/58px "微软雅黑";
+	color:#696969 ;
+	text-indent: 25px;
+}
+.right form {
+	margin-top: 48px;
+	margin-left: 25px;
+}
+.right form p {margin-bottom: 28px;} 
+.right form p:nth-child(2){ margin-bottom: 10px;}
+.right p label {
+	display: inline-block;
+	width: 20%;
+	height: 46px;
+	text-align: left;
+	vertical-align: middle;
+	font: normal 20px/46px "微软雅黑";
+	color: #333;
+}
+.right p input {
+	width: 255px;
+	height: 46px;
+	border: 1px solid #eaeaea;
+	border-radius: 2px;
+	
+	box-shadow: inset 0 0 10px rgba(245, 245, 245, 0.8);
+	text-indent: 4px;
+}
+.right div:nth-child(3) {
+	padding-left: 22%;
+    font: normal 14px/2 "微软雅黑";
+	margin-bottom: 10px;
+	color: #5b6e7c;
+}
+.right p:nth-child(4) button {
+	margin-left: 22%;
+	display: inline-block;
+	border: none;
+	border-radius: 2px;
+	background: #2496d2;
+	width: 120px;
+	height: 40px;
+	color: #fff;
+	text-align: center;
+	vertical-align: center;
+	font: normal 18px/40px "微软雅黑";
+	cursor: pointer;
+}
+
+.right p:nth-child(4) a {
+	display: inline-block;
+	color: #3174a8;
+	margin-left: 10px;
+	font-size: 20px;
+	cursor: pointer;
+}
+footer {
+	position: absolute;
+	bottom: 0px;
+	border: 1px solid #E5E5E5;
+	border-radius: 10px;
+	width: 100%;
+	height: 61px;
+	background: -moz-linear-gradient(bottom, #ebebeb, #fdfdfd);
+	background: -webkit-linear-gradient(bottom, #ebebeb, #fdfdfd);
+	background: -webkit-gradient(linear, left bottom, left top, from(#ebebeb), to(#fdfdfd));
+	background: -o-linear-gradient(bottom, #ebebeb, #fdfdfd);
+}
+footer p {
+	font: normal 16px/61px '';
+	text-align: center;
+	color: #DADADA;
+}
+footer p span {
+	font-family: "微软雅黑";
+	display: inline-block;
+	margin-right: 12px;
+}
+/*404*/
+.wrap{
+	
+	width: 356px;
+	height: 513px;
+	position: absolute;
+	top: 50%;
+	margin-top:-246px ;
+	right: 50% ;
+	margin-right: -178px;
+	background: url(../Images/404-bg.jpg) no-repeat center top;
+}
+.wrap p{ position: absolute; bottom: 0px; left: 4px; color: #333; font: normal 24px/2 "微软雅黑";}
+.wrap p a{ color:#d6797e ; }
+

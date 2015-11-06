@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/switch.css" />
+		<script type="text/javascript" src="js/jquery.js" ></script>
+	</head>
+	<body>
+		
+		<div id="div1" style="width: 100px;height: 100px;background: #64BD63;">
+			<img id="div2" src="" style="width: 100px;height: 100px; background: #FFFF00;">
+		</div>
+		
+		<label><input class="mui-switch" type="checkbox"> 默认未选中</label><br />
+<label><input class="mui-switch" type="checkbox" checked> 默认选中</label>
+<br />
+<label><input class="mui-switch mui-switch-animbg" type="checkbox"> 默认未选中,简单的背景过渡效果,加mui-switch-animbg类即可</label><br />
+<label><input class="mui-switch mui-switch-animbg" type="checkbox" checked> 默认选中</label><br />
+<label><input class="mui-switch mui-switch-anim" type="checkbox"> 默认未选中，过渡效果，加 mui-switch-anim
+类即可</label><br />
+<label><input class="mui-switch mui-switch-anim" type="checkbox" checked> 默认选中</label>
+	</body>
+</html>
+<script>
+$(function(){
+	$("#div1").on("click",function(e){
+		e.stopPropagation();
+		alert(1);
+	});
+	$("#div2").on("click",function(e){
+		e.stopPropagation();
+		alert(2);
+	});
+});
+</script>

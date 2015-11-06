@@ -1,0 +1,116 @@
+    <link href="../../Css/jquery.datatables.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../Css/selling.css" />
+			<div class="">
+				<div class="panel panel-default">
+					<div class="panel-body">
+					  <form class="form-inline">
+					<div class="form-group">
+					  <label class="sr-only" for="exampleInputEmail2">请输入账号名称</label>
+					  <input type="email" class="form-control" id="exampleInputEmail2" placeholder="请输入账号名称">
+					</div>
+					<div class="form-group">
+						<select class="form-control">
+		                  <option>全部角色</option>
+		                  <option></option>
+		                  <option></option>
+               		    </select>
+					</div>
+					<button type="button" class="btn btn-primary btn-sm">查询</button>
+					  </form>
+					</div>
+				</div>
+			</div>
+			<div class="">
+				<ul class="filemanager-options">
+					<li>
+					  <div class="ckbox ckbox-default">
+						<input type="checkbox" id="selectall" value="1">
+						<label for="selectall">全选</label>
+					  </div>
+					</li>
+					<li class="inline">
+						<span>
+							<a class="btn btn-default btn-sm btn-default ">删除</a>
+						</span>
+						<span>
+			                <select class="form-control input-sm">
+			                  <option>关联角色</option>
+			                  <option></option>
+	               		    </select>
+               		    </span>
+					</li>
+					<li class="filter-type">
+						<a class="btn btn-primary btn-sm white winO2OPanel" data-toggle="modal" data-url="addAccount.html" data-target=".bs-example-modal-lg" data-title="新增账号">新增账号</a>
+					</li>
+				  </ul>
+    	</div><!--总体操作-->
+			<div class="">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table mb30">
+								<thead>
+									<tr>
+										<th></th>
+										<th>账号</th>
+										<th>角色</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<div class="ckbox ckbox-success">
+												<input type="checkbox" id="checkbox1">
+												<label for="checkbox1"></label>
+											</div>
+										</td>
+										<td>admin</td>
+										<td>超级管理员</td>
+										<td class="btngroup">
+											<a class="">重做密码</a>
+											<a class="">编辑</a>
+											<a class="">删除</a>
+											
+										</td>
+									</tr>
+									
+									<tr>
+										<td>
+											<div class="ckbox ckbox-success">
+												<input type="checkbox" id="checkbox2">
+												<label for="checkbox2"></label>
+											</div>
+										</td>
+										<td>admin</td>
+										<td>超级管理员</td>
+										<td class="btngroup">
+											<a class="">重做密码</a>
+											<a class="">编辑</a>
+											<a class="">删除</a>
+										</td>
+									</tr>
+									
+									
+									
+									
+								</tbody>
+							</table>
+							<div class="dataTables_info" id="table2_info" role="status" aria-live="polite">一共100条数据  每页显示 <input type="text"  value="4" style="width: 40px; text-align: center;" disabled=""> 共3页</div>
+							<div class="dataTables_paginate paging_full_numbers" id="table2_paginate">
+								<a class="paginate_button first disabled" aria-controls="table2" data-dt-idx="0" tabindex="0" id="table2_first">首页</a>
+								<a class="paginate_button previous disabled" aria-controls="table2" data-dt-idx="1" tabindex="0" id="table2_previous">上一页</a>
+								<span>
+									<a class="paginate_button current" aria-controls="table2" data-dt-idx="2" tabindex="0">1</a>
+									<a class="paginate_button " aria-controls="table2" data-dt-idx="3" tabindex="0">2</a>
+									<a class="paginate_button " aria-controls="table2" data-dt-idx="4" tabindex="0">3</a>
+									<a class="paginate_button " aria-controls="table2" data-dt-idx="5" tabindex="0">4</a>
+									<a class="paginate_button " aria-controls="table2" data-dt-idx="6" tabindex="0">5</a>
+									<a class="paginate_button " aria-controls="table2" data-dt-idx="7" tabindex="0">6</a>
+								</span>
+								<a class="paginate_button next" aria-controls="table2" data-dt-idx="8" tabindex="0" id="table2_next">下一页</a>
+								<a class="paginate_button last" aria-controls="table2" data-dt-idx="9" tabindex="0" id="table2_last">尾页</a></div>
+						</div><!--table-responsive-->
+					</div><!--panel-body-->
+					</div>
+				</div><!--panel-->

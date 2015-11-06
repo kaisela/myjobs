@@ -1,0 +1,185 @@
+@charset "utf-8";
+
+.list-block{
+	width: 100%;
+	padding: 0 20px;
+	margin-top: 10px;
+	border-radius: 2px; 
+	position: relative;
+}
+
+.list-block ul{
+	background-color: white;
+	width: 100%;
+}
+.wait_check{
+	border-bottom: 25px solid #57a8ab;
+}
+.wait_verify{
+	border-bottom: 25px solid #6bad6b;
+}
+.wait_shielded{
+	border-bottom: 25px solid #666666;
+}
+.tab-label-text{
+	position: inherit;  
+	width: 50px;  
+	margin: 34px -20px;
+}
+.tab-reg{ 
+	z-index: 1;  
+	line-height: 24px;  
+	padding: 2px 33px 33px;  
+	color: #fff;
+    transform: rotate(315deg);
+    -ms-transform:rotate(315deg);
+    -moz-transform:rotate(315deg);
+    -webkit-transform:rotate(315deg);
+    font-size: 14px;  
+    position: absolute;  
+    margin: -11px 0px 0px -39px;   
+    border-right: 25px solid transparent;  
+    border-left: 25px solid transparent;
+}
+
+.item-content{
+	width: 100%;
+	padding:10px;
+	align-items:center;
+	overflow: hidden;
+}
+.item-media{
+	float: left;
+	-webkit-flex-wrap:nowrap;
+	-ms-flex-wrap:none;
+	-ms-flex-wrap:nowrap;
+	flex-wrap:nowrap;
+
+}
+.item-media img{
+	width: 72px;
+} 
+
+.item-inner{
+	padding-left:8px;
+	width:72%;
+	float: left;
+}
+.item-title-row{
+	width:100%;
+	overflow:hidden;
+}
+.item-title{
+	float: left;
+	width: 68%;
+	color: #333333;
+	line-height: 20px;
+	font-size: 1em;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+.delete{
+	float: right;
+	width: 16px;
+}
+.item-subtitle{
+	width: 100%;
+	white-space:nowrap;
+	color:#666666;
+	font-size: 0.875em;
+	line-height: 20px;
+}
+.item-text{
+	width: 100%;
+	white-space:nowrap;
+	color:#666666;
+	font-size: 0.875em;
+	line-height: 20px;
+}
+.foot{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	padding: 0 20px;
+	margin-bottom: 20px;
+}
+
+.foot input{
+	width: 100%;
+	height: 40px;
+	background-color: #ef5350;
+	border: 0;
+	border-radius: 4px;	
+	color: white;
+	font-size: 1em;
+}
+
+
+.shade{
+	width: 0;
+	height: 0;
+	position: absolute;
+	background-color: black;
+	opacity: 0.4;
+	left: 0;
+	top: 0;
+	z-index: 10;
+	display: none;
+}
+
+.warnBox{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 84%;
+	height: 150px;
+	background-color:#dadfe0;
+	border-radius: 10px;
+	text-align: center;
+	overflow: hidden;
+	display: none;
+	z-index: 20;
+}
+.warnBox p{
+	width: 100%;
+	padding: 30px;
+}
+.warnBox .container{
+	widows: 100%;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+}
+
+.warnBox .btnBox{
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	overflow: hidden;
+}
+.warnBox input{
+	width: 50%;
+	border: 0;
+	float: left;
+	height: 44px;
+	color: #157efb;
+	font-size: 1em;
+	border-top: 1px solid #9fa2a1;
+	background-color: #dadfe0;
+}
+
+.warnBox .deleteShop{
+	border-right: 1px solid #9fa2a1;
+}
+
+
+
+
+
+
+
+
+
+
+
+

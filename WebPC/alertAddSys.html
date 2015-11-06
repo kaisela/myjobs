@@ -1,0 +1,66 @@
+<div class="form-group">
+	  <label class="col-sm-3 control-label">账号：</label>
+	  <div class="col-sm-9">
+	  	<input type="text" class="form-control" />
+	  </div>
+	</div>
+	<div class="form-group">
+	  <label class="col-sm-3 control-label">密码:</label>
+	  <div class="col-sm-9">
+	  	<input type="password" class="form-control" />	
+	  </div>
+	</div>
+	<div class="form-group">
+	  <label class="col-sm-3 control-label">角色：</label>
+	  <div class="col-sm-9">
+	  	<div class="select2-container select2-container-multi select2" style="width: 100%;">
+				<ul class="select2-choices clearfix">
+					<li class="select2-search-choice">    <div>Angola</div>    <a href="#" class="select2-search-choice-close" tabindex="-1"></a></li>
+					<li class="select2-search-choice">    <div>Angola</div>    <a href="#" class="select2-search-choice-close" tabindex="-1"></a></li>
+					<li class="select2-search-choice">    <div>Angola</div>    <a href="#" class="select2-search-choice-close" tabindex="-1"></a></li>
+				</ul>
+			</div>
+			<div class="select-drop">
+				<ul>
+					<li><a>United States</a></li>
+					<li><a>United States</a></li>
+					<li><a>United States</a></li>
+					<li><a>United States</a></li>
+					<li><a>United States</a></li>
+					<li><a>United States</a></li>
+					<li><a>United States</a></li>
+					<li><a>United States</a></li>
+					<li><a>United States</a></li>
+					<li><a>United States</a></li>
+				</ul>
+			</div>
+	  </div>
+	</div>
+
+    <div class="form-group">
+	      <div class="col-sm-9 col-sm-offset-3">
+	        <button type="button" class="btn btn-primary">保存</button>
+	        <button type="button" class="btn btn-default">取消</button>
+	      </div>
+	  </div>
+	  <script>
+$(".select2-container-multi ").on('click',function(){
+	var selectDrop = $(this).next(".select-drop");
+	if(selectDrop.is('div:hidden')){
+		selectDrop.show()
+	}else{
+		selectDrop.hide()
+		
+	}
+})
+
+
+$(".select-drop ul li a ").on('click',function(){
+	var selectTxt = $(this).text();
+   
+    $("ul.select2-choices").append('<li class="select2-search-choice"><div>'+selectTxt+'</div>    <a href="#" class="select2-search-choice-close" tabindex="-1"></a></li>');
+	$('.select-drop').hide()
+})
+
+
+</script>

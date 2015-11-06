@@ -1,0 +1,221 @@
+﻿@using System.Collections
+@model Model.GoodsBasic
+@{
+    ViewBag.Title = (ViewBag.gbId == 0) ? "发布商品" : "编辑商品";
+
+    IList<Model.Brand> gBrandList = ViewBag.gBrand as IList<Model.Brand>;
+    IList<Model.GoodsGroup> gGroupList = ViewBag.gGroupList as IList<Model.GoodsGroup>;
+    IList<Hashtable> gAttr = ViewBag.gAttr as IList<Hashtable>;
+    if (ViewBag.gbId != 0)
+    {
+        ViewBag.ParentCode = "GoodsView";
+        if (Model.IsSale == 0)
+        {
+            ViewBag.MenuCode = "SaleGoodsView";
+        }
+        else
+        {
+            ViewBag.MenuCode = "StoreGoodsView";
+        }
+    }
+}
+
+@section styles{
+    <link href="~/Plugin/window/css/common.css" rel="stylesheet" />
+    <link href="~/Css/base.css" rel="stylesheet" />
+    <link href="~/Plugin/upload/css/upload.css" rel="stylesheet" />
+    <link href="@Url.Content("~/Scripts/poshytip/tip-yellowsimple/tip-yellowsimple.css")" rel="stylesheet" type="text/css" />
+}
+<div class="row">
+    <div class="panel ">
+        <div class="panel-body panel-body-nopadding">
+            <div class="form-horizontal form-bordered">
+               
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">商品图片<span class="asterisk">*</span></label>
+                        <div class="col-sm-6">
+                            <div id="uploadContainer1" data-image-type="1" data-callback-element="hidGEImg" data-callback-func="callbackImg" data-url="/File/ImageUpload"
+                                 data-accept="image/png,image/jpeg,image/gif" data-size="2048" data-parttern="single" data-path="/File/ShowImage/{0}" data-cross-domain="true" data-val="true" data-val-autovalidate="商品图片不能为空！" style="width:260px;">
+                            </div>
+                            <div class="photoTip">建议上传尺寸：<span>640*640</span>,支持格式：<span>jpg/png/gif</span></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">消息推送配图<span class="asterisk">*</span></label>
+                        <div class="col-sm-6">
+                            <div id="uploadContainer2" data-image-type="9" data-callback-element="GoodsIMG" data-callback-func="callbackImg1" data-url="/File/ImageUpload"
+                                 data-accept="image/png,image/jpeg,image/gif" data-size="2048" data-parttern="single" data-path="/File/ShowImage/{0}" data-cross-domain="true" data-val="true" data-val-autovalidate="消息推送配图不能为空！" style="width:260px;">
+                            </div>
+                            <div class="photoTip">建议上传尺寸：<span>640*360</span>,支持格式：<span>jpg/png/gif</span></div>
+                        </div>
+                    </div>
+                <form action="/GoodsBasic/OperateSave" id="formList" method="post" data-ajax="true"
+                      data-callback="GoodsSave" class="form-horizontal form-bordered">
+                    @Html.HiddenFor(model => model.ID)
+                    @Html.HiddenFor(model => model.IsSale)
+                    <input type="hidden" id="hidGEImg" name="hidGEImg" value="@((Model.GESnapshot == null) ? "" : Model.GESnapshot.IMG)" />
+                    @Html.HiddenFor(model => model.GoodsIMG)
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="goodsImg">商品标题<span class="asterisk" style="max-width:500px;">*</span></label>
+                        <div class="col-sm-6">
+                            @Html.TextBoxFor(model => model.GESnapshot.GName, new { placeholder = "限制在30个汉字/60个字符内", @class = "form-control input-sm", maxlength = "60", style = "max-width:700px;width:100%;" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">所属品牌<span class="asterisk">*</span></label>
+                        <div class="col-sm-6">
+                            @Html.DropDownListFor(model => model.BrandID, null, "选择品牌", new { @class = "ver-select  select-sm" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">商品类目<span class="asterisk">*</span></label>
+                        <div class="col-sm-6">
+                            <select class="ver-select  select-sm" id="gClassP" name="gClassP">
+                                <option value="0">请选择一级类目</option>
+                            </select>
+                            <select class="ver-select select-sm" id="gClass" name="gClass" data-val="true" data-val-autovalidate="商品类目不能为空">
+                                <option value="0">请选择二级类目</option>
+                            </select>
+                            @Html.HiddenFor(model => model.GoodsClassID)
+                            <input type="hidden" id="hidGClassP" name="hidGClassP" value="@ViewBag.pClass" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">可视分组</label>
+                        <div class="col-sm-6">
+                            <input type="button" id="selectGG" name="selectGG" class="btn btn-primary btn-sm" value="选择可视分组" data-val="true" data-val-autovalidate="商品可视分组不能为空！" />
+                            <div style="color:#c5c5c5; font: normal 14px/2 '微软雅黑' ;">备注：如未选择商品可视分组，则该商品所有渠道可见</div>
+                            <ul class="checkbox-list" id="ulGG" style="display: none;">
+                                @foreach (Model.GoodsGroup sp in gGroupList)
+                                {
+                                    <li>
+                                        <input type="checkbox" id="checkGG_@(sp.ID)" value="@(sp.GroupName)">
+                                        <label for="select_@(sp.ID)">@(sp.GroupName)</label>
+                                    </li>
+                                }
+                            </ul>
+                            <div id="divGG" class="select-list clearfix">
+                                @if (Model.GoodsGroupList != null)
+                                {
+                                    foreach (Model.GoodsGroup sp in Model.GoodsGroupList)
+                                    {
+                                        <span class='tag'>
+                                            <span>@sp.GroupName</span>
+                                            <a id="delgGroup_@(sp.ID)" title="删除">X</a>
+                                        </span>
+                                    }
+                                }
+                            </div>
+                            @Html.Hidden("hidGG","")
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">价格模式<span class="asterisk">*</span></label>
+                        <div class="col-sm-8">
+                            @Html.DropDownListFor(model => model.RType, null, new { @class = "ver-select select-sm" })
+
+                            @{ decimal lowerP = Model.Price * (1 - (Convert.ToDecimal(ViewBag.priceLower) / 100));
+                             decimal upperP = Model.Price * (1 +(Convert.ToDecimal(ViewBag.priceUpper) / 100));
+                            }
+                            <div class="worth01" style="display:inline-block;margin-left:10%;">
+                                <label>价格<span class="asterisk">*</span></label>
+                                @Html.TextBoxFor(model => model.Price, new { @class = " form-control01 input-sm", style = "width:100px;padding:6px 10px" }) 元
+                            </div>
+                            <div class="worth02" style="display:none; margin-left:3%" data-isp="@ViewBag.isPrice">
+                                <label>价格区间</label>
+                                <input type="text" class="input-sm form-control01" style="width:100px;height:34px;" id="txtPriceLower"
+                                       data-pricelower="@ViewBag.priceLower" value="@(lowerP.ToString("0.00"))" name="txtPriceLower" /> -
+                                <input type="text" class="input-sm form-control01" style="width:100px;height:34px;" id="txtPriceUpper"
+                                       data-priceupper="@ViewBag.priceUpper" value="@(upperP.ToString("0.00"))" name="txtPriceUpper" />
+                                元
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">有货状态<span class="asterisk">*</span></label>
+                        <div class="col-sm-6">
+                            @Html.DropDownListFor(model => model.ISNormal, null, new { @class = "ver-select select-sm" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">对外商品型号</label>
+                        <div class="col-sm-6">
+                            @Html.TextBoxFor(model => model.GModel, new { @class = "input-sm form-control01", maxlength="24", style = "margin-right: 60px;max-width:200px;width:200px;height:34px;" })
+                            <label>商品条形码</label>
+                            @Html.TextBoxFor(model => model.BarCode, new { @class = "input-sm form-control01", maxlength = "24", style = "margin-left: 20px;max-width:200px;width:200px;height:34px;" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">属性规格<span class="asterisk">*</span></label>
+                        <div class="col-sm-6" id="divGAV">
+                            <div id="divShowAttr">
+                                @if (gAttr.Count() > 0)
+                                {
+                                    foreach (Hashtable ht in gAttr)
+                                    {
+                                        <p>
+                                            <label>@ht["AName"]:</label><span>@(HttpUtility.HtmlDecode(ht["VName"].ToString()))</span>
+                                            <a href="#0" style="display: inline-block; float: right;">删除</a>
+                                        </p>
+                                    }
+                                }
+                            </div>
+                            <div id="divGAV_attr" class="btn-group" style="margin-bottom: 0PX;">
+                                <input type="text" maxlength="12" class=" form-control01" id="txtgAttr" placeholder="属性名" style="height:34px;" />
+                                <ul class="dropdown-menu" id="ulAV" role="menu"></ul>
+                            </div>
+                            <div id="divGVV_attr" class="btn-group" style="margin-bottom: 0PX;">
+                                <input type="text" maxlength="256" class="input-sm form-control01" placeholder="属性值" id="txtgAV" style="width:200px;height:34px;margin-top:0px;">
+                                <ul class="dropdown-menu" id="ulVV" role="menu"></ul>
+                            </div>
+                            <input type="button" class="btn btn-primary btn-sm" id="btnAddAV" name="btnAddAV" data-val="true" data-val-autovalidate="属性规格不能为空！" value="添加属性">
+                        </div>
+                        @Html.Hidden("hidGAV")
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">初始销售量</label>
+                        <div class="col-sm-6">
+                            @Html.TextBoxFor(model => model.SaleNum, new { @class = "input-sm form-control01", style = "margin-right: 100px;height:34px;"})
+                            初始评价数
+                            @Html.TextBoxFor(model => model.CommentNum, new { @class = "input-sm form-control01", style = "margin-left: 20px;height:34px;" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">商品详情<span class="asterisk">*</span></label>
+                        <div class="col-sm-6">
+                            @Html.TextAreaFor(model => model.GESnapshot.EContent, new { placeholder = "Enter text here...", id = "EContentEditor", rows = "10", @class = "form-control input-sm" })
+                        </div>
+                    </div>
+                </form>
+                <div class="form-group">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        <input type="button" id="btnSave" class="btn btn-primary btn-sm" value="保存"/>
+                        <input type="button" class="btn btn-default  btn-sm" id="btnCancel" value="取消" />
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div><!--panel-body-->
+</div><!-- row -->
+@section scripts
+{
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+    <script src="~/Plugin/upload/script/util.js"></script>
+    <script src="~/Plugin/upload/jquery-upload.js"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/poshytip/jquery.poshytip.min.js")" type="text/javascript"></script>
+    <script src="~/Scripts/Common/Common.js"></script>
+    <script src="~/Scripts/public.js"></script>
+    <script src="~/Scripts/GoodsBasic/Operate.js"></script>
+    <script src="~/Plugin/window/jquery-window.js"></script>
+    <script>
+        var editor=CKEDITOR.replace('EContentEditor');
+        function windowCallback() {
+        }
+    </script>
+}
+

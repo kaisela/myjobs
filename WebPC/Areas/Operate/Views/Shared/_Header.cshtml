@@ -1,0 +1,22 @@
+﻿<a class="menutoggle"><i class="fa fa-bars"></i></a>
+<div class="header-right">
+    <ul class="headermenu">
+        <li>
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <img src="../../images/photos/loggeduser.png" alt="" />
+                    @*@((Session["user"] as Model.UserPC).UserName)*@
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+                    @*@{
+                        string loginoutUrl = "/Login/" + (Session["user"] as Model.UserPC).UserBasic.EnterpriseID+"/LoginOff";
+                    }*@
+                    @*<li><a href="profile.html"><i class="glyphicon glyphicon-user"></i>个人基本资料</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-cog"></i>修改密码</a></li>*@
+                    <li><a href="/Login/LoginOff"><i class="glyphicon glyphicon-log-out"></i>退出</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>

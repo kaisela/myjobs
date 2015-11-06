@@ -1,0 +1,76 @@
+﻿@model Model.ShopInfoView
+
+
+@{
+    if (Model.Relation == 1)
+    {
+        ViewBag.Title = "直营店详情";
+        ViewBag.MenuCode = "EnterpriseIndex";
+    }
+    else {
+        ViewBag.Title = "门店详情";
+        ViewBag.MenuCode = "AgentShopIndex";
+    }
+    ViewBag.ParentCode = "ChnView";
+    string imageDomain = Bll.ConstConfigBll.GetConfigByKey("ImageShowUrl");
+}
+@section scripts{
+    <script src="~/Scripts/ChannelpublicJs/PublicStatus.js"></script>
+    
+    }
+<div class="row">
+    <div class="panel panel-body">
+        <a class="logo-img"><img src="@(imageDomain)@Model.shopIMG" width="220px" height="164px" /></a>
+        <h4 class="text-info">@Model.ShopName</h4>
+        <address>地址：@Model.Address</address>
+        <address>总机：@Model.ContactTEL                     <span style="display: inline-block; margin-left: 200px;">  联系人：@Model.Contact</span></address>
+        <address>所属公众号：@Model.MPName</address>
+        @if (Model.Relation == 1)
+        {
+            <address>门店类型：直营店</address>
+        }
+        else
+        {
+            <address>门店类型：代理商下属门店</address>
+            <address>所属代理商：@Model.AgentName</address>
+        }     
+        <address>状态：<span id="AgentStatus">@Model.Status</span></address>
+        <address>主营业务：@Model.Range</address>
+        <address>
+            <label>二维码使用情况：</label>
+            <div class="progress">            
+                    @Model.QRNum
+            </div>
+        </address>
+        <div class="form-group">
+            @if (Model.Relation == 1)
+            {
+                <a href="/ShopInfo/Enterprise_Index" class="btn btn-primary btn-sm white winO2OPanel">返回</a>
+            }
+            else
+            {
+                <a href="/ShopInfo/Agent_Index" class="btn btn-primary btn-sm white winO2OPanel">返回</a>
+            }            
+        </div>
+        @*<ul class="ul-total">
+            <li>商品总数:<a>0</a></li>
+            <li>导航数:<a>5</a></li>
+            <li>订单数:<a>19885</a></li>
+            <li>评价数:<a>8748</a></li>
+        </ul>*@
+        @*<div class="form-group">
+
+            <a href="javascript:void(0)"
+               class="btn btn-primary btn-sm white winO2OPanel"
+               data-title="新增直营店窗口"
+               data-func="openWin"
+               data-id="newWinCreate"
+               data-show-btn="false"
+               data-callback="testCallback_Enterprise_Create"
+               data-url="ShopInfo/Agent_Create?AgentName='@Model.AgentName'"
+               data-width="600"
+               data-height="500">新增门店</a>
+        </div>*@
+    </div>
+</div>
+

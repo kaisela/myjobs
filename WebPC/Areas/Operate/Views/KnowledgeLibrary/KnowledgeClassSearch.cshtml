@@ -1,0 +1,90 @@
+﻿@{
+    Layout = "~/Areas/Operate/Views/Shared/_Layout.cshtml";
+}
+
+
+
+         <!--<link rel="stylesheet" type="text/css" href="~/Content/KnowledgeLibrary/css/base.css" media="all">-->
+        <link href="~/Content/common.css" rel="stylesheet" />
+        <!--<link rel="stylesheet" type="text/css" href="~/Content/KnowledgeLibrary/css/module.css">-->
+        <link rel="stylesheet" type="text/css" href="~/Content/KnowledgeLibrary/css/style.css" media="all">
+        <!--<link rel="stylesheet" type="text/css" href="~/Content/KnowledgeLibrary/css/default_color.css" media="all">-->
+      
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#searchClass").click(function () {
+                $.post("/KnowledgeLibrary/KnowledgeClassPage", { name: $("#searchName").val() }, function (data, status, ref) {
+                    $("#classContent").html(data);
+                })
+            });
+        });
+
+        function CloseOrOpen(flag) {
+            if (flag) {
+                $("span[isimage]").each(function () {
+                    var _next = $(this).parent().parent().next();
+                    if (_next && _next.length > 0) {
+                        $(this).addClass("fa-minus-square").removeClass("fa-plus-square");
+                        _next.hide();
+                    }
+                });
+            }
+            else {
+                $("span[isimage]").each(function () {
+                    var _next = $(this).parent().parent().next();
+                    if (_next && _next.length > 0) {
+                        $(this).addClass("fa-plus-square").removeClass("fa-minus-square");
+                        _next.show();
+                    }
+                });
+            }
+        }
+
+    </script>
+  
+
+
+    <div class="contentpanel">
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <a class="btn btn-primary btn-sm" onclick="CloseOrOpen(false)">全部展开</a>
+                            <a class="btn btn-white btn-sm" onclick="CloseOrOpen(true)">全部折叠</a>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control input-sm" />
+                        </div>
+                        <button type="button" class="btn btn-primary btn-sm">查询</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    @{
+                        Html.RenderAction("KnowledgeClassPage");
+                    }
+
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "自定义评价管理";
+}
+@section styles{
+    <link href="~/Css/jquery.datatables.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Css/selling.css" />
+    @* 引用分页样式 *@
+    <link href="~/Plugin/pager/css/pager.css" rel="stylesheet" />
+    <style>
+        .panel-body {
+            background: white;
+        }
+    </style>
+}
+
+<div id="contact" class="tab-pane panel-body">
+    @using (Ajax.BeginForm("../Comments/GetTotal", null, new AjaxOptions { HttpMethod = "post", OnSuccess = "success" }, new { id = "CommentsForm" }))
+    {
+        <input type="hidden" id="orderby" name="orderby" />
+        <ul class="search">
+            <li><input type="text" id="keywords" name="keywords" class="form-control" placeholder="请输入商品名称/门店名称/买家名称" /></li>
+            <li>@Html.DropDownList("CommentsStatus", null, new { @class = "form-control" })</li>
+            <li><button type="submit" class="btn btn-primary btn-sm">查询</button></li>
+        </ul>
+    }
+    <ul class="tuisong">
+        <div class="pulleft">
+            <li>排序</li>
+            <li>
+                <a href="javascript:void(0)" name="Arorderby" thisvalue="0" class="btn btn-default btn-sm" isck="-1">购买时间</a>
+                <a href="javascript:void(0)" name="Arorderby" thisvalue="1" class="btn btn-default btn-sm" isck="-1">评价时间</a>
+            </li>
+        </div>
+        <div class="pullright">
+            <li>
+                <a class="btn btn-primary HrefFrame btn-sm" data-au="FakeCommEdit"
+                   href="/Comments/Create" data-div=".contentpanel" data-title="新增自定义评价">新增自定义评价</a>
+            </li>
+        </div>
+    </ul>
+    <div id="content"></div>
+
+    @* 分页标签 *@
+    <span class="pager"></span>
+</div>
+@section scripts{
+
+    @* 引用语音播放插件 *@
+    <script src="~/Plugin/video/jquery-video.js"></script>
+    @* 引用分页插件 *@
+    <script src="~/Plugin/pager/jquery-pager.js"></script>
+    @* 引用页面js *@
+    <script src="~/Scripts/Comments/Index.js"></script>
+    @* ajax提交必须要引用 *@
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+}

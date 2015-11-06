@@ -1,0 +1,204 @@
+	<div class="row">
+				<div class="panel panel-default">
+					<div class="panel-body">
+					  <form class="form-inline">
+					<div class="form-group">
+					 	<a class="btn btn-primary btn-sm" onclick="allOpen(this)">全部展开</a>
+					 	<a class="btn btn-white btn-sm" onclick="allClose(this)">全部折叠</a>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control input-sm" />
+					</div>
+					<button type="button" class="btn btn-primary btn-sm">查询</button>
+					  </form>
+					</div>
+				</div>
+			</div>
+			
+    	<div class="row">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="table-responsive">
+
+						<div class="tabl-head clearfix"  style="background: #fff; padding:12px ;border-bottom:1px solid #eee">
+							<span  class="input-left">类目名称</span>
+							<span  class="edit-right">操作</span>
+						</div>
+						<div class="tabl-body">
+							<div class="media">
+								<div class="media-body clearfix ">
+									<span class="input-left"><span class="fa fa-minus-square " onclick="hShow(this)"></span><input type="text" class=" input-sm" value="dafsdad"  /></span>
+									 <span class="edit-right table-aSpace">
+										 <a>添加子类</a>
+										 <a>修改</a>
+										<a class='preMove'>上移</a>
+										 <a class="nextMove">下移</a>
+										 <a>删除</a>
+									 </span>
+								</div>
+								<div class="media">
+									<div class="media-body clearfix">
+										<span class="input-left"><span class="fa fa-plus-square" onclick="hShow(this)"></span><input type="text" class="input-sm"  /></span>
+										 <span class="edit-right table-aSpace">
+											 <a>添加子类</a>
+											 <a>修改</a>
+											<a class='preMove'>上移</a>
+											 <a class='nextMove'>下移</a>
+											 <a>删除</a>
+										 </span>
+									</div>
+									<div class="media">
+									    <div class="media-body clearfix ">
+											<span class="input-left"><span class="fa fa-minus-square " onclick="hShow(this)"></span><input type="text" class=" input-sm"  /></span>
+											<span class="edit-right table-aSpace">
+												 <a>修改</a>
+												<a class='preMove'>上移</a>
+												 <a class='nextMove'>下移</a>
+												 <a>删除</a>
+											 </span>
+									     </div>
+								     </div>
+								 </div>
+							</div>
+							<div class="media">
+								<div class="media-body clearfix ">
+									<span class="input-left"><span class="fa fa-plus-square" onclick="hShow(this)"></span><input type="text" class=" input-sm"></span>
+									 <span class="edit-right table-aSpace">
+										 <a>添加子类</a>
+										 <a>修改</a>
+										<a class='preMove'>上移</a>
+										 <a class='nextMove'>下移</a>
+										 <a>删除</a>
+									 </span>
+								</div>
+								<div class="media">
+									<div class="media-body clearfix">
+									<span class="input-left"><span class="fa fa-plus-square" onclick="hShow(this)"></span><input type="text" class="input-sm"></span>
+									 <span class="edit-right table-aSpace">
+										 <a>添加子类</a>
+										 <a>修改</a>
+										<a class='preMove'>上移</a>
+										 <a class='nextMove'>下移</a>
+										 <a>删除</a>
+									 </span>
+									</div>
+									<div class="media">
+									<div class="media-body clearfix">
+									<span class="input-left"><span class="fa fa-plus-square" onclick="hShow(this)"></span><input type="text" class="input-sm"></span>
+									 <span class="edit-right table-aSpace">
+							
+										 <a>修改</a>
+										<a class='preMove'>上移</a>
+										 <a class='nextMove'>下移</a>
+										 <a>删除</a>
+									 </span>
+									</div>
+								</div>
+								<div class="media">
+									<div class="media-body clearfix">
+									<span class="input-left"><span class="fa fa-plus-square" onclick="hShow(this)"></span><input type="text" class="input-sm" value="李易峰"></span>
+									 <span class="edit-right table-aSpace">
+										 <a>修改</a>
+										<a class='preMove'>上移</a>
+										 <a class='nextMove'>下移</a>
+										 <a>删除</a>
+									 </span>
+									</div>
+								</div>
+								</div>
+								<div class="media">
+									<div class="media-body clearfix">
+									<span class="input-left"><span class="fa fa-plus-square" onclick="hShow(this)"></span><input type="text" class=" input-sm"></span>
+									 <span class="edit-right">
+										 <a>添加子类</a>
+										 <a>修改</a>
+										<a class='preMove'>上移</a>
+										 <a class='nextMove'>下移</a>
+										 <a>删除</a>
+									 </span>
+									</div>
+									<div class="media">
+									<div class="media-body clearfix">
+									<span class="input-left"><span class="fa fa-plus-square" onclick="hShow(this)"></span><input type="text" class="input-sm"></span>
+									 <span class="edit-right table-aSpace">
+										 <a>添加子类</a>
+										 <a>修改</a>
+										<a class='preMove'>上移</a>
+										 <a class='nextMove'>下移</a>
+										 <a>删除</a>
+									 </span>
+									</div>
+								</div>
+								</div>
+							</div>
+							
+						</div>
+					</div><!--table-responsive-->
+					<div class="mb30"></div>
+					<div class="form-group">
+						<a>添加类目</a>
+					</div>
+					<div class="form-group">
+						<a class="btn btn-primary btn-sm">保存</a>
+					</div>
+				</div><!--panel-body-->
+			</div><!--panel-->
+			</div><!---row-->
+			<script>
+				function hShow(obj){
+					var media = $(obj).parents(".media-body").next();
+					if(media.length > 0 && media.is(":visible")){
+						 $(obj).removeClass('fa-minus-square')
+						 $(obj).addClass('fa-plus-square')
+						 $(obj).parents(".media-body").nextAll().hide();
+					}else{
+						$(obj).removeClass('fa-plus-square')
+						 $(obj).addClass('fa-minus-square')
+						 $(obj).parents(".media-body").nextAll().show();
+					}
+					
+				}
+				function allOpen(obj){
+					$(".media").show();
+					$(".media").each(function(){
+	
+						$(this).children(".media-body").find('span.fa').removeClass('fa-plus-square')
+						$(this).children(".media-body").find('span.fa').addClass('fa-minus-square')
+					})
+				}
+				function allClose(obj){
+		
+					$(".tabl-body > .media .media").hide();
+					$(".media").each(function(){
+	
+						$(this).children(".media-body").find('span.fa').removeClass('fa-minus-square')
+						$(this).children(".media-body").find('span.fa').addClass('fa-plus-square')
+					})
+					
+				}
+				$('.nextMove').on('click',function(){
+					console.log('nextMove');
+					var parent = $(this).parents('.media-body').parent('.media');
+					var nextHtml = parent.next('.media');
+
+					if(nextHtml.length > 0){
+						parent.remove();
+						var thisHtml = parent.clone();
+						
+						nextHtml.after(thisHtml);
+					}
+				})
+				
+				$('.preMove').on('click',function(){
+					console.log('preMove');
+					var parent = $(this).parents('.media-body').parent('.media');
+					var prevHtml = parent.prev('.media');
+
+					if(prevHtml.length > 0){
+						parent.remove();
+						var thisHtml = parent.clone();
+						
+						prevHtml.before(thisHtml);
+					}
+				})
+			</script>

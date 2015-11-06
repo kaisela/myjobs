@@ -1,0 +1,396 @@
+@charset "utf-8";
+/* CSS Document */
+
+* {
+	box-sizing: border-box;
+}
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+form,
+fieldset,
+input,
+textarea,
+p,
+blockquote,
+th,
+td,
+img {
+	margin: 0;
+	padding: 0;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+p {
+	line-height: 100%;
+}
+fieldset,
+img {
+	border: 0;
+}
+img {
+	vertical-align: bottom;
+	max-width: 100%;
+}
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+strong,
+th,
+var {
+	font-style: normal;
+	font-weight: normal;
+}
+ol,
+ul {
+	list-style: none;
+}
+caption,
+th {
+	text-align: left;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-size: 100%;
+	font-weight: normal;
+}
+q:before,
+q:after {
+	content: '';
+}
+abbr,
+acronym {
+	border: 0;
+}
+.clearfix {
+	clear: both;
+}
+.zoom {
+	zoom: 1;
+}
+@keyframes down1 {
+	from {
+		top: 16%;
+	}
+	to {
+		top: 24%;
+	}
+}
+@-moz-keyframes down1
+/* Firefox */
+
+{
+	from {
+		top: 16%;
+	}
+	to {
+		top: 24%;
+	}
+}
+@-webkit-keyframes down1
+/* Safari 和 Chrome */
+
+{
+	from {
+		top: 16%;
+	}
+	to {
+		top: 24%;
+	}
+}
+@-o-keyframes down1
+/* Opera */
+
+{
+	from {
+		top: 16%;
+	}
+	to {
+		top: 24%;
+	}
+}
+.remove{
+	text-align: center;
+	margin-top: 40%;
+}
+.section {
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+	display: none;
+}
+.section1-logo {
+	width: 60%;
+	margin: 0 auto;
+	margin-top: 30px;
+}
+.section-logo-name {
+	margin: 0 auto;
+	font-size: 0.7em;
+	color: #3c2201;
+}
+.section-slogan {
+	width: 100%;
+	margin: 0 auto;
+	margin-top:-25px;
+}
+.section1-download-mob {
+	width: 180px;
+	display: block;
+	height: 60px;
+	background: rgba(37, 21, 0, 0.9);
+	border: #251500 1px solid;
+	border-radius: 6px;
+	margin: 0 auto;
+	margin-top: 84px;
+	color: #fff;
+	font-size: .5em;
+}
+.conttent{
+	position: absolute;
+	top:0px;
+	left: 0px;
+}
+.bottom {
+	position: absolute;
+	z-index: 999;
+	height: 60px;
+	bottom: 0;
+	width: 100%;
+	background: rgba(15, 7, 0, 0.8);
+}
+.bottom img {
+	vertical-align: top;
+}
+.bottom .middle {
+	height: 60px;
+	width: 100px;
+	float: left;
+	line-height: 50px;
+	font-size: 0.3em;
+	text-align: left;
+}
+.bottom .middle {
+	height: 60px;
+	width: 100px;
+	float: left;
+	line-height: 60px;
+	font-size: 0.3em;
+	text-align: left;
+}
+.bottom .left {
+	height: 60px;
+	width: 60px;
+	line-height: 60px;
+	float: left;
+	padding: 12px 12px;
+	padding-right: 12px;
+}
+.bottom .right {
+	height: 60px;
+	width: 84px;
+	line-height: 60px;
+	float: right;
+	padding-top: 14px;
+	padding-bottom: 7px;
+	margin-right: 25px;
+}
+.section1 {
+	width: 250px;
+	height: 250px;
+	margin: 0 auto;
+	margin-top: 30px;
+	position: relative;
+}
+.section1 .fm1 {
+	position: absolute;
+	top: -25%;
+	right: -25%;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+.section1 .fm1 img {
+	width: 60%;
+	height: 60%;
+	margin-top: 25%;
+}
+.section1 .fm2 {
+	position: absolute;
+	bottom: -25%;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+.section1 .fm2 img {
+	width: 80%;
+	margin-top: 25%;
+}
+.section1 .fm3 {
+	position: absolute;
+	top: -25%;
+	left: -35%;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+.section1 .fm3 img {
+	width: 100%;
+}
+.section1 .fm4 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	z-index: 100;
+}
+.section1 .fm4 img {
+	width: 100%;
+}
+.section2-title {
+	padding: 20px 50px 0px 50px;
+}
+.section2-title {
+	padding-top: 40px;
+	padding-left: 25px;
+	padding-right: 25px;
+	padding-bottom: 25px;
+	min-height: 80px;
+	margin-top: -80px;
+}
+.section2-title .img{
+	width: 80px;
+	position: absolute;
+	
+}
+.section2-title .text{
+	margin-left: 92px;
+	
+}
+.section2-title .text .title{
+	color: #000;
+	font-size: 0.6em;
+	text-align: left;
+}
+.section2-title .text .desc{
+	color: rgb(124,122,130);
+	font-size: 0.3em;
+	text-align: left;
+	margin-top: 10px;
+}
+.section2-phone {
+	padding: 0px 20% 0px 20%;
+	position: relative;
+	margin-top: 160px;
+}
+.section2-bg {
+	position: relative;
+	z-index: 100;
+}
+.section6-phone {
+	margin: 0px 10% 0px 10%;
+	position: relative;
+	margin-top: 160px;
+}
+.section6-phone .phone-con1 {
+	position: absolute;
+}
+.section6-phone .phone-con2 {
+	position: absolute;
+}
+.section6-phone .item {
+	width: 33.33%;
+	float: left;
+	box-sizing: border-box;
+}
+.section2-phone .phone-con {
+	position: absolute;
+	box-sizing: border-box;
+	width: 54%;
+	padding-left: 10%;
+	top: 16%;
+}
+.phone-con-key {
+	position: absolute;
+	box-sizing: border-box;
+	width: 54%;
+	padding-left: 10%;
+	bottom: 11%;
+}
+.section2-phone .phone-hand {
+	position: absolute;
+	box-sizing: border-box;
+	padding-right: 34%;
+	padding-left: 20%;
+	top: 10%;
+}
+.section6-phone .phone-hand1 {
+	position: absolute;
+	box-sizing: border-box;
+	width: 100px;
+	top: 10%;
+	left: 10%;
+}
+.con-animation {
+	animation: down1 500ms;
+	-moz-animation: down1 500ms;
+	/* Firefox */
+	
+	-webkit-animation: down1 500ms;
+	/* Safari 和 Chrome */
+	
+	-o-animation: down1 500ms;
+	/* Opera */
+}
+.section3-phone {
+	padding-top: 30px;
+	width: 90%;
+	margin: 0 auto;
+	margin-top: 160px;
+}
+.section4-phone {
+	margin-top: -20px;
+	width: 90%;
+	margin: 0 auto;
+	margin-top: 160px;
+}
+.section5-phone {
+	padding-top: 50px;
+	width: 95%;
+	margin: 0 auto;
+	margin-top: 160px;
+}
+@media only screen and (max-height: 550px) {
+	.section2-phone {
+		margin-top: -15px;
+		position: relative;
+	}
+	.section3-phone {
+		padding-top: 5px;
+	}
+	.section4-phone {
+		margin-top: -40px;
+	}
+}

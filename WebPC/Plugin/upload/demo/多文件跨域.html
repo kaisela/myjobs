@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>多文件跨域上传</title>
+    <script src="../script/jquery-1.10.2.js"></script>
+    <script src="../script/util.js"></script>
+    <link href="../css/upload.css" rel="stylesheet" />
+    <script src="../jquery-upload.js"></script>
+</head>
+<body><!--data-image-type="2"data-parttern="single"-->
+    <div style="clear: both">
+        <p style="clear: both; color: rgb(194, 61, 55); font-size: 16px">多文件，音频类文件</p>
+        <div id="uploadContainer1" data-max="1" data-image-type="9" data-callback-element="testCallback1" data-url="/File/ImageUpload" data-accept="image/png,image/jpeg" data-size="6048" data-multiple="multiple" data-parttern="single" data-path="/File/ShowImage/{0}" data-cross-domain="true">
+        </div>
+        <div id="uploadContainer2" data-max="1" data-callback-element="testCallback2" data-url="/File/FileUpload" data-accept="video/mp3" data-size="6048" data-multiple="multiple" data-path="/File/ShowAvi/{0}" data-parttern="video" data-cross-domain="true">
+        </div>
+        <br>
+    </div>
+    <div style="clear: both;padding-top:  20px">
+        <input style="width: 250px" type="text" value="22015042A7J1VDYNVMH_1" name="testCallback1" />
+        <input style="width: 250px" type="text" value="" name="testCallback2" />
+    </div>
+    <script>
+        
+    </script>
+</body>
+</html>

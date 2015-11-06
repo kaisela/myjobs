@@ -1,0 +1,118 @@
+﻿@model IEnumerable<Model.Brand>
+@{
+    Layout = "~/Areas/Operate/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "品牌管理";
+}
+<p>
+    @Html.ActionLink("添加品牌", "Add")
+
+
+</p>
+@section styles
+{
+    <link href="~/Plugin/pager/css/pager.css" rel="stylesheet" />
+    <link href="~/Css/jquery.datatables.css" rel="stylesheet" />
+    <link href="~/Css/selling.css" rel="stylesheet" />
+}
+@section scripts{
+<script src="~/Plugin/pager/jquery-pager.js"></script>
+<script src="~/Areas/Operate/Scripts/Brand/Index.js"></script>
+}
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form class="form-inline" id="BrandForm">
+                <div class="form-group">
+                  
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="BName">请输入品牌名称</label>
+                    <input type="text" class="form-control" id="BName" name="BName" placeholder="请输入品牌名称">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="EName">请输入所属企业</label>
+                    <input type="text" class="form-control" id="EName" name="EName" placeholder="请输入所属企业">
+                </div>
+              
+                <button type="button" id="btnSearch" class="btn btn-default">查询</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="table-responsive">
+        <table class="table table-bordered mb30">
+            <thead>
+                <tr>
+                    <th>品牌名称</th>
+                    <th>品牌标识</th>
+                    <th>所属类目</th>
+                    <th>所属企业</th>
+                    <th>商品数</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody id="BrandTb"></tbody>
+        </table>
+        <span class="pager"></span>
+    </div><!-- table-responsive -->
+</div><!-- col-sm-7 -->
+
+
+
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BIMG)
+        </th>
+        <th>
+            所属类目
+        </th>
+        <th>
+          所属企业
+        </th>
+        <th>
+            商品数
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>操作</th>
+    </tr>
+
+@foreach ( System.Collections.Hashtable item in list)
+{
+   
+    <tr>
+        <td>
+            @item["BName"]
+        </td>
+        <td>
+            getImgUrl()
+            <img src="getImgUrl( @item["BIMG"])" />
+        </td>
+        <td>
+            @Html.Raw(item["BCategory"])
+        </td>
+        <td>
+            @item["EName"]
+        </td>
+        <td>
+            @item["goodsnum"]
+        </td>
+        <td>
+            @item["Status"]
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item["ID"] }) |
+            @Html.ActionLink("Delete", "Merge", new { id = item["ID"] })
+        </td>
+    </tr>
+}
+
+</table>*@

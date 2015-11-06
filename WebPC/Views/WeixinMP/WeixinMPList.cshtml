@@ -1,0 +1,93 @@
+﻿@model IList<Model.WeixinMP>
+@{
+    Layout = null;
+}
+<div class="panel panel-body-nopadding">
+    @foreach (var item in Model)
+    {
+        <div class="box">
+            <div class="form-group">
+                <div class="name">
+                    <label class="col-sm-3">
+                        <a href="/WeixinMP/Details/@item.ID" class="HrefFrame" data-url="publicDetail.html" data-div=".contentpanel" data-title="">@item.MPCName</a>
+                    </label>
+                    @if (item.Status != 0)
+                    {
+                        <label class="col-sm-9">
+                            @if (item.Status == 1)
+                            {
+                                <span class="label label-default">审核不通过：@item.Remarks</span>
+                            }
+                            else
+                            {
+                                <span class="label label-default">待审核</span>
+                            }
+                        </label>
+                    }
+                </div>
+                <div class="detail lin-height">
+                    @if (item.Status == 0)
+                    {
+                        <div class="col-sm-4">
+                            <label class=" top1">
+                                <span>粉丝数：</span>
+                                <span>@item.FanCount</span>
+                            </label>
+                            <label class=" top1">
+                                <span>门店数：</span>
+                                <span>@item.AgentShopCount</span>
+                            </label>
+                            <label class=" top1">
+                                <span>直营店数：</span>
+                                <span>@item.EnterpriseShopCount</span>
+                            </label>
+                        </div>
+                        <label class="col-sm-6 cont top1">
+                            <span class="cont-tittle">二维码使用情况</span>
+                            <div class="progress col-sm-6" style="padding-left:0;padding-right:0">
+                                <div style="width: 50%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-warning">
+                                    <span class="">@item.QRNumUsed</span>
+                                </div>
+                                <div style="width: 40%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-primary">@item.QRNumShop</div>
+                            </div>
+                            <span>@item.QRNum</span>
+                        </label>
+                        <label class="col-sm-2">
+                            @if (item.Status == 0)
+                            {
+                                <a class="btn btn-primary winO2OPanel btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg" name="BindEnterpriseShopLink" data-id="@item.ID"  data-au="HNYSJYEdit" data-title="绑定直营店">绑定直营店</a>
+                                <a class="btn btn-primary winO2OPanel btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg" name="BindAgentLink" data-id="@item.ID" data-au="HNYSJYEdit" data-title="绑定门店">绑定门店</a>
+                            }
+                        </label>
+                    }
+                    else
+                    {
+                        <label class="col-sm-2">
+                            <a data-id="@item.ID" name="delete" data-au="HNYSJYDel" href="javascript:void(0)" class="btn btn-primary btn-sm">删除</a>
+                            <a data-id="@item.ID" data-addtype="@(!string.IsNullOrWhiteSpace(item.UName) && !string.IsNullOrWhiteSpace(item.UName)?"1":"2")"
+                               data-au="HNYSJYEdit" name="edit" class="btn btn-primary btn-sm">修改</a>
+                        </label>
+                    }
+                </div>
+                @if (item.ShopProvinceCountList != null && item.ShopProvinceCountList.Count > 0)
+                {
+                    <div class="spreadBox">
+                        <p class="spreadTittle">区域分布：</p>
+                        @foreach (var itemProvince in item.ShopProvinceCountList)
+                        {
+                            <div class="spread" data-id="@item.ID" data-provoiceid="@itemProvince["ProvinceID"]">
+                                <ul>
+                                    <li>【@itemProvince["Province"]】</li>
+                                    <li>直：@itemProvince["EnterpriseShopCount"]</li>
+                                    <li>门：@itemProvince["AgentShopCount"]</li>
+                                    <li class="dorp">
+                                    </li>
+                                </ul>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>

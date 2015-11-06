@@ -1,0 +1,238 @@
+﻿@model Model.CreationModel.KnowledgeArticleViewModel
+@{
+    Layout = "~/Areas/Operate/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "知识库";
+}
+
+@section styles{
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Css/jquery.datatables.css" rel="stylesheet" />
+    <link href="~/Css/selling.css" rel="stylesheet" />
+    <link href="~/Plugin/window/css/common.css" rel="stylesheet" />
+    <link href="~/Plugin/pager/css/pager.css" rel="stylesheet" />
+    <style type="text/css">
+        .pager {
+            text-align:right;
+        }
+    </style>
+}
+<div class="contentpanel">
+
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form class="form-inline dataform" id="form2">
+                    <div class="form-group">
+                        <label class="sr-only" for="exampleInputEmail2">请输入关键词</label>
+                        <input type="text" class="form-control input-sm" name="title" placeholder="请输入关键词">
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control select-sm" name="titleType">
+                            <option value="">搜索范围</option>
+                            <option value="1">文章标题</option>
+                            <option value="2">文章标签</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control select-sm" name="classId">
+                            <option value="">选择类目</option>
+                            @if (Model != null && Model.Level0Classes != null)
+                            {
+                                foreach (var item in Model.Level0Classes)
+                                {
+                                    <option value="@(item.Id)">@item.ClassName</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="search();">查询</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <ul class="filemanager-options">
+            <li>
+                <div class="ckbox ckbox-default">
+                    <input type="checkbox" id="selectall" onclick="allSelect()" value="1">
+                    <label for="selectall">全选</label>
+                </div>
+            </li>
+            <li>
+                <a class="btn btn-primary btn-sm white" onclick="tianjiazhishiku();">添加知识库</a>
+                <a class="btn btn-default btn-sm" onclick="piliangshanchu();">批量删除</a>
+            </li>
+            <li class="filter-type">
+                <select class="form-control select-sm" name="orderby" onchange="search();">
+                    <option value="">排列方式</option>
+                    <option value="AddTime">发布时间</option>
+                    <option value="">点击数</option>
+                </select>
+            </li>
+        </ul>
+    </div><!--总体操作-->
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table mb30">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>序号</th>
+                                <th>文章标题</th>
+                                <th>所属类目</th>
+                                <th>点击数</th>
+                                <th>点赞数</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <span class="pager">
+                    </span>
+                </div><!--table-responsive-->
+            </div><!--panel-body-->
+        </div><!--panel-->
+    </div><!---row-->
+</div>
+@section scripts
+{
+    <script src="~/Plugin/pager/jquery-pager.js"></script>
+    <script type="text/javascript">
+    function callback(data)
+    {
+        if(data && data.status === true)
+        {
+            location.replace(location.href);
+        }
+    }
+    function tianjiazhishiku()
+    {
+        $.windowBase({
+            id: "autoOpen",
+            title: "添加知识库",
+            isShowBtn: true,
+            callbackStr: "callback",
+            url: '@Url.Content("~/Operate/KnowledgeLibrary/Add")',
+            width: 700,
+            height: 800
+        });
+    }
+    function xiugai(id)
+    {
+        $.windowBase({
+            id: "autoOpen2",
+            title: "修改知识库",
+            isShowBtn: true,
+            callbackStr: "callback",
+            url: '@Url.Content("~/Operate/KnowledgeLibrary/Add")?id=' + id,
+            width: 700,
+            height: 800
+        });
+    }
+    function zhiding(id,isZhiDing)
+    {
+        $.get('@Url.Content("~/Operate/KnowledgeLibrary/SetTop")',{id:id,istop:isZhiDing},function(data){
+            if(data && data.success === true)
+            {
+                location.replace(location.href);
+            }
+            else
+            {
+                $.message('操作失败', false);
+            }
+        },'json');
+    }
+    function shanchu(id)
+    {
+        if(!confirm('确认要删除吗？'))
+        {
+            return;
+        }
+        $.get('@Url.Content("~/Operate/KnowledgeLibrary/DelKnowledgeArticle")',{ids:id},function(data){
+            if(data && data.success === true)
+            {
+                location.replace(location.href);
+            }
+            else
+            {
+                $.message('删除失败', false);
+            }
+        },'json');
+    }
+    function piliangshanchu()
+    {
+        var cs = $('input[type=checkbox][name=check]:checked');
+        if(cs.length == 0)
+        {
+            $.message('请至少勾选一项', false);
+            return;
+        }
+        if(!confirm('确认要批量删除吗？'))
+        {
+            return;
+        }
+        var ids = '';
+        cs.each(function(i,o){ids+=(i?'&':'')+'ids='+this.value;});
+        $.get('@Url.Content("~/Operate/KnowledgeLibrary/DelKnowledgeArticle")',ids,function(data){
+            if(data && data.success === true)
+            {
+                location.replace(location.href);
+            }
+            else
+            {
+                $.message('删除失败', false);
+            }
+        },'json');
+    };
+    var option = {
+        callback: function (index, params) {
+            var allparams = $.extend({}, params, { pageIndex: index, pageSize: @Model.PageSize});
+            $.getJSON("@Url.Content("~/KnowledgeLibrary/Index")", allparams, function (data) {
+                var htmlArr = '';
+                if(data == null || data.List==null)
+                {
+                    return;
+                }
+                /*
+                *置顶：AccoEdit
+                *删除：AccoDel
+                *修改:AccoEdit
+                */
+                for (var i = 0; i < data.List.length; i++) {
+                    var item = data.List[i];
+                    htmlArr += "<tr>" +
+                        "<td><div class=\"ckbox ckbox-success\"><input type=\"checkbox\" name=\"check\" id=\"checkbox"+ item.Id + "\" value=\""+item.Id+"\" /><label for=\"checkbox"+item.Id+"\"></label></div></td>"+
+                        "<td>" + (i+1) + "</td>" + //序号
+                        "<td><a class=\"HrefFrame\" href=\"@Url.Content("~/Operate/KnowledgeLibrary/ArticleDetail")?id="+item.Id+"\" data-div=\".contentpanel\" data-title=\"添加知识库\">"+ item.Title+"</a></td>" + //文章标题
+                        "<td>" + item.ClassName + "</td>" + //所属类目
+                        "<td>" + 0 + "</td>" + //点击数
+                        "<td>" + 0 + "</td>" + //点赞数
+                        "<td class=\"btngroup\"><a class='edit' onclick=\"zhiding('" + item.Id + "',"+(!item.IsTop)+")\">"+(item.IsTop ? "取消置顶":"置顶") +"</a>&nbsp;<a class=\"delete\" onclick=\"shanchu('" + item.Id + "')\">删除</a><a class='edit' onclick=\"xiugai('" + item.Id + "')\">修改</a>&nbsp;</td></tr>";
+                }
+                $(".table>tbody").html(htmlArr);
+                //$("#roleTable").find("a[data-func='openWin']").o2owindow("init");
+            });
+        },
+        pagesize: @Model.PageSize,
+        showpage: 6,
+        getparams: function () {
+            var data =  $('#form2').serializeObject();
+            data.orderby = $('select[name=orderby]').val();
+            return data;
+        },
+        startIndex: 1,
+        pageParam: "page",//ajax为true时不用传递
+        ajax: true//当为false时callback不用传递,，但是必须传递pageParam
+    };
+    function search()
+    {
+        $.getJSON("@Url.Content("~/KnowledgeLibrary/Index")", ($.param(option.getparams())+'&isgetrowcount=true'), function (data) {
+            $("span.pager").Pager("init",data.TotalRowCount, option);
+        });
+    }
+    onload = search;
+    </script>
+}
+<form class="form-horizontal form-bordered"></form><!--row-->

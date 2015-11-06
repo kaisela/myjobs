@@ -1,0 +1,112 @@
+﻿@model Model.Agent
+
+@{
+    ViewBag.Title = "代理商管理";
+}
+@section styles{   
+    <link href="@Url.Content("~/css/jquery.datatables.css") " rel=" stylesheet">
+    <link rel="stylesheet" href="@Url.Content("~/css/selling.css")" />
+    <link href="@Url.Content("~/Plugin/window/css/common.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Scripts/poshytip/tip-yellowsimple/tip-yellowsimple.css")" rel="stylesheet" type="text/css" />
+    <link href="~/Plugin/pager/css/pager.css" rel="stylesheet" />
+    <link href="~/Css/ShopInfo/Enterprise_Index.css" rel="stylesheet" />
+    }
+
+@section scripts{
+<script src="@Url.Content("~/Scripts/jquery.validate.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/poshytip/jquery.poshytip.min.js")" type="text/javascript"></script>
+<script src="/Plugin/window/jquery-window.js"></script>
+<script src="/Plugin/selectall/jquery-selectall.js"></script>
+<script src="/Plugin/pager/jquery-pager.js"></script>
+<script src="~/Scripts/Agent/Index.js"></script>
+<script src="~/Scripts/ChannelpublicJs/PublicStatus.js"></script>
+    }
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form id="conditionForm" class="form-inline">
+                <div class="form-group">
+                    <input type="email" name="agentName" class="form-control" id="agentNameSreach" placeholder="请输入代理商名称">
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" id="rphone" name="rphone" placeholder="请输入注册手机号">
+                </div>
+                <div class="form-group">
+
+                    <div id="abcdE" dataneedcheck="0" selectname="['pId','cId','aId']" domdata-citys></div>
+                </div>
+                <div class="form-group">
+                    @Html.DropDownList("ChannelID", null, "请选择渠道分组", htmlAttributes: new { @class = "form-control", style = "width:Auto;display:inline;" })
+                </div>
+                <div class="form-group">
+                    @*@Html.DropDownList("Status", null, "请选择渠道分组", htmlAttributes: new { @class = "ver-select", style = "width:Auto;display:inline;" })*@
+                    @Html.DropDownList("AgentStatus", null, htmlAttributes: new { @class = "form-control", style = "width:Auto;display:inline;" })
+                </div>
+                <button type="button" class="btn btn-primary btn btn-sm" id="search" data-au="ChnView">查询</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <ul class="filemanager-options">
+        <li>
+            <div class="ckbox ckbox-default">
+                <input type="checkbox" id="selectall" data-func="selectall" data-name="checkbox" value="1">
+                <label for="selectall">全选</label>
+            </div>
+        </li>
+        <li>
+            <a class="btn btn-default btn-sm btn-default " id="BatchClose" data-au="ChnDel">批量关闭</a>
+            <div class="select">
+                @Html.DropDownList("ChannelPush", null, "请选择渠道分组", htmlAttributes: new { @class = "form-control", style = "width:Auto;display:inline;" })
+            </div>
+        </li>
+        <li class="filter-type">
+            <a href="javascript:void(0)"
+               class="btn btn-primary btn-sm white winO2OPanel"
+               data-title="新增代理商窗口"
+               data-func="openWin"
+               data-id="newWinCreate"
+               data-show-btn="false"
+               data-au="ChnEdit"
+               data-callback="testCallback_Agent_Create"
+               data-url="/Agent/Agent_Create"
+               data-width="800"
+               data-height="500">新建代理商</a>
+        </li>
+    </ul>
+</div><!--总体操作-->
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table mb30">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>名称</th>
+                            <th>区域</th>
+                            <th>门店数</th>
+                            <th>渠道分组</th>
+                            <th>联系人</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbodyAgent">
+
+                    </tbody>
+                </table>
+                <div class="dataTables_paginate paging_full_numbers" id="table2_paginate">
+                    <span class="pager"></span>
+                </div>
+            </div><!--table-responsive-->
+        </div><!--panel-body-->
+    </div><!--panel-->
+</div><!---row-->
+<!-- 直营店编辑Modal -->
+
+
+

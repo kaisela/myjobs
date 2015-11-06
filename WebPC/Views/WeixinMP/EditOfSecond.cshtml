@@ -1,0 +1,51 @@
+﻿@model Model.WeixinMP
+@{
+    Layout = "~/Views/Shared/_ChildLayout.cshtml";
+    //需要来判断是否存在 不存在就直接显示找不到数据
+    if (Model.ID == 0)
+    {
+        <div>找不到微信公众号信息</div>
+        return;
+    }
+}
+@section styles{
+    <link rel="stylesheet" href="~/Css/publicId.css" />
+}
+<div class="">
+    <div class="tittle">修改公众号前，请先确定你的公众号是否已认证且进行了<a>   菜单自定义设置。</a></div>
+    <div class="tab-content">
+        <div class="tab-pane  active">
+            <div class="main">
+                <form action="/WeixinMP/EditOfSecond" method="post" data-ajax="true"
+                      data-callback="EditSuccess" id="EditOfSecondForm">
+                    @Html.HiddenFor(x => x.ID)
+                    @Html.HiddenFor(x => x.Status)
+                    <div class="row">
+                        <span>公众账号名称：</span>
+                        @Html.TextBoxFor(x => x.MPCName)
+                    </div>
+                    <div class="row">
+                        <span>APPID：</span>
+                        @Html.TextBoxFor(x => x.AppID)
+                        <span class="quesiton">?</span>
+                    </div>
+                    <div class="row">
+                        <span>AppSecret：</span>
+                        @Html.TextBoxFor(x => x.AppSecret)
+                        <span class="quesiton">?</span>
+                    </div>
+                    <div class="btnGroup">
+                        <button type="submit" id="EditSave" class="btn btn-primary HrefFrame" data-title="">保存</button>
+                        <a href="javascript:void(0)" id="EditCancel" class="btn btn-default">取消</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    @* 引用页面js *@
+    <script src="~/Scripts/WeixinMP/EditOfSecond.js"></script>
+    @* 引用判断字符长度的方法 因为模式窗口是单独页面 只能在这里引用js 才会生效 *@
+    <script src="~/Scripts/Common/Common.js"></script>
+}

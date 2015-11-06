@@ -1,0 +1,144 @@
+﻿@model Model.GoodsBasic
+@using System.Collections;
+@{
+    ViewBag.Title = "Details";
+    Layout = "";
+    string EContent = "";
+    var AttrValue = ViewBag.AttrValue as List<Hashtable>;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    @* 避免手机缓存 *@
+    @*<meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">*@
+    <link href="~/Content/weixin/css/style.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/weixin/css/productDetails.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/weixin/css/owl.carousel.css" />
+    <title>商品详情</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left">
+                @* 后退写法 *@
+                <a href="javascript:history.go(-1)" class="back link icon-only">
+                    <span class="list">&#xe606;</span>
+                </a>
+            </div>
+            <div class="center sliding">商品详情</div>
+            <div class="right">
+                <a class="link icon-only">
+
+                    <span class="list">&#xe607;</span>
+
+                </a>
+                <ul class="listMenu">
+                    <li>
+                        <img src="/Content/weixin/img/homeicon.png" />
+                        <span>主页</span>
+                    </li>
+                    <li>
+
+                        <img src="/Content/weixin/img/perCer.png" />
+                        <span>个人中心</span>
+                    </li>
+                    <li>
+                        <img src="/Content/weixin/img/shopcart.png" style="padding-top: 4px;" />
+                        <span style="border: 0;">购物车</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="top">
+            <ul class="navTop">
+                <li class="detail activebar">商品详情</li>
+                <li class="parameter">商品参数</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="detailBox">
+        <div class="moveBox">
+            <div class="boxInter">
+                <div class="proDetail">
+                    @* 需要判断是否为空 才去显示内容 Model返回不能为空 如果找不到 需要返回一个实例化对象 *@
+                    @if (Model.GESnapshotList != null && Model.GESnapshotList.Count > 0 && !string.IsNullOrEmpty(Model.GESnapshotList[0].IMG))
+                    {
+                        EContent = Model.GESnapshotList[0].EContent;
+                    }
+                    @Html.Raw(EContent)
+                </div>
+                <div id="product_parameter" class="tab ">
+                    <table>
+                        <tr style="border: 0;">
+                            <td colspan="2">
+                                <div class="content-block  pull_more">
+                                    <fieldset>
+                                        <legend>商品参数</legend>
+                                    </fieldset>
+                                </div>
+                            </td>
+                        </tr>
+                        @if (AttrValue != null && AttrValue.Count > 0)
+                        {
+                            for (int i = 0; i < AttrValue.Count; i++)
+                            {
+                                <tr><td>@AttrValue[i]["AName"]</td><td>@AttrValue[i]["VName"]</td></tr>
+                            }
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/weixin/js/jquery.js"></script>
+    <script type="text/javascript" src="~/Content/weixin/js/owl.carousel.js"></script>
+    <script>
+        $(function () {
+            $(".right").toggle(function () {
+                $(".listMenu").fadeOut();
+            }, function () {
+                $(".listMenu").fadeIn();
+            });
+
+            $(".shopKind").click(function () {
+
+                $(this).next().slideToggle();
+                $(this).children(".arrowRight").toggleClass("rotateAr");
+            });
+        })
+    </script>
+    <script>
+        //商品详情
+        $(window).load(function () {
+            var proDetailHimg = $(".proDetail").height();
+            var proDetailH = $(window).height() - 89;
+            $(".detailBox").css("height", proDetailH)
+            //alert(proDetailH)
+            $(".parameter").click(function () {
+                $(".tab ").css("display", "block");
+                var tabH = $(".tab").height() + 20;
+                $(this).addClass("activebar");
+                $(".detail").removeClass("activebar");
+                //$(".tab").css("display","block");
+                $(".boxInter").addClass("boxInterMove").css("height", tabH);
+                //$(".proDetail").css("display","none");
+                $(window).scrollTop(0);
+            })
+            $(".detail").click(function () {
+                $(this).addClass("activebar");
+                $(".parameter").removeClass("activebar");
+                //$(".proDetail").css("display","block");
+                $(".boxInter").removeClass("boxInterMove").css("height", proDetailHimg);
+                //$(".tab").css("display","none");
+                $(window).scrollTop(0);
+            })
+        })
+
+    </script>
+</body>
+</html>

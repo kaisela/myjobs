@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="time" />
+		<input type="date" />
+	</body>
+</html>
+<script>
+	var a = [1,2];
+    var b = [3,4];
+    alert("a="+a.concat(b).slice(2));
+    alert("b="+b.concat(a).slice(2));
+    alert(a);
+    alert(b);
+ 
+var a = [1,2];
+    var b = [3,4];
+    function change(x,y){
+        a = arguments[1];
+        b = arguments[0];
+    }
+    change(a,b);
+    alert(a);
+    alert(b);
+</script>

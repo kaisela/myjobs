@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Model.Enterprise>
+@{
+    Layout = "~/Areas/Operate/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "企业列表";
+    IList<Model.Enterprise> list = ViewBag.List as IList<Model.Enterprise>;
+}
+@section scripts{
+<script src="~/Plugin/pager/jquery-pager.js"></script>
+}
+<p>
+    @Html.ActionLink("添加企业", "Add")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contact)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactTel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AreasID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in list)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contact)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactTel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AreasID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @{
+               string s = "";
+               if (item.Status ==0)
+               {
+                    s = "正常";
+               }
+               else if (item.Status == 1)
+               {
+                    s = "暂停";
+               }
+               else
+               {
+                    s = "关闭";
+               }
+            }
+           
+            @Html.DisplayFor(modelItem => s)
+        </td>
+       
+        <td>
+            @Html.ActionLink("详情", "Details", new { id = item.ID }) |
+            @Html.ActionLink("编辑", "Edit", new { id=item.ID }) |
+            @if (item.Status == 0)
+            {
+                @Html.ActionLink("暂停", "Pause", new { id = item.ID });
+                @Html.Raw("|");
+                @Html.ActionLink("关闭", "Close", new { id = item.ID });
+            }
+            else
+            {
+                @Html.ActionLink("恢复", "Resume", new { id = item.ID })
+            }
+         
+            
+        </td>
+    </tr>
+}
+
+</table>

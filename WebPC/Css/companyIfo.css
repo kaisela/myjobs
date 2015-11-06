@@ -1,0 +1,210 @@
+a{
+	cursor: pointer;
+}
+.panel-heading{
+	overflow: hidden;
+	border: 0;
+}
+.panel-body{
+	background-color: white;
+}
+ .panel-title{
+	float: left;
+}
+ .panel-title img{
+	width: 100%;
+}
+ .tittle-right{
+	width: 82%;
+	float: left;
+}
+.position{
+	float:right;
+	padding:5px 10px ;
+	margin-top: 10px;
+}
+
+.box{
+	width: 100%;
+	padding: 0 20px;
+	z-index: 2;
+}
+.panel .box:last-child .form-group{
+	border-bottom:none;
+}
+
+.tittle-right .tittle{
+	width: 100%;
+	overflow: hidden;
+}
+.tittle-right .tittle h3{
+	float: left;
+}
+.tittle-right .tittle button{
+	margin-top: 5px;	
+	float: right;
+}
+.tittle-right p{
+	font-size: 16px;
+}
+.tittle-right .label-group{
+	margin-top: 40px;
+	overflow: hidden;
+	line-height: 30px;
+}
+.tittle-right .label-group span{
+	font-size: 16px;
+	line-height: 20px;
+}
+.tittle-right .label-group span:nth-child(2){
+	text-decoration: underline;
+}
+ .bottom{
+	overflow: hidden;
+	padding: 10px 20px;
+}
+.bottom p{
+	float: left;
+	font-size: 20px;
+	margin-top: 10px;
+}
+ .bottom button{
+	float: right;
+	margin-top: 5px;
+}
+
+.form-group .name{
+	overflow: hidden;
+	width: 100%;
+	height: 40px;
+}
+.name label{
+	font-size: 18px;
+	line-height: 40px;
+}
+.form-group .detail{
+	overflow: hidden;
+	width: 100%;
+	height: 20px;
+	padding-left: 4px;
+}
+.form-group{
+	margin-bottom: 0;
+	padding: 10px 0;
+	border-bottom: 1px dashed #cccccc;
+}
+.cont{
+	overflow: hidden;
+}
+.cont .cont-tittle{
+	float: left;
+}
+.cont .progress{
+	margin-top: 2px;
+	float: left;
+}
+.cont span{
+	line-height: 20px;
+	padding: 0 10px;
+}
+
+.form-group .lin-height{
+	height: 40px;
+	margin-bottom: 10px;
+}
+.top1{
+	margin-top: 10px;
+  
+}
+
+.uldetail {
+	overflow: hidden;
+	padding: 4px;
+	background: white;
+}
+.uldetail li{
+	overflow: hidden;
+	padding: 10px;
+	
+}
+.uldetail .nameTittle h3{
+	padding-left: 0;
+}
+.spreadBox{
+	width: 100%;
+}
+.spreadTittle{
+	float: left;
+	padding-left: 14px;
+	line-height: 44px;
+}
+.spread{
+	width: 250px;
+	position: relative;
+	z-index: 2;
+	float: left;
+	margin-right: 20px;
+	cursor: pointer;
+}
+.spread ul{
+	display: table;
+	list-style: none;
+	width: 250px;
+	height: 38px;
+	padding: 8px;
+	border: 1px solid #bababa;
+	border-radius: 38px;
+	overflow: hidden;
+	background: #f1f1f1;
+	
+}
+.spread ul li{
+	display: table-cell;
+	vertical-align: middle;
+}
+.spread .dorp{
+	width: 250px;
+	position: absolute;
+	left: 0;
+    margin-top:8px;
+	z-index: -1;
+	border: 1px solid #bababa;
+	display: none;
+}
+.dorp .table-responsive{
+	padding-top: 15px;
+    max-height:200px;
+    overflow:auto;
+}
+.dorp table{
+	margin-bottom: 0;
+}
+.dorp thead{
+	padding-top: 19px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

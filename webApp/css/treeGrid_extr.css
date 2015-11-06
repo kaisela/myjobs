@@ -1,0 +1,14 @@
+.tree-table-th{
+	height: 40px;
+	font-weight: bold;
+}
+.tree-table-th ul{
+	margin: 0;
+	padding: 0;
+}
+.tree-table-th ul li{
+	list-style: none;
+	text-align: center;
+	float: left;
+	width: 25%;
+}

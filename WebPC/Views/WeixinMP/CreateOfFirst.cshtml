@@ -1,0 +1,48 @@
+﻿@model Model.WeixinMP
+@{
+    Layout = "~/Views/Shared/_ChildLayout.cshtml";
+}
+@section styles{
+    <link rel="stylesheet" href="~/Css/publicId.css" />
+}
+<div class="">
+    <div class="tittle">添加公众号前，请先确定你的公众号是否已认证且进行了<a>   菜单自定义设置。</a></div>
+    <ul class="nav nav-tabs nav-justified">
+        <li class="active"><a data-toggle="tab"><strong>方式一：提供账号和密码</strong></a></li>
+        <li class=""><a data-toggle="tab" id="linkCreateOfSecond"><strong>方式二：提供APPID和AppSecret</strong></a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active">
+            <div class="main">
+                @* 如果不是validate验证 必须要加 data-intercept="true"  当前是validate验证 *@
+                <form action="/WeixinMP/CreateOfFirst"  method="post" data-ajax="true"
+                      data-callback="CreateSuccess" id="CreateOfFirst">
+                    <div class="row">
+                        <span>公众账号名称：</span>
+                        @Html.TextBoxFor(x => x.MPCName)
+                    </div>
+                    <div class="row">
+                        <span>公众账号：</span>
+                        @Html.TextBoxFor(x => x.UName)
+                    </div>
+                    <div class="row">
+                        <span>公众账号密码：</span>
+                        @Html.PasswordFor(x => x.PWD)
+                    </div>
+                    <div class="btnGroup">
+                        <button type="submit" id="CreateSave" class="btn btn-primary">保存</button>
+                        <a href="javascript:void(0)" id="CreateCancel" class="btn btn-default">取消</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    @* 引用页面js *@
+    <script src="~/Scripts/WeixinMP/CreateOfFirst.js"></script>
+    @* 引用判断字符长度的方法 用来验证自定义model验证的字符长度 因为模式窗口是单独页面 只能在这里引用js 才会生效 *@
+    <script src="~/Scripts/Common/Common.js"></script>
+    @* 如果不是validate验证 必须要加拦截表单提交的验证 当前是validate验证 *@
+    @*<script src="~/Plugin/form/jquery-ajax.js"></script>*@
+}

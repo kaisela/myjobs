@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>多文件,上传图片类文件</title>
+    <script src="../script/jquery-1.10.2.js"></script>
+    <script src="../script/util.js"></script>
+    <link href="../css/upload.css" rel="stylesheet" />
+    <script src="../jquery-upload.js"></script>
+</head>
+<body>
+    <p style="clear: both; color: rgb(194, 61, 55); font-size: 16px">单图模式</p>
+    <div id="uploadContainer2" data-url="../handle/UploadHandler.ashx" data-accept="image/jpeg,image/png" data-size="2048" data-callback-element="testCallback2" data-path="../../files/{0}" data-parttern="single">
+    </div>
+    <br>
+    <input style="width: 250px" type="text" value="" name="testCallback2" />
+    <form method="post" id="frnAdd" action="/ShopInfo/Introduction">
+        <input type="file" value="导入" id="fileId" name="file" />
+        <input type="submit" value="提交" />
+    </form>
+</body>
+</html>

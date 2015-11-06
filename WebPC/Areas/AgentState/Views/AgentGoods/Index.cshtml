@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "商品管理";
+}
+@section styles{
+<link href="~/Css/base.css" rel="stylesheet" />
+    <link href="~/Css/jquery.datatables.css" rel="stylesheet" />
+    <link href="~/Css/selling.css" rel="stylesheet" />
+    <link href="~/Plugin/window/css/common.css" rel="stylesheet" />
+    <link href="~/Plugin/pager/css/pager.css" rel="stylesheet" />
+    <style>
+        #tbodyGoods tr:hover {
+            background-color: #ddf7fc;
+        }
+    </style>
+}
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form class="form-inline">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="GName" placeholder="请输入商品名称">
+                </div>
+                <input type="button" class="btn btn-primary btn-sm" id="btnSearch" value="查询" />
+            </form>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <ul class="nav nav-tabs nav-justified" id="ulIsSale">
+        <li class="active"><a href="javascript:void(0)" id="0" data-toggle="tab"><strong>出售中</strong></a></li>
+        <li class=""><a href="javascript:void(0)" id="1" data-toggle="tab"><strong>仓库中</strong></a></li>
+        <li class=""><a href="javascript:void(0)" id="2" data-toggle="tab"><strong>未处理</strong></a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="btngroup" style="margin-bottom: 20px;">
+            <div id="divBatchOP" style="display:inline-block">
+                <a class="btn btn-primary btn-sm" id="batch0">批量下架</a>
+            </div>
+            <a class="btn btn-primary btn-sm" id="batchUpdate">批量修改</a>
+            <a class="btn btn-primary btn-sm" id="batchDel">批量删除</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table mb30">
+                <thead>
+                    <tr>
+                        <th width="6%">
+                            <div class="ckbox ckbox-default">
+                                <input type="checkbox" data-func="selectall" data-name="check" name="check" id="selectall" value="">
+                                <label for="selectall">全选</label>
+                            </div>
+                        </th>
+                        <th width="6%">商品图片</th>
+                        <th width="21%">商品名称</th>
+                        <th width="11%">价格</th>
+                        <th width="8%">总销量</th>
+                        <th width="8%">评价数</th>
+                        <th width="11%">产品类目</th>
+                        <th width="8%">有货状态</th>
+                        <th style="text-align:center;">操作</th>
+                    </tr>
+                </thead>
+                <tbody id="tbodyGoods"></tbody>
+            </table>
+            <span id="pager" class="pager" style="float:right;">
+            </span>
+        </div><!--table-responsive-->
+    </div>
+</div>
+
+@section scripts
+{
+<script src="~/Scripts/Common/Common.js"></script>
+    <script src="~/Scripts/public.js"></script>
+    <script src="~/Plugin/selectall/jquery-selectall.js"></script>
+    <script src="~/Plugin/pager/jquery-pager.js"></script>
+<script src="/Plugin/window/jquery-window.js"></script>
+    <script src="~/Areas/AgentState/Scripts/AgentGoods/Index.js"></script>
+
+}

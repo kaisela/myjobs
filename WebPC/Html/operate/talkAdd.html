@@ -1,0 +1,135 @@
+<link rel="stylesheet" href="../../Css/bootstrap-wysihtml5.css" />
+
+<div class="row">
+	<div class="panel ">
+		<div class="panel-body panel-body-nopadding">
+          
+          <form class="form-horizontal form-bordered">
+            
+            <div class="form-group">
+              <label class="col-sm-3 control-label">文章所属类目选择：</label>
+              <div class="col-sm-6">
+              	<a class="btn btn-primary " onclick="showDiv(this)" show-class=".category">类目选择</a>
+              	<div class="category clearfix">
+              		<div class="category-left">
+              			<div class="search">
+              				<input type="submit" class="search-btn" />
+              				<input type="text" class="word" placeholder="输入关键词" />
+              			</div>
+              			<ul class="selecting">
+              				<li><a><i class="glyphicon glyphicon-folder-open" onclick="COpen(this)"></i><span onclick="selectOne(this)">选项a</span></a>
+              					<ul>
+              						<li><a href="#"><i class="glyphicon glyphicon-folder-open" onclick="COpen(this)"></i><span onclick="selectOne(this)">选项a</span></a>
+              							<ul>
+              								<li><a href="#"><i class="glyphicon glyphicon-folder-open" onclick="COpen(this)"></i><span onclick="selectOne(this)">选项a</span></a></li>
+              								<li><a href="#"><i class="glyphicon glyphicon-folder-open"></i><span>选项a</span></a></li>
+              								<li><a href="#"><i class="glyphicon glyphicon-folder-open"></i><span>选项a</span></a></li>
+              							</ul>
+              						</li>
+              					</ul>
+              				</li>
+              			</ul>
+              		</div>
+              		<div class="category-right">
+              			<h4>已选中</h4>
+              			<ul class="selected">
+              				<li><span>选择B</span><a>X</a></li>
+              				<li><span>选择B</span><a>X</a></li>
+              				<li><span>选择B</span><a>X</a></li>
+              				<li><span>选择B</span><a>X</a></li>
+              			</ul>
+              			
+              		</div>
+              	</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">文章标题：</label>
+              <div class="col-sm-6">
+              	<input type="text" class="form-control" placeholder="输入多个标签时请用逗号进行分隔" />
+              </div>
+            </div>
+            
+            <div class="form-group">
+				  <label class="col-sm-3 control-label" for="goodsImg">是否置顶：</label>
+				  <div class="col-sm-6">
+					 <input type="radio" name="radio" value="2" id="radioPrimary">
+					 <label for="radioPrimary">置顶</label>
+				  </div>
+				</div>
+            
+            <div class="form-group">
+				  <label class="col-sm-3 control-label" >文章配图：</label>
+				  <div class="col-sm-6">
+				  		<input type="file" />
+				  		<a href="#" >
+				  			<img src="../images/photos/blog3.jpg" class='img' width="112px"  alt="上传文件" />
+				  		</a>
+				  		
+				  </div>
+				</div>
+            
+            <div class="form-group">
+              <label class="col-sm-3 control-label">文章内容：</label>
+              <div class="col-sm-6">
+              	<textarea class="form-control" rows="5">
+              		
+              	</textarea>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="col-sm-3 control-label">原文地址：</label>
+              <div class="col-sm-6">
+              	<input type="text" class="form-control" placeholder="http:" />
+              </div>
+            </div>
+
+            <div class="form-group">
+		      <div class="col-sm-9 col-sm-offset-3">
+		        <button type="button" class="btn btn-primary">添加</button>
+		        <button type="button" class="btn btn-default">预览</button>
+		        <button type="button" class="btn btn-white">返回</button>
+		      </div>
+	  		</div>
+            
+          </form>
+          
+	</div>
+ </div><!--panel-body-->
+</div><!-- row -->
+<script>
+		function showDiv(obj){
+			var  showClass = $(obj).attr('show-class');
+			var showDiv = $(showClass)
+			if(showDiv.is(":hidden")){
+				showDiv.show()
+			}else{ showDiv.hide()}
+		}
+		function COpen(obj){
+			var ul = $(obj).parent().next('ul')
+			var optionOne = $(obj).find('span').text();
+			if(ul.length>0 && ul.is(':visible')){
+				 ul.hide()
+				 $(obj).removeClass('glyphicon-folder-open')
+				 $(obj).addClass('glyphicon-folder-close');
+			}else{
+				ul.show();
+				 $(obj).removeClass('glyphicon-folder-close')
+				$(obj).addClass('glyphicon-folder-open');
+				
+			}
+					
+		}
+		function selectOne(obj){
+			var optionOne = $(obj).text();
+			$(".selected").append("<li><span>"+optionOne+"</span><a onclick='delSelected(this)'>X</a></li>")
+	
+		}
+		function delSelected(obj){
+			$(obj).parent("li").remove();
+			
+		}
+	   
+	</script>
+

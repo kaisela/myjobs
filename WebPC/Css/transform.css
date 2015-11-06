@@ -1,0 +1,241 @@
+@charset "utf-8";
+.flyOut{
+	-webkit-animation: Out 1s linear;
+	-moz-animation: Out 1s linear;
+	-ms-animation: Out 1s linear;
+	-o-animation: Out 1s linear;
+	animation: Out 1s linear;
+	/*-webkit-animation-fill-mode: forwards;
+	-moz-animation-fill-mode: forwards;
+	-ms-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;*/
+	left: -160%!important;
+}
+@-webkit-keyframes Out{
+	0%{
+		left: 0%;
+	}
+	20%{
+		left: 15%;
+	}
+	30%{
+		left: 10%;
+	}
+	40%{
+		left: 5%;
+	}
+	50%{
+		left: 0%;
+	}
+	60%{
+		left: -80%;
+	}
+	70%{
+		left: -100%;
+	}
+	80%{
+		left: -120%;
+	}
+	90%{
+		left: -140%;
+	}
+	100%{
+		left: -160%;
+	}
+}
+@-moz-keyframes Out{
+	0%{
+		left: 0%;
+	}
+	20%{
+		left: 15%;
+	}
+	30%{
+		left: 10%;
+	}
+	40%{
+		left: 5%;
+	}
+	50%{
+		left: 0%;
+	}
+	60%{
+		left: -40%;
+	}
+	70%{
+		left: -60%;
+	}
+	80%{
+		left: -80%;
+	}
+	90%{
+		left: -100%;
+	}
+	100%{
+		left: -160%;
+	}
+}
+@-ms-keyframes Out{
+	0%{
+		left: 0%;
+	}
+	20%{
+		left: 15%;
+	}
+	30%{
+		left: 10%;
+	}
+	40%{
+		left: 5%;
+	}
+	50%{
+		left: 0%;
+	}
+	60%{
+		left: -40%;
+	}
+	70%{
+		left: -60%;
+	}
+	80%{
+		left: -80%;
+	}
+	90%{
+		left: -100%;
+	}
+	100%{
+		left: -160%;
+	}
+}
+
+@-o-keyframes Out{
+	0%{
+		left: 0%;
+	}
+	20%{
+		left: 15%;
+	}
+	30%{
+		left: 10%;
+	}
+	40%{
+		left: 5%;
+	}
+	50%{
+		left: 0%;
+	}
+	60%{
+		left: -40%;
+	}
+	70%{
+		left: -60%;
+	}
+	80%{
+		left: -80%;
+	}
+	90%{
+		left: -100%;
+	}
+	100%{
+		left: -160%;
+	}
+}
+@keyframes Out{
+0%{
+		left: 0%;
+	}
+	20%{
+		left: 15%;
+	}
+	30%{
+		left: 10%;
+	}
+	40%{
+		left: 5%;
+	}
+	50%{
+		left: 0%;
+	}
+	60%{
+		left: -40%;
+	}
+	70%{
+		left: -60%;
+	}
+	80%{
+		left: -80%;
+	}
+	90%{
+		left: -100%;
+	}
+	100%{
+		left: -160%;
+	}
+}
+
+
+.flyIn{
+	-webkit-animation: In 1s ease-in-out ;
+	-moz-animation: In 1s ease-in-out ;
+	-ms-animation: In 1s ease-in-out ;
+	-o-animation: In 1s ease-in-out ;
+	animation: In 1s ease-in-out ;
+	right: 0;
+}
+
+@-webkit-keyframes In{
+	0%{
+		right: -200%;
+	}
+	20%{
+		right: -180%;
+	}
+	30%{
+		right: -120%;
+	}
+	40%{
+		right: -80%;
+	}
+	50%{
+		right: -60%;
+	}
+	60%{
+		right: -20%;
+	}
+	70%{
+		right: 0%;
+	}
+	80%{
+		right: 5%;
+	}
+	90%{
+		right: 2%;
+	}
+	100%{
+		right: 0%;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

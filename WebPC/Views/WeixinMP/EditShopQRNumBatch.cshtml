@@ -1,0 +1,42 @@
+﻿@model IList<Model.ShopInfo>
+@{
+    Layout = "~/Views/Shared/_ChildLayout.cshtml";
+    <link rel="stylesheet" href="~/css/publicId.css" />
+    <link rel="stylesheet" href="~/Css/base.css" />
+    <link rel="stylesheet" href="~/Css/style.default.css" />
+    //需要来判断是否存在
+    if (Model == null || Model.Count == 0)
+    {
+        <div>找不到实体店</div>
+        return;
+    }
+}
+<form action="/WeixinMP/EditShopQRNumBatch" method="post" data-ajax="true"
+      data-callback="EditShopQRNumBatchSuccess">
+    <div class="top">
+        <p class="part1 col-sm-9">选中了<span id="ShopNum">@Model.Count</span>个实体店，请为每个实体店设置二维码可使用数</p>
+        <p class="part2 col-sm-3">总可分配数：<span id="QRNumCan">@ViewBag.Total</span></p>
+    </div>
+    @Html.Hidden("WeixinMPID", ViewBag.ID as string)
+    <ul class="qrc">
+        @foreach (var item in Model)
+        {
+            <li>
+                <span class="col-sm-3">@item.ShopName</span>
+                @* ViewBag.ID 会自动赋值 id是ID的标签值 *@
+                @Html.Hidden("ID", item.ID, new { @Name = "ID", id = "ID" + item.ID, @Value = item.ID })
+                @* @Name="QRNum" 用于后台接收 *@
+                @Html.TextBoxFor(x => item.QRNum, new { @Name = "QRNum", id = "QRNum" + item.ID, @class = "col-sm-6", @placeholder = "请输入" })
+                <a class="btn btn-default" name="EditShopQRNumBatchDelete">删除</a>
+            </li>
+        }
+        <li>
+            <button type="submit" class="btn btn-primary btn-sm">确定</button>
+            <a href="javascript:void(0)" id="EditShopQRNumBatchCancel" class="btn btn-default">取消</a>
+        </li>
+    </ul>
+</form>
+@section scripts{
+    @* 引用页面js *@
+    <script src="~/Scripts/WeixinMP/EditShopQRNumBatch.js"></script>
+}

@@ -1,0 +1,323 @@
+﻿@using Model
+@using Newtonsoft.Json
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    <link href="/css/style.default.css" rel="stylesheet">
+    <link href="/css/base.css" rel="stylesheet" />
+    @RenderSection("styles", required: false)
+</head>
+<body>
+    <section>
+        <div class="leftpanel">
+            @Html.Partial("_LeftMenu")
+        </div><!-- 导航 -->
+        <div class="mainpanel">
+            <div class="headerbar">
+                @Html.Partial("_Header")
+            </div><!-- 公共头部 -->
+            <div class="pageheader">
+                @Html.Partial("_BreadNav")
+            </div><!--pageheader目录-->
+            <div class="contentpanel">
+                @RenderBody()
+            </div><!-- 主体内容 -->
+        </div><!-- mainpanel -->
+    </section>
+  
+    <script src="/Js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/Js/jquery-ui-1.10.3.min.js"></script>
+    <script src="/Js/bootstrap.min.js"></script>
+    <script src="/Js/modernizr.min.js"></script>
+    <script src="/Js/jquery.sparkline.min.js"></script>
+    <script src="/Js/toggles.min.js"></script>
+    <script src="/Js/retina.min.js"></script>
+    <script src="/Js/jquery.cookies.js"></script>
+    <script src="/Js/flot/jquery.flot.min.js"></script>
+    <script src="/Js/flot/jquery.flot.resize.min.js"></script>
+    <script src="/Js/flot/jquery.flot.spline.min.js"></script>
+    <script src="/Js/morris.min.js"></script>
+    <script src="/Js/raphael-2.1.0.min.js"></script>
+    <script src="/Js/custom.js"></script>
+    <script src="/Js/base.js"></script>
+    @{
+        #region 获取权限数据
+
+        var permission = "";
+        UserPC userPermission = null;
+        if (Session["User"] != null)
+        {
+            userPermission = Session["User"] as UserPC;
+            if (userPermission != null && userPermission.UserBasic != null)
+            {
+                userPermission.UserBasic.UserPc = null;
+            }
+            else
+            {
+                userPermission = new UserPC()
+                {
+                    UserBasic = new UserBasic(),
+                    RolePowerList = new List<RolePower>()
+                };
+            }
+        }
+        else
+        {
+            userPermission = new UserPC()
+            {
+                UserBasic = new UserBasic(),
+                RolePowerList = new List<RolePower>()
+            };
+        }
+        permission = JsonConvert.SerializeObject(userPermission);
+        //读取登录信息
+        var UserPC = Session["user"] as Model.UserPC;
+
+        #endregion
+    }
+    @{
+        string publicConfig = Bll.ConstConfigBll.GetStringConfig();
+    }
+    <script type="text/javascript">
+        var _publicConfig = '@publicConfig';
+        window.publicConfig = JSON.parse($.htmlDecode(_publicConfig));;
+
+    </script>
+
+
+    <script>
+        window.permission = '@permission';
+        var parentCode = '@ViewBag.ParentCode';
+        var menuCode = '@ViewBag.MenuCode';
+        var title = '@ViewBag.Title';
+        //调用js方法来显示企业logo
+        @*var srcLogo = getImgUrl('@UserPC.UserBasic.Enterprise.TitleLogo');
+        $("#imgEnterpriseLogo").attr("src", srcLogo);*@
+    </script>
+    @RenderSection("scripts", required: false)
+    <script>
+        var isHasPermission = (function () {
+            var userInfo = JSON.parse($.htmlDecode(window.permission));
+
+            var userPower = userInfo.RolePowerList;
+            return function (key) {
+                var isHas = false;
+                if (userInfo.UserName == "admin") {
+                    return true;
+                }
+                for (var i = 0; i < userPower.length; i++) {
+                    var item = userPower[i];
+                    var itemKey = item.PowerID;
+                    if (itemKey == key) {
+                        isHas = true;
+                    }
+                }
+                return true;
+                return isHas;
+            }
+        })();
+
+
+        var menuObj = [
+            //{ "url": "index.html", "name": "首页", "code": "", "iconClass": "fa-home", "children": [] },
+            {
+                "url": "",
+                "name": "我的门店",
+                "code": "",
+                "iconClass": "fa-bank",
+                "children": [
+                    { "url": "/AgentState/AgentPurchaseGoods/Index", "name": "采购中心", "code": "" },
+                    { "url": "/AgentState/AgentGoods/Index", "name": "商品管理", "code": "" },
+                    { "url": "/AgentState/AgentShopInfo/Index", "name": "门店管理", "code": "" },
+                    { "url": "/AgentState/AgentGuidUn/Index", "name": "导购管理", "code": "" }
+                ]
+            },
+            {
+                "url": "",
+        "name": "基本信息",
+        "code": "",
+        "iconClass": "fa-bank",
+        "children": [
+            { "url": "", "name": "基本信息管理", "code": "" }
+        ]
+            },
+            {
+                "url": "",
+                "name": "互动社区",
+                "code": "",
+                "iconClass": "fa-bank",
+                "children": [
+                    { "url": "", "name": "综合讨论管理", "code": "" },
+                { "url": "", "name": "活动管理", "code": "" }
+                ]
+            }
+        ];
+        var $menu = $("#O2OMenu");
+        var url = window.location.pathname + "";
+        var htmlArr = [];
+        for (var i = 0; i < menuObj.length; i++) {
+            var menu = menuObj[i];
+
+            if (menu.children.length == 0) {
+                htmlArr.push('<li class="no-child"><a href="' + menu.url + '"><i class="fa ' + menu.iconClass + '"></i> <span>' + menu.name + '</span></a></li>');
+            } else {
+                var isHas = false;
+                $.each(menu.children, function (index) {
+                    if ((menu.children[index].url == url && isHasPermission(menu.children[index].code)) || (parentCode && menu.children[index].code == parentCode)) {
+
+                        if (menuCode) {
+                            if (menu.children[index].menuCode == menuCode) {
+                                isHas = true;
+                            } else {
+                                isHas = false;
+                            }
+                        } else {
+                            isHas = true;
+                        }
+                        if (isHas) {
+                            $("#breadNavicon").addClass(menu.iconClass);
+                            var breadStr = "您的位置:" + menu.name + ">" + menu.children[index].name;
+                            if (parentCode) {
+                                breadStr = breadStr + ">" + title;
+                            }
+                            $(".breadcrumb-wrapper span").html(breadStr);
+
+                            return false;
+                        }
+                    }
+                });
+                htmlArr.push('<li class="nav-parent ' + (isHas ? "nav-active active" : "") + '">');
+                htmlArr.push(' <a  href="javascript:void(0)"><i class="fa ' + menu.iconClass + '"></i> <span>' + menu.name + '</span></a>');
+
+                htmlArr.push('<ul ' + (isHas ? "style='display:block'" : "") + ' class="children">');
+                for (var j = 0; j < menu.children.length; j++) {
+                    var cMenu = menu.children[j];
+                    if (!isHasPermission(cMenu.code)) {
+                        continue;
+                    }
+                    if (cMenu.url == url || (parentCode && cMenu.code == parentCode)) {
+                        if (menuCode) {
+                            if (cMenu.menuCode == menuCode) {
+                                htmlArr.push('<li class="active">');
+                            } else {
+                                htmlArr.push('<li>');
+                            }
+                        } else {
+                            htmlArr.push('<li class="active">');
+                        }
+                    } else {
+                        htmlArr.push('<li>');
+                    }
+                    htmlArr.push('<a  href="' + cMenu.url + '"><i class="fa fa-caret-right"></i>' + cMenu.name + '</a></li>');
+                }
+                htmlArr.push('</ul>');
+            }
+        }
+        $menu.html(htmlArr.join(""));
+    </script>
+    <script>
+        $(document).ajaxStart(function () {
+            $.loading();
+        }).ajaxComplete(function () {
+            var data = arguments[1].responseJSON;
+            if (data && data.Status != undefined && data.Identify != undefined && data.Identify.expired != undefined) {
+                if ((data.Status == false || data.Status == "false") && (data.Identify.expired || data.Identify.expired == "true")) {
+                    window.top.location.href = window.top.location.origin + "?returnUrl=" + encodeURIComponent(window.top.location.href);
+                }
+            }
+            setTimeout(function () {
+                $.loadingEnd();
+            }, 200);
+
+        });
+    </script>
+    <script>
+        $(document).find(":text").keydown(function (event) {
+            switch (event.keyCode) {
+            case 13:
+                return false;
+            }
+            return true;
+        });
+
+    </script>
+    
+    <script>
+        var ClickByAjax = function () {
+            debugger;
+            var oldpwd = $("#oldpwd").val();
+            var newpwd = $("#newpwd").val();
+            var pwd = $("#pwd").val();
+            if (oldpwd.length <= 0) {
+                $.message("原始密码不能为空！", false);
+                return;
+            }
+            if (newpwd.length <= 0) {
+                $.message("新密码不能为空！", false);
+                return;
+            }
+            if (pwd.length <= 0) {
+                $.message("确认的密码不能为空！", false);
+                return;
+            }
+            if (oldpwd.length < 6 && oldpwd.length > 0) {
+                $.message("原始密码不能小于6位！", false);
+                return;
+            }
+            if (newpwd.length < 6 && newpwd.length > 0) {
+                $.message("新密码不能小于6位！", false);
+                return;
+            }
+            if (pwd.length < 6 && pwd.length > 0) {
+                $.message("确认的密码不能小于6位！", false);
+                return;
+            }
+
+            if (oldpwd.length > 16) {
+                $.message("原始密码不能大于16位！", false);
+                return;
+            }
+
+            if (newpwd.length > 16) {
+                $.message("新密码不能大于16位！", false);
+                return;
+            }
+
+            if (pwd.length > 16) {
+                $.message("确认的密码不能大于16位！", false);
+                return;
+            }
+            if (pwd != newpwd) {
+                $.message("两次输入的密码不一致！请确认所输入的密码！", false);
+                return;
+            }
+
+            $.post("/AgentInfo/EditPwd", { oldpwd: oldpwd, pwd: pwd }, function (data) {
+                if (data == "修改成功！") {
+                    $.message(data + "2秒后跳转到登陆页面。", true);
+
+                    setTimeout(function () {
+                        window.top.location.href = "/AgentState/AgentLogin/Index";
+                    }, 2000);
+
+                } else {
+                    $.message(data, false);
+                    return;
+                }
+            });
+
+
+        }
+
+
+    </script>
+
+   
+</body>
+</html>

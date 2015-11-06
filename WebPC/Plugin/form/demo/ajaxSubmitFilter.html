@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script src="/Scripts/jquery-1.10.2.js"></script>
+    <script src="../../../Scripts/poshytip/jquery.poshytip.js"></script>
+    <link href="../../../Scripts/poshytip/tip-yellowsimple/tip-yellowsimple.css" rel="stylesheet" />
+    <script src="../../../Scripts/public.js"></script>
+    <script src="../../permission/jquery-permission.js"></script>
+    <script src="/Scripts/jquery.validate.js"></script>
+    <script src="/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <link href="../../window/css/common.css" rel="stylesheet" />
+    <script src="../../window/jquery-window.js"></script>
+    <script src="../jquery-ajax.js"></script>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei';
+        }
+
+        .error {
+            color: red;
+            margin-left: 5px;
+        }
+
+        input.error {
+            border: 1px solid red;
+            box-shadow: 1px 1px 1px red;
+        }
+        
+        .tips {
+            top: 0px;
+            height: 20px;
+            z-index: 1;
+            width: 100%;
+            text-align: center;
+            padding-top: 5px;
+            color: rgb(10, 139, 100);
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: rgb(235, 235, 235);
+            font-size: 13px;
+            box-shadow: rgb(136, 136, 136) 0px 0px 5px;
+            display: block;
+            background: rgb(255, 255, 255);
+        }
+        .tips.error-tips {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div style="margin-top: 20px" id="resultHtml"></div>
+    
+    <!-- form中元素带有data-val='true'的
+        data-intercept="false"必须为false或者去掉此标签。
+        data-ajax="true"为必须项，
+        data-callback="obj.testCallback"为必须项，callback函数必须能够找到 -->
+    <div id="formContainer">
+        <form id="requestForm" style="margin-top:30px" data-intercept="false" data-ajax="true" data-callback="obj.testCallback" action="../handle/formTest.ashx" method="post">
+            <p>年龄:<input type="text" data-val="true" maxlength="10" data-val-required="required" name="age" value="13" /><span class="error" data-valmsg-for="age" data-valmsg-replace="true"></span></p>
+            <p>姓名:<input type="text" data-val="true" required="required" name="sname" value="chunlei" /><span class="error" data-valmsg-for="sname" data-valmsg-replace="true"></span></p>
+            <p><input type="submit" value="提交" /></p>
+        </form>
+    </div>
+   
+    
+    <div id="content1" style="height:100px;background-color: firebrick"></div>
+    <input type="button" onclick="testFrame()" value="测试frame回调" />
+    <script>
+        
+        //setTimeout(function() {
+        //    $("#content1").height(500);
+        //    $.resizeParentWindow("newWin");
+        //});
+        function testFrame() {
+            $.windowBase({
+                id: "editThis",
+                title: "编辑",
+                isShowBtn: false,
+                callbackStr: "editCallback",
+                ele: "formContainer",
+                width: 600,
+                height: 500
+            });
+        }
+
+        function editCallback() {
+            
+        }
+
+/*验证规则*/
+        //var rules = {
+        //    rules: {
+        //        sname: {
+        //            required: true,
+        //            remove: function () {
+
+        //            }
+        //        },
+        //        age: {
+        //            required: true,
+        //        }
+        //    },
+        //    messages: {
+        //        sname: {
+        //            required: "请输入名字"
+        //        },
+        //        age: {
+        //            required: "请输入年龄"
+        //        }
+        //    }
+        //};
+        ///*验证规则*/
+        //$("#requestForm").validate(rules);
+        var obj = {
+            testCallback: function (data) {
+                $("#resultHtml").html(data.Data);
+            }
+        }
+    </script>
+</body>
+</html>

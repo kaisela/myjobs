@@ -1,0 +1,192 @@
+﻿@model Model.Entity.ChannelGroupViewModel
+@{
+    ViewBag.Title = "渠道分组管理";
+}
+@section styles{
+    <link href="~/Css/jquery.datatables.css" rel="stylesheet" />
+    <link href="~/Css/bootstrap-override.css" rel="stylesheet" />
+    <link href="~/Css/base.css" rel="stylesheet" />
+    <link href="~/Plugin/window/css/common.css" rel="stylesheet" />
+    <style type="text/css">
+        .chks1 {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+}
+@section scripts
+{
+    <script src="~/Plugin/window/jquery-window.js"></script>
+    <script src="~/Plugin/selectall/jquery-selectall.js"></script>>
+    <script type="text/javascript">
+        function callback(data) {
+            if (data.status === true) {
+                location.replace(location.href);
+            }
+        };
+        function xinjianqudaofenzu() {
+            $.windowBase({
+                id: "autoOpen",
+                title: "新建渠道分组",
+                isShowBtn: true,
+                callbackStr: "callback",
+                url: '@Url.Content("~/Channel/CreateChannelIndex")',
+                width: 700,
+                height: 400
+            });
+        };
+        function bianji(channelGroupId) {
+            $.windowBase({
+                id: "autoOpen",
+                title: "编辑渠道分组",
+                isShowBtn: true,
+                callbackStr: "callback",
+                url: '@Url.Content("~/Channel/CreateChannelIndex2?ID=")' + channelGroupId,
+                width: 700,
+                height: 400
+            });
+        };
+        function shanchu(channelGroupId) {
+            if (!confirm('是否确认要删除？')) {
+                return;
+            }
+            $.post('@Url.Content("~/Channel/DeleteChannelGroup")', { 'ids[0]': channelGroupId }, function (data) {
+                $.message(data.Message, data.Status === true);
+                if (data.Status === true) {
+                    location.replace(location.href);
+                }
+            }, 'json');
+        };
+        function piliangshanchu() {
+            var dataStr = $('#form222').serialize();
+            if (dataStr == '') {
+                $.message('未选中任何项', false);
+                return;
+            }
+            if (!confirm('确定要批量删除选中的分组吗？')) {
+                return;
+            }
+            $.post('@Url.Content("~/Channel/DeleteChannelGroup")', dataStr, function (data) {
+                $.message(data.Message, data.Status === true);
+                if (data.Status === true) {
+                    location.replace(location.href);
+                }
+            });
+        };
+        function xinjianguanlian(channelGroupId) {
+            $.get('@Url.Content("~/Channel/IsGoodsGroupNull")', { channelGroupId: channelGroupId }, function (data) {
+                if (data === true) {
+                    $.message("没有发现任何可关联的可视商品分组", false);
+                    return;
+                }
+                $.windowBase({
+                    id: "autoOpen3",
+                    title: "渠道分组关联可视分组",
+                    isShowBtn: true,
+                    callbackStr: "callback",
+                    url: '@Url.Content("~/Channel/CreateRelationWithGoodsGroupIndex")?channelGroupId=' + channelGroupId,
+                    width: 800,
+                    height: 400
+                });
+            });
+        };
+        function quxiaoguanlian(channelGroupId, goodsGroupId) {
+            if (!confirm('确定要取消关联吗？')) {
+                return;
+            }
+            $.post('@Url.Content("~/Channel/DelRelationWithGoodsGroup")', { channelGroupId: channelGroupId, goodsGroupId: goodsGroupId }, function (data) {
+                $.message(data.Message, data.Status === true);
+                if (data.Status === true) {
+                    location.replace(location.href);
+                }
+            }, 'json');
+        };
+    </script>
+}
+<div class="row">
+    <ul class="filemanager-options">
+        <li>
+            <div class="ckbox ckbox-default">
+                <input type="checkbox" id="selectall" data-func="selectall" data-name="ids" value="1">
+                <label for="selectall">全选</label>
+            </div>
+        </li>
+        <li>
+            <a class="btn btn-default btn-sm" onclick="piliangshanchu();" data-au="@(Utility.Authorization.ChnGroupDel)">删除</a>
+        </li>
+        <li class="filter-type">
+            <a class="btn btn-primary btn-sm white winO2OPanel" data-toggle="modal" data-target=".bs-example-modal-lg" data-url="alertGroup.html" data-title="新建渠道分组" data-au="ChnGroupAdd" onclick="xinjianqudaofenzu();">新建渠道分组</a>
+        </li>
+    </ul>
+</div>
+<div class="row">
+    <form id="form222">
+        <div class="table-responsive">
+            <table class="table table-bordered mb30">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>序号</th>
+                        <th>渠道分组</th>
+                        <th>商品可视分组</th>
+                        <th colspan="2">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        for (int i = 0; i < Model.Count; i++)
+                        {
+                            Model.Entity.ChannelGroupBindModel m = Model[i];
+                            <tr>
+                                <td>
+                                    <div class="ckbox ckbox-success">
+                                        <input type="checkbox" id="@m.ChannelGroupID" name="ids" class="chks1" value="@m.ChannelGroupID" />
+                                        <label for="@m.ChannelGroupID"></label>
+                                    </div>
+                                </td>
+                                <td>@(i + 1)</td>
+                                <td>
+                                    @m.ChannelGroupName (@m.ChannelGroupNum)
+                                </td>
+                                <td>
+                                    <div style="float:left;">
+                                        @if (m.GoodsGroupList != null)
+                                        {
+                                            for (int j = 0; j < m.GoodsGroupList.Count; j++)
+                                            {
+                                                <label style="display: block;margin-bottom: 0!important;padding: 4px">@m.GoodsGroupList[j].GoodsGroupName (@m.GoodsGroupList[j].GoodsGroupNum)</label>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            @("&nbsp");
+                                        }
+                                    </div>
+                                    <div style="float:left;padding-top:1px;">
+                                        @if (m.GoodsGroupList != null && m.GoodsGroupList.Count > 0)
+                                        {
+                                            for (int k = 0; k < m.GoodsGroupList.Count; k++)
+                                            {
+                                                if (k > 0)
+                                                {
+                                                    <br />
+                                                }
+                                                <label style="margin-top:3px;"><a href="javascript:;" onclick="quxiaoguanlian(@(m.ChannelGroupID),@(m.GoodsGroupList[k].GoodsGroupId));" data-au="ChnGroupEdit">取消关联</a></label>
+                                            }
+                                        }
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="javascipt:void(0);" class="winO2OPanel" data-toggle="modal" data-url="addConnected.html" data-target=".bs-example-modal-lg" data-title="可视分组关联渠道分组" onclick="xinjianguanlian(@(m.ChannelGroupID));" data-au="ChnGroupEdit">新建关联</a>
+                                    <a href="javascipt:;" onclick="bianji(@(m.ChannelGroupID));" data-au="ChnGroupEdit">编辑</a>
+                                    <a href="javascipt:;" class="delete-row" onclick="shanchu(@(m.ChannelGroupID));" data-au="ChnGroupDel">删除</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div><!-- table-responsive -->
+    </form>
+</div><!-- row -->

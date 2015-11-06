@@ -1,0 +1,597 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="Author" content="sam" /> 
+
+
+
+<title>VC浏览器</title>
+<script src = "js/jquery-1.9.1.min.js" type=text/javascript></script>
+<script src = "js/jquery.timers.min.js" type=text/javascript></script>
+<script src = "js/jquery.easing.1.3.js" type=text/javascript></script>
+<script src = "js/mousewheel.js" type=text/javascript></script>
+<link rel="shortcut icon" href="favicon.ico"/>
+<style>
+#swip0{1display:none;position:fixed;top:0px;left:0px;background:#fff;height:100%;width:100%;z-index:101;opacity:0.01;overflow: hidden;}
+
+.rNav{right:25px;position:fixed; z-index:100; top:-182px; width:12px; height:182px;1border: 1px solid red;background: url("image/page1.png") no-repeat top left;_display:none;;}
+.rNavPage{background: url("image/page0.png") no-repeat;width:12px;height:12px;1border: 1px solid red;cursor:pointer;}
+.rNavGap{height:22px;width:14px;}
+</style>
+</style>
+<script type="text/javascript">
+ua = navigator.userAgent;
+	//alert(ua);
+	if(ua.indexOf("iPhone") > 0){
+		self.location='index_ios.html'; 	
+	}
+	if(ua.indexOf("Android") > 0){
+		self.location='index_and.html'; 	
+	}
+</script>
+<!--[if IE 6]>
+		<script src="js/DD_png.js" mce_src="DD_png.js"></script>
+
+        <script type="text/javascript">
+			DD_belatedPNG.fix('#fm1,#fm2,#fm3,#fm4,#fm5,#fm6,#fm7,#fm8,#fm9,#sm1,#sm2,#sm3,#sm4,#sm5,#sm6,#sm7,#sm8,#tm1,#tm2,#tm3,#tm4,#tm5,#tm6,#tm7,#tm8,#hm1,#hm2,#hm3,#hm5,#footer,.footerbg,#download,#download2');
+		</script>
+<![endif]-->
+</head>
+<body  onselectstart="return false">
+<div id="swip0"></div>
+<div id="hori" style="background:url(image/hori.png) center center no-repeat #ffef54;position:absolute;1border:1px solid red;z-index:2200;display:none;"></div>
+
+
+<div id="rNavMain" class="rNav">
+	<!--<div id="navPo"></div>-->
+	<div id="rNav">
+		<div class="rNavPage" id="btn0"></div>
+		<div class="rNavGap"></div>
+		<div class="rNavPage" id="btni"></div>
+		<div class="rNavGap"></div>
+		<div class="rNavPage" id="btna"></div>
+		<div class="rNavGap"></div>
+		<div class="rNavPage" id="btn1"></div>
+		<div class="rNavGap"></div>
+		<div class="rNavPage" id="btn2"></div>
+		<div class="rNavGap"></div>
+		<div class="rNavPage" id="btn3"></div>
+    </div>
+</div>
+
+
+<!-- 启动 -->
+<div id="stage0">
+	<div id="s0mo1">
+		<div id="fm1"></div>
+		<div id="fm2"></div>
+		<div id="fm3"></div>
+		<div id="fm4"></div>		
+		<div id="fm6"></div>
+		<div id="fm7"></div>
+		<div id="fm8" style="">
+			
+			<div id="goAppstore3"></div>
+			<div id="goAppstore2"></div>
+		</div>
+		
+	</div>
+
+</div>
+<!-- ios -->
+<div id="stagei">
+	<div id="simo1">
+		<div id="im1"></div>
+		<div id="im2"></div>
+	</div>
+</div>
+<!-- android -->
+<div id="stagea">
+	<div id="samo1">
+		<div id="am1"></div>
+		<div id="am2"></div>
+	</div>
+</div>
+<!-- 下拉键盘 -->
+<div id="stage1">
+	<div id="s1mo1">
+		
+		<div id="sm1"></div>
+		<!-- <div id="sm2"></div>
+		<div id="sm3"></div> -->
+		<div id="sm7"></div>
+		<div id="sm9"></div>
+		<div id="sm5"></div>
+<!-- 		<div id="sm6"></div> -->
+		<div id="mask">
+			<div id="sm8"></div>
+		</div>
+		<div id="sm4"></div>
+	</div>
+</div>
+<!-- 左右滑动操作 -->
+<div id="stage2">
+	<div id="s2mo1"> 
+		<div id="tm1"></div>
+		<!-- <div id="tm2"></div>
+		<div id="tm3"></div> -->
+		<div id="tm7"></div>
+		<div id="tm4"></div>
+		<div id="tm5"></div>
+		<div id="tm6"></div>
+		<div id="tm8"></div>
+	</div>
+</div>
+<!-- 精心设计 -->
+<div id="stage3">
+	<div id="s3mo1">
+		<div id="hm1"></div>
+		<!-- <div id="hm2"></div>
+		<div id="hm3"></div> -->
+		<div id="hm5"></div>
+	</div>
+</div>
+
+<!-- 循环stage0 -->
+<div id="stage4">
+	<!-- <div id="s0mo1">
+		<div id="fm1"></div>
+		<div id="fm2"></div>
+		<div id="fm3"></div>
+		<div id="fm4"></div>
+		<div id="fm5"></div>
+		<div id="fm6"></div>
+		<div id="fm7"></div>
+		<div id="fm8"></div>
+	</div> -->
+</div>
+
+<div id="footer">
+	<div id="fm9"></div>
+	<!--<div id="mw"></div>-->
+	<div class="footerbg">
+		<div id="download"></div>
+		<div id="download2"></div>
+	</div>
+</div>
+
+<script>
+// alert($(window).width())
+// $(window).resize(function(){
+// 	initStage();
+// });
+$(document).everyTime('1s',run);
+function run() {
+	runflag = 1;
+    
+}
+$(window).bind( 'orientationchange', function(e){
+	orient();
+});    
+
+//判断IE浏览器版本，不支持 IE9 以下版本
+function Browser() { 
+
+	var ua, s, i, v;
+	this.isIE   = false;   // Internet Explorer 
+	this.isNS   = false;   // Netscape 
+	this.isMB	= false; 
+	this.version = null; 
+	ua = navigator.userAgent;
+	ua.indexOf("iPhone OS 6")
+	s = "MSIE"; 
+
+	if ((i = ua.indexOf(s)) >= 0) { 
+
+		this.isIE = true; 
+		this.version = parseFloat(ua.substr(i + s.length)); 
+		v = parseFloat(ua.substr(i + s.length)); 
+		return v; 
+
+	} 
+
+	s = "Netscape6/"; 
+	if ((i = ua.indexOf(s)) >= 0) { 
+		this.isNS = true; 
+		this.version = parseFloat(ua.substr(i + s.length)); 
+	return s; 
+	} 
+
+	s = "Mobile";
+	if(ua.indexOf(s)>0){
+		this.isMB = true; 
+	return s;
+	}
+	
+	s = "Chrome";
+	if ((i = ua.indexOf(s)) >= 0) { 
+		this.isNS = true; 
+		this.version = 6.1; 
+	return s; 
+	}
+
+	
+
+	s = "Gecko";
+	if ((i = ua.indexOf(s)) >= 0) { 
+		this.isNS = true; 
+		this.version = 6.1; 
+	return s; 
+	}
+	s = "";
+	return s;
+} 
+
+var v = Browser();
+
+//浏览器区别调入配置文件
+
+//IE 5,6,7,8
+if( v == 5 || v == 6 || v==7 || v == 8){
+	$("#swip0").hide();
+	//alert("NO SUPPORT");
+	//载入css
+
+	var headq = document.getElementsByTagName("head")[0];
+	var cq1 = document.createElement("link");
+	cq1.type = "text/css";
+	cq1.rel = "stylesheet"
+	cq1.href = "css/momengIE8.css"
+	headq.appendChild(cq1);
+	//载入js
+	var sq1 = document.createElement("script"),sq2 = document.createElement("script");
+	sq2.src = "js/molemonIE8.js"
+	headq.appendChild(sq2);
+
+//移动端
+}else if(v == "Mobile"){
+	$("#swip0").show();
+    $("#swip0").width($(window).width());
+	$("#swip0").height($(window).height());
+
+	//ua = navigator.userAgent;
+	//alert(ua);
+	
+	if(ua.indexOf("Android") > 0){
+		
+		//var an1 = "<meta name='viewport' content='target-densitydpi=400'>"
+		//var an1 = "<meta name='viewport' content='initial-scale=0.33'>";
+
+		//alert($(window).width())
+		//$("head").prepend(an1);
+		orient()	
+		// if(ua.indexOf("UCBrowser") > 0){
+		// 	$("body").css({"width":"100%","marginLeft":0});
+		// }else{
+		// 	$("body").css({"width":"100%","marginLeft":0});
+		// }
+		//
+
+		if(ua.indexOf("MQQBrowser") > 0){
+			var an1 = "<meta name='viewport' content='target-densitydpi=400'>"
+			//var an1 = "<meta name='viewport' content='initial-scale=0.33'>";
+
+			//alert($(window).width())
+			$("head").prepend(an1);
+			//alert(ua);
+		}else{
+			//var an1 = "<meta name='viewport' content='target-densitydpi=400'>"
+			var an1 = "<meta name='viewport' content='initial-scale=0.33'>";
+
+			//alert($(window).width())
+			$("head").prepend(an1);
+		}
+		
+		
+	}
+	
+	moResize();
+
+    $("#swip0").css({"top":0,"left":0}); //触摸操作区
+
+	var headp = document.getElementsByTagName("head")[0];
+	var cp1 = document.createElement("link");
+	cp1.type = "text/css";
+	cp1.rel = "stylesheet"
+	cp1.href = "css/momengMobile.css"
+	headp.appendChild(cp1);
+	//载入js
+	var sp1 = document.createElement("script");
+	sp1.src = "js/momengMobile.js";
+	headp.appendChild(sp1);
+	//改变移动端适配的viewport
+
+
+	
+
+	//$("#footer").css({"zoom":"100%","width":"100%"});
+	//$("#rNavMain").css({"zoom":"100%","marginTop":$(window).height()/2});
+
+	$(".footerbg").css({"margin":0})
+
+
+/* 移动端触摸事件 */
+	
+    var startX,		//触摸时的坐标
+        startY,
+		x, 			//滑动的距离
+		y,
+		aboveY0=0; //设一个全局变量记录上一次内部块滑动的位置 
+
+	var inner=document.getElementById("swip0");
+ 	var bar=document.getElementById("footer");
+
+    function touchSatrt(e){//触摸
+    	$("#swip0").css({"top":0,"left":0}); //触摸操作区
+        e.preventDefault();
+        var touch=e.touches[0];
+        startY = touch.pageY;  
+        startX = touch.pageX; //刚触摸时的坐标              
+    }
+
+    function touchMove(e){//滑动 
+		e.preventDefault();        
+		var  touch = e.touches[0];               
+		y = touch.pageY - startY;//滑动的距离
+		x = touch.pageX - startX;//滑动的距离
+        //inner.style.webkitTransform = 'translate(' + 0+ 'px, ' + y + 'px)';  //也可以用css3的方式     
+        inner.style.top =  y + "px"; 
+        inner.style.left =  x + "px"; //这一句中的
+        //alert(Math.abs(x) + " " + Math.abs(y));
+    }  
+
+    function touchEnd(e){//手指离开屏幕
+		e.preventDefault();
+		aboveY=parseInt(inner.style.top);
+	  	$("#swip0").width($(window).width());
+		$("#swip0").height($(window).height());
+		$("#swip0").css({"top":0,"left":0}); //触摸操作区
+		//touch结束后记录内部滑块滑动的位置 在全局变量中体现 一定要用parseInt()将其转化为整数字;
+
+//		console.log(aboveY)
+		if(aboveY < 0){
+			$("#footer").show();
+		    $("#swip0").width($(window).width());
+		    $("#swip0").height($(window).height());
+		    $("#swip0").css({"top":0,"left":0}); //触摸操作区
+		   // alert(runflag)
+		   	if( Math.abs(x) < Math.abs(y) && runflag == 1){
+		   		resetAni();
+				if($("#stage0").is(":visible")){
+					runflag = 0;
+					
+					stage0LT();
+					return;
+				}else if($("#stage1").is(":visible")){
+					runflag = 0;
+					stage1LT();
+					return;
+				}else if($("#stage2").is(":visible")){
+					runflag = 0;
+					stage2LT();
+					return;
+				}else if($("#stage3").is(":visible")){
+					ua = navigator.userAgent;
+					if(ua.indexOf("iPhone OS 6")>0){
+						$("#footer").hide();
+					}
+					runflag = 0;
+					stage3LT();
+					return;
+				}		
+			}
+		}
+		if(aboveY > 0){
+		$("#footer").show();
+	    $("#swip0").width($(window).width());
+		$("#swip0").height($(window).height());
+	    $("#swip0").css({"top":0,"left":0}); //触摸操作区
+	    	if( Math.abs(x) < Math.abs(y) && runflag == 1){
+	    		
+				if($("#stage3").is(":visible")){
+					resetAni();
+					runflag = 0;
+					stage3GT();
+					return;
+				}else if($("#stage2").is(":visible")){
+					resetAni();
+					runflag = 0;
+					stage2GT();
+					return;
+				}else if($("#stage1").is(":visible")){
+					ua = navigator.userAgent;
+					// if(ua.indexOf("iPhone OS 6")>0){
+					// 	$("#footer").hide();
+					// }
+					resetAni();
+					runflag = 0;
+					stage1GT();
+					return;
+				}else if($("#stage0").is(":visible")){
+					//runflag = 0;
+					return;
+				}
+			}
+		}
+   	}
+   	function dragNull(e){
+   		e.preventDefault();
+   	}
+   	function touchJump(e){
+   		$("#swip0").width($(window).width());
+		$("#swip0").height($(window).height());
+	    $("#swip0").css({"top":0,"left":0}); //触摸操作区
+   		window.open("http://api.molemon.com/dl.php?mp=android&edition=official_website","_top");
+   	}
+   	function touchJumpAuto(e){
+   		$("#swip0").width($(window).width());
+		$("#swip0").height($(window).height());
+	    $("#swip0").css({"top":0,"left":0}); //触摸操作区
+	    
+	    if(ua.indexOf("iPhone") >= 0){
+	    	window.open("https://itunes.apple.com/us/app/mo-meng-liu-lan-qi/id929092372?mt=8","_top");
+	    }else{
+	    	window.open("http://api.molemon.com/dl.php?mp=android&edition=official_website","_top");
+	    }
+   		
+   	}
+   	function touchJumpAPK(e){
+   		$("#swip0").width($(window).width());
+		$("#swip0").height($(window).height());
+	    $("#swip0").css({"top":0,"left":0}); //触摸操作区
+   		window.open("https://itunes.apple.com/us/app/mo-meng-liu-lan-qi/id929092372?mt=8","_top");
+   	}
+   	function touchJump2(e){
+   		stage0LT();
+   	}
+	document.getElementById("swip0").addEventListener('touchstart', touchSatrt,false);
+	document.getElementById("swip0").addEventListener('touchmove', touchMove,false);
+	document.getElementById("swip0").addEventListener('touchend', touchEnd,false);
+
+	document.getElementById("footer").addEventListener('touchstart', touchSatrt,true);
+	document.getElementById("footer").addEventListener('touchmove', touchMove,false);
+	document.getElementById("footer").addEventListener('touchend', touchEnd,false);
+
+	document.getElementById("download").addEventListener('touchstart', touchSatrt,true);
+	document.getElementById("download").addEventListener('touchmove', touchMove,false);
+	document.getElementById("download").addEventListener('touchend', touchJumpAPK,false);
+	document.getElementById("download2").addEventListener('touchstart', touchSatrt,true);
+	document.getElementById("download2").addEventListener('touchmove', touchMove,false);
+	document.getElementById("download2").addEventListener('touchend', touchJump,false);
+
+	document.getElementById("stage4").addEventListener('touchstart', touchSatrt,false);
+	document.getElementById("stage4").addEventListener('touchmove', touchMove,false);
+	document.getElementById("stage4").addEventListener('touchend', touchEnd,false);
+
+	document.getElementById("fm8").addEventListener('touchstart', touchSatrt,false);
+	document.getElementById("fm8").addEventListener('touchmove', touchMove,false);
+	document.getElementById("fm8").addEventListener('touchend', touchEnd,false);
+
+	document.getElementById("fm9").addEventListener('touchstart', touchSatrt,false);
+	document.getElementById("fm9").addEventListener('touchmove', touchMove,false);
+	document.getElementById("fm9").addEventListener('touchend', touchJump2,false);
+
+	document.getElementById("goAppstore2").addEventListener('touchstart', touchSatrt,true);
+	document.getElementById("goAppstore2").addEventListener('touchmove', touchMove,false);
+	document.getElementById("goAppstore2").addEventListener('touchend', touchJumpAuto,false);
+	document.getElementById("goAppstore3").addEventListener('touchstart', touchSatrt,true);
+	document.getElementById("goAppstore3").addEventListener('touchmove', touchMove,false);
+	document.getElementById("goAppstore3").addEventListener('touchend', touchJumpAPK,false);
+	
+	document.getElementById("hori").addEventListener('touchstart', dragNull,true);
+	document.getElementById("hori").addEventListener('touchmove', dragNull,false);
+	document.getElementById("hori").addEventListener('touchend', dragNull,false);
+//屏幕触摸事件 end
+
+}else{
+	//IE9以上
+
+	$("#swip0").hide();
+	//alert("good to go");
+	//载入css
+	var headp = document.getElementsByTagName("head")[0];
+	var cp1 = document.createElement("link");
+	cp1.type = "text/css";
+	cp1.rel = "stylesheet"
+	cp1.href = "css/momeng.css"
+	headp.appendChild(cp1);
+	//载入js
+	var sp1 = document.createElement("script");
+	sp1.src = "js/momeng.js";
+	headp.appendChild(sp1);
+}
+/**
+ * 横屏自适应
+ **/
+function orient() {
+
+	$("#swip0").width($(window).width());
+	$("#swip0").height($(window).height());
+	$("#swip0").css({"top":0,"left":0}); //触摸操作区
+	var width = $(window).width();
+	var wh = $(window).height();
+	//alert(wh);
+    if (window.orientation == 0 || window.orientation == 180){
+    	$("#swip0").width($(window).width());
+		$("#swip0").height($(window).height());
+	    $("#swip0").css({"top":0,"left":0}); //触摸操作区
+		orientation = 'portrait';
+        return false;
+    }else if(window.orientation == 90 || window.orientation == -90){
+    	$("#swip0").width($(window).width());
+		$("#swip0").height($(window).height());
+	    $("#swip0").css({"top":0,"left":0}); //触摸操作区
+        orientation = 'landscape';
+        return false;
+    };
+};
+//移动端横竖屏刷新尺寸
+function moResize(){
+	//alert($(window).height())
+	if(ua.indexOf("iPhone") > 0){
+		if($(window).height()< 800){
+			$("#s0mo1").css("top",10);
+			$("#s1mo1").css("top",50);
+			$("#s2mo1").css("top",50);
+			$("#s3mo1").css("top",50);
+		}else if($(window).height() < 1500){
+			$("#s0mo1").css("top",200);
+			$("#s1mo1").css("top",100);
+			$("#s2mo1").css("top",100);
+			$("#s3mo1").css("top",100);
+		}else{
+			$("#s0mo1").css("top",200);
+			$("#s1mo1").css("top",200);
+			$("#s2mo1").css("top",200);
+			$("#s3mo1").css("top",200);
+		}
+	}
+	if(ua.indexOf("iPad") > 0){
+		if($(window).height()< 700){
+			$("#s0mo1").css("top",20);
+			$("#s1mo1").css("top",10);
+			$("#s2mo1").css("top",10);
+			$("#s3mo1").css("top",10);
+		}else{
+			$("#s0mo1").css("top",200);
+			$("#s1mo1").css("top",100);
+			$("#s2mo1").css("top",100);
+			$("#s3mo1").css("top",100);
+		}
+	}
+}
+/**
+ *右侧按钮浮动
+ */
+
+function checkWheel(){
+	
+	var cBlueH = $("#btn0").offset().top;
+//	$("#navPo").text(cBlueH);
+	if(cBlueH < 900){
+		$("#rNav").attr("class","rNavRed");
+		//$("#rNavMain").hide()
+	}
+	if(cBlueH >= 900 && cBlueH <= 1570){
+		$("#rNavMain").show();
+		$("#rNav").attr("class","");
+		$("#rNav").attr("class","rNavRed");
+		};
+	if(cBlueH > 1570 && cBlueH <= 2400 ){
+		$("#rNavMain").show();
+		$("#rNav").attr("class","");
+		$("#rNav").attr("class","rNavBlue");
+		};
+	if(cBlueH > 2400 ){
+		$("#rNavMain").show();
+		$("#rNav").attr("class","");
+		$("#rNav").attr("class","rNavGreen");
+		};
+};
+
+
+</script>
+</body>
+
+</html>

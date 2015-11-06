@@ -1,0 +1,300 @@
+﻿@{
+    Layout = null;
+}
+@{
+    IList<Model.GoodsGroup> list = ViewBag.List as IList<Model.GoodsGroup>;
+    IList<Model.ChannelGroup> clist = ViewBag.cList as IList<Model.ChannelGroup>;
+    var i = 1;
+}
+<link href="~/Plugin/window/css/common.css" rel="stylesheet" />
+
+@*@foreach (var val in list)
+{
+
+    <div class="table">
+        <div class="t_cell td-01"> <input type="checkbox" name="CheckYou" value="@val.ID" /></div>
+        <div class="t_cell">@(i++)</div>
+        <div class="t_cell">@val.GroupName<label>(@val.GoodsCount)</label></div>
+        <div class="t_cell">
+            @foreach (var g in val.ChannelJoinGoodsList)
+            {
+                <span>@g.ChannelGroup.GroupName<label>(@g.ChannelCount)</label> </span>
+                <a href="#" id="cancelG"
+                   onclick=" CancelThis(@val.ID, @g.ChannelGroup.ID) ">取消关联</a>
+                <br />
+            }
+        </div>
+        <div class="t_cell">
+            <a href="#" onclick=" AddShit(@val.ID) ">新建关联</a>
+            <a href="#"
+               id="editThis"
+               onclick=" editThis(@val.ID, '@val.GroupName', '@val.Remarks') ">编辑</a>
+            <a href="#" id="DeleteGoods" onclick=" DeleteThis(@val.ID) ">删除</a>
+        </div>
+    </div>
+}*@
+
+<div class="panel">
+    <table class="table table-bordered mb30" style="width: 100%">
+        <thead>
+            <tr>
+                <th></th>
+                <th>序号</th>
+                <th>商品可视分组</th>
+                <th>渠道分组</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var val in list)
+            {
+                <tr>
+                    <td>
+                        <div class="ckbox ckbox-success">
+                            <input type="checkbox" name="CheckYou" id="checkbox(@val.ID)" value="@val.ID" counts="@val.GoodsCount" />
+                            <label for="checkbox(@val.ID)"></label>
+                        </div>
+                    </td>
+                    <td>@(i++)</td>
+                    <td>
+                        @val.GroupName<label>(@val.GoodsCount)</label>
+                       
+                    </td>
+                    <td>
+                        @foreach (var g in val.ChannelJoinGoodsList)
+                        {
+                            if (g.ChannelGroup != null) { 
+                            <span>@g.ChannelGroup.GroupName<label>(@g.ChannelCount)</label> </span>
+                        <a href="#" id="cancelG"
+                           data-au='goodsgroupedit'
+                           onclick="CancelThis(@val.ID,@g.ChannelGroup.ID)">取消关联</a><br />
+                            }
+                        }
+                    </td>
+                    <td class="table-aSpace">
+                        <a href="#" data-au='goodsgroupedit' onclick="AddShit(@val.ID)">新建关联</a>
+                        <a href="#"
+                           id="editThis" gn="@HttpUtility.HtmlDecode(val.GroupName)" gr="@val.Remarks"
+                           data-au='goodsgroupedit'
+                           onclick="editThis(@val.ID,this)">编辑</a>
+                        <a href="#" data-au='GoodsGroupDel' id="DeleteGoods" onclick="DeleteThis(@val.ID,@val.GoodsCount)">删除</a>
+                    </td>
+
+                </tr>
+
+
+            }
+
+        </tbody>
+    </table>
+</div>
+<div id="EditThis" style="display: none">
+    <input type="hidden" id="gid" value="" />
+
+    <div class="form-group" style="margin-top:6%">
+        <div class="col-sm-3">
+            <label>可视分组名称<font color="red">*</font> </label>
+        </div>
+        <div class="col-sm-7">
+            <input type="text" id="GroupName1" value="" class="form-control" />
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-3">
+            <label>备注</label>
+        </div>
+        <div class="col-sm-7">
+            @*<input type="text" id="Remarks1" value="" class="form-control" />*@
+            @Html.TextArea("Remarks1", new { @class = "form-control", row = "5" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-9 col-sm-offset-3">
+
+            <input class="btn btn-primary" type="button" id="EditThisGoods" name="EditThisGoods" value="保存" onclick="GiveThisShit()" />
+        </div>
+    </div>
+
+
+</div>
+
+<div id="newG" style="display: none">
+    <input type="hidden" id="Addhid" value="" />
+
+    <div style="overflow: hidden;margin-top: 5%">
+        @foreach (var val in clist)
+        {
+            <label class="col-sm-3">
+                <input class="" type="checkbox" name="checkThis" value="@val.ID" />@val.GroupName
+            </label>
+        }
+
+    </div>
+
+    <div style="margin-top: 30px; text-align: center">
+        <input type="button" class="btn btn-primary" id="EditThisGoods" name="AddGuans" value="保存" onclick="AddGuans()" />
+    </div>
+
+</div>
+
+<script src="~/Plugin/selectall/jquery-selectall.js"></script>
+@*<script src="~/Plugin/window/jquery-window.js"></script>*@
+<script type="text/javascript">
+    var AddShit = function (id) {
+        $("#Addhid").val(id);
+        $("[name='checkThis']").each(function () {
+            if ($(this).is(":checked")) {
+                $(this).prop("checked", false);
+            }
+
+        });
+        $.post("/GoodsGroup/AddGuans", { gid: id }, function (data) {
+
+            //找到对应的checkbox 并选中
+            for (var i = 0; i < data.length; i++) {
+                var item = data[i];
+                $("input:checkbox[value='" + item + "']").prop("checked", "checked");
+            }
+
+        });
+
+
+        $.windowBase({
+            id: "addshit",
+            title: "新建关联",
+            isShowBtn: false,
+            callbackStr: "closeCallback",
+            ele: "newG",
+            width: 500,
+            height: 300
+        });
+    }
+
+    var AddGuans = function () {
+        var ids = "";
+        var gid = $("#Addhid").val();
+        $("[name='checkThis']").each(function () {
+            if ($(this).is(":checked")) {
+                ids = ids + $(this).val() + ",";
+            }
+
+        });
+
+        if (ids == "") {
+            //alert("请至少选择一项！");
+            $.message("请至少选择一项！", false);
+            return;
+        }
+
+        $.post("/GoodsGroup/AddGuan", { gid: gid, id: ids }, function (data) {
+            if (data == "添加成功！") {
+                //alert(data);
+                $.message(data, true);
+                location.reload();
+            } else {
+                //alert(data);
+                $.message(data, false);
+                return;
+            }
+
+        });
+
+    }
+
+
+    var editThis = function (gid,con) {
+       
+        var name = $(con).attr("gn");
+        var mark = $(con).attr("gr");
+        $("#GroupName1").val(name);
+        $("#Remarks1").val(mark);
+        $("#gid").val(gid);
+        //alert(name.DeXml());
+        $.windowBase({
+            id: "editGoodsWin",
+            title: "编辑商品可视分组",
+            isShowBtn: false,
+            callbackStr: "closeCallback",
+            ele: "EditThis",
+            width: 500,
+            height: 300
+        });
+    }
+
+    var GiveThisShit = function () {
+        var gid = $("#gid").val();
+        var name = $.trim($("#GroupName1").val());
+        var mark = $("#Remarks1").val();
+        if (name.length <= 0) {
+            //alert("名称不能为空！");
+            $.message("名称不能为空！", false);
+            return;
+        }
+        if (name.length > 16) {
+            //alert("名称不能大于16位！");
+            $.message("名称不能大于16位！", false);
+            return;
+        }
+        if (mark.length > 100) {
+            // alert("备注不能大于100位！");
+            $.message("备注不能大于100位！", false);
+            return;
+        }
+        $.post("/GoodsGroup/Edit", { ID: gid, GroupName: name, Remarks: mark }, function (data) {
+            if (data == "编辑成功！") {
+                $.message(data, true);
+                location.reload();
+            } else {
+
+                $.message(data, false);
+                return;
+            }
+        });
+
+    }
+
+    var DeleteThis = function (id,count) {
+        
+        if (confirm("你确定要删除吗？")) {
+            $.post("/GoodsGroup/Delete", { id: id,count:count }, function (data) {
+                if (data == "删除成功！") {
+                    // alert(data);
+                    $.message(data, true);
+                    location.reload();
+                } else {
+                    //alert(data);
+                    $.message(data, false);
+                    return;
+                }
+            });
+        }
+
+
+    }
+    var CancelThis = function (gid, cid) {
+        if (confirm("你确定要取消关联吗？")) {
+            $.post("/GoodsGroup/CancelThis", { gid: gid, cid: cid }, function (data) {
+                if (data == "取消关联成功！") {
+                    // alert(data);
+                    $.message(data, true);
+                    location.reload();
+                } else {
+                    //alert(data);
+                    $.message(data, false);
+                    return;
+                }
+            });
+        }
+    }
+
+    var closeCallback = function () {
+
+    }
+
+</script>
+
+

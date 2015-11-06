@@ -1,0 +1,88 @@
+﻿@model Model.ShopInfoView
+
+@{
+    ViewBag.Title = "修改代理商门店";
+    Layout = "~/Views/Shared/_ChildLayout.cshtml";
+}
+@section styles{
+    <link href="~/Css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/Css/base.css" rel="stylesheet">
+    <link href="~/Css/bootstrap-override.css" rel="stylesheet" />
+    <link href="~/Css/windowbase.css" rel="stylesheet" />
+}
+@section scripts{
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/poshytip/jquery.poshytip.min.js")" type="text/javascript"></script>
+<script src="~/Scripts/Public/PageValidate.js"></script>
+<script src="~/Scripts/ChannelpublicJs/PublicStatus.js"></script>
+
+    <script type="text/javascript">
+        function testCallbackEdit(obj) {
+            $.closeParentWindow({
+                status: true,
+                winId: "editThis"
+            });
+        }
+    </script>
+}
+
+<form method="post" id="frnAdd" class="shopEdit" data-ajax="true" data-callback="testCallbackEdit" action="/ShopInfo/EditAgentShopAfter">
+    <input type="hidden" name="ID" value="@Model.ID" />
+    <div class="form-group">
+        <label class="col-sm-3 control-label">渠道类型 <span class="asterisk">*</span></label>
+        <div class="col-sm-9">
+            <div class="rdio rdio-primary">
+                <input type="radio" id="male" value="m" name="gender" checked="checked" required="">
+                <label for="male">代理商门店</label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">所属代理商 <span class="asterisk">*</span></label>
+        <div class="col-sm-9">
+            <div class="rdio rdio-primary">
+                @Model.AgentName
+                <label for="male"></label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">直营店名称<span class="asterisk">*</span></label>
+        <div class="col-sm-9">
+            @Html.TextBoxFor(x => x.ShopName, new { @Class = "form-control", placeholder = "限制在15个字符内" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">所属区域<span class="asterisk">*</span></label>
+        <div class="col-sm-9">
+            @*@Html.DropDownList("Province", null, "请选择省", htmlAttributes: new { @class = "ver-select", style = "width:Auto;display:inline;" })
+                <select id="City" name="City" class="ver-select">
+                    <option value="0">请选择市</option>
+                </select>
+                <select id="AreasID" name="AreasID" class="ver-select">
+                    <option value="0">选择区/县</option>
+                </select>*@
+
+            <div id="abcdE" dataneedcheck="1" selectvalue="['@Model.ProvinceID','@Model.CityID','@Model.CountyID']" selectname="['ProvinceID','CityID','CountyID']" domdata-citys></div>
+        </div>
+
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">联系人<span class="asterisk">*</span></label>
+        <div class="col-sm-9">
+            @Html.TextBoxFor(x => x.Contact, new { @Class = "form-control", placeholder = "限制在15个字符内" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">注册手机号<span class="asterisk">*</span></label>
+        <div class="col-sm-9">
+
+            <input type="text" class="form-control" id="TElSHA" name="TElSHA" data-val="true" data-val-autovalidate="手机号码格式不正确" value="*************" />
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type="submit" class="btn btn-primary" value="保存" data-au="ChnEdit" />
+        <button type="button" class="btn btn-default" id="EditClose" data-dismiss="modal">取消</button>
+    </div>
+</form>
+

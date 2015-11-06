@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "属性值管理";
+}
+
+@section styles{
+    <link href="~/Css/jquery.datatables.css" rel="stylesheet" />
+    <link href="~/Plugin/window/css/common.css" rel="stylesheet" />
+    <link href="~/Plugin/pager/css/pager.css" rel="stylesheet" />
+    <style>
+        #tbodyAV tr:hover {
+            background-color: #ddf7fc;
+        }
+    </style>
+}
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label>属性名称</label>
+                    @ViewBag.aName
+                </div>
+                @Html.Hidden("hidAid",(ViewBag.aid as string))
+            </form>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <ul class="filemanager-options">
+        <li>
+            <a class="btn btn-primary btn-sm white" id="combineAv">合并属性值</a>
+        </li>
+    </ul>
+</div><!--总体操作-->
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table mb30 tablValue">
+                    <thead>
+                        <tr>
+                            <th>选择</th>
+                            <th>属性值</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbodyAV"></tbody>
+                </table>
+                <span id="pager" class="pager" style="float:right;">
+                </span>
+            </div><!--table-responsive-->
+        </div><!--panel-body-->
+    </div><!--panel-->
+</div><!---row-->
+<div id="windowShowCombine" style="display: none;">
+    <br />
+    <span style="font-weight:bold;">选择合并到的属性值：</span><br />
+    <div class="select-lists clearfix" id="divCombine">
+    </div>
+    <div class="form-group" style="margin-top: 20px;">
+        <div class="col-sm-9 col-sm-offset-3">
+            <input type="button" class="btn btn-primary btn-sm" id="btnSaveC" value="保存" />
+            <input type="button" class="btn btn-default btn-sm" id="btnCancelC" value="取消" />
+        </div>
+    </div>
+</div>
+<div id="windowShowEdit" style="display: none;">
+    <br />
+    <div class="form-group">
+        <label class="col-sm-3 control-label">属性名称<span class="asterisk" style="max-width:500px;">*</span></label>
+        <div class="col-sm-6">
+            <input type="text" vid="" id="textVName" name="textVName" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group" style="margin-top: 20px;">
+        <div class="col-sm-9 col-sm-offset-3">
+            <input type="button" class="btn btn-primary btn-sm" id="btnSaveE" value="保存" />
+            <input type="button" class="btn btn-default btn-sm" id="btnCancelE" value="取消" />
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script src="~/Scripts/Common/Common.js"></script>
+    <script src="~/Scripts/public.js"></script>
+    <script src="~/Plugin/selectall/jquery-selectall.js"></script>
+    <script src="~/Plugin/pager/jquery-pager.js"></script>
+<script src="~/Areas/Operate/Scripts/Attributes/AttrValueIndex.js"></script>
+}
+

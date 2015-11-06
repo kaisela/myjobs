@@ -1,0 +1,45 @@
+﻿@model Model.Brand
+@{
+    Layout = "~/Areas/Operate/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "合并品牌";
+    IList<Model.Brand> list = ViewBag.BrandList as IList<Model.Brand>;
+     
+}
+
+@using (Ajax.BeginForm("../Brand/Merge", null, new AjaxOptions { OnSuccess = "CommentSuccess" }, null))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Brand</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.ID)
+        <div class="form-group">
+            @Html.LabelFor(model => model.BName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Model.BName
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <select name="NewId" id="NewId">
+                    @foreach (var item in list)
+                    {
+                        <option value="@item.ID"> @item.BName</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+                @Html.ActionLink("返回", "Index")
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+   
+</div>

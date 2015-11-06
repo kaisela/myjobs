@@ -1,0 +1,58 @@
+﻿@model Model.Areas
+@{
+    Layout = "~/Areas/Operate/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "区域合并";
+}
+@section scripts{
+
+}
+@using (Ajax.BeginForm("../Areas/Merge", null, new AjaxOptions { OnSuccess = "CommentSuccess" }, null))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Areas</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.ID)
+        <div class="form-group">
+            <label class="control-label col-md-2">原区域名:</label>
+            <div class="col-md-10">
+                @Model.AName
+            </div>
+        </div>
+        <div class="form-group">
+            
+            <label class="control-label col-md-2" >合并到:</label>
+
+            <div class="col-md-10">
+               
+                @if (Model.AType == 3)
+                {
+                    <div selectname="['ProvinceID','CityID','AID']" domdata-citys>
+                    </div>
+                }
+                else if (Model.AType == 2)
+                {
+                    <div selectname="['ProvinceID','CityID']" domdata-citys>
+                    </div>
+                }
+                else
+                {
+                    <div selectname="['ProvinceID']" domdata-citys>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

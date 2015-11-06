@@ -1,0 +1,36 @@
+﻿@model Model.WeixinMP
+@{
+    @* 模式窗口模版 *@
+    Layout = "~/Views/Shared/_ChildLayout.cshtml";
+}
+@section styles{
+    <link rel="stylesheet" href="~/Css/publicId.css" />
+    @* 引用分页样式 *@
+    <link href="~/Plugin/pager/css/pager.css" rel="stylesheet" />
+    @* 模式窗口样式 *@
+    <link href="~/Plugin/window/css/common.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+}
+<p>共有<span id="BindEnterpriseShopTotal">0</span>个直营店未分配公众号，请选择要分配的直营店：</p>
+<div class="box2">
+    @Html.Hidden("WeixinMPID", ViewBag.ID as string)
+    <ul class="list" id="BindEnterpriseShopContent"></ul>
+    <div class="bottom">
+        <div class="col-sm-4">
+            <input type="checkbox" data-func="selectall" id="BindEnterpriseShopSelectAll" data-name="check" /> 全选
+            <a class="btn btn-primary HrefFrame" href="javascript:void(0)" id="BindEnterpriseShopNext" data-div=".O2OWin" data-title="">下一步</a>
+        </div>
+        <div class="col-sm-8">
+            @* 分页标签 *@
+            <span class="pager"></span>
+        </div>
+    </div>
+</div>
+@section scripts{
+    @* 全选插件 *@
+    <script src="~/Plugin/selectall/jquery-selectall.js"></script>
+    @* 引用分页插件 *@
+    <script src="~/Plugin/pager/jquery-pager.js"></script>
+    @* 引用页面js *@
+    <script src="~/Scripts/WeixinMP/BindEnterpriseShop.js"></script>
+}

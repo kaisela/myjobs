@@ -1,0 +1,148 @@
+﻿@model Model.EnterpriseView
+
+@{
+    ViewBag.Title = "企业基本信息";
+}
+@section styles{
+    <link href="~/Css/colorpicker.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/companyIfo.css" />
+    <link href="../../css/jquery.datatables.css" rel="stylesheet">
+    <link href="~/Plugin/pager/css/pager.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/selling.css" />
+    <link href="~/Plugin/window/css/common.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/settings.css" />
+}
+
+
+
+
+<div class="panel-default">
+    <div class="panel head">
+        <h4 class="panel-title col-sm-2"><img id="ShowIMG" /></h4>
+        <div class="tittle-right col-sm-10">
+            <div class="tittle">
+                <h3>@Html.DisplayFor(s => Model.EName)</h3>
+                <a class="btn btn-primary position btn-sm winO2OPanel"
+                   data-title="编辑企业"
+                   data-func="openWin"
+                   data-id="EditInfoWin"
+                   data-show-btn="false"
+                   data-callback="index.closeCallback"
+                   data-ele="ShowInfo"
+                   data-width="750"
+                   data-height="500" data-au='InfoEdit'>编辑</a>
+            </div>
+            <p>地址：@Html.DisplayFor(s => Model.ProvinceName)@Html.DisplayFor(s => Model.CityName)@Html.DisplayFor(s => Model.AName)@Html.DisplayFor(s => Model.Address)</p>
+            <p>总机：@Html.DisplayFor(s => Model.ContactTel)</p>
+            <p>联系人：@Html.DisplayFor(s => Model.Contact)</p>
+            <div class="label-group">                                                       
+                <span>商品总数:<label>@Model.GoodsCount</label></span>
+                <span>门店数：<label>@Model.ShopCount</label></span>
+                <span>代理商数：<label>@Model.AgentCount</label></span>
+                <span>品牌数：<label>@Model.BrandCount</label></span>
+                <span>订单数：<label>@Model.OrdersCount</label></span>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<div id="ShowInfo" style="display: none">
+   
+    @Html.HiddenFor(s => s.ID)
+    <table class="table mb30">
+        <tbody>
+            <tr>
+                <td class="col-sm-3">企业名称：</td>
+                <td class="col-sm-3">
+                    @Html.DisplayFor(s => Model.EName)
+                </td>
+                <td class="col-sm-3"></td>
+                <td class="col-sm-3"></td>
+            </tr>
+            <tr>
+                <td class="col-sm-3 ">所属区域：</td>
+                <td colspan="3" class="form-inline">  <div id="chooseAreas" selectname="['Province','City','Areas']" selectvalue="['@Model.ProvinceId','@Model.CityId','@Model.AreasID']" dataneedcheck domdata-citys></div></td>
+            </tr>
+            <tr>
+                <td class="col-sm-3">详细地址：</td>
+                <td class="col-sm-3">
+                    @Html.TextBoxFor(s => Model.Address,new{Class="form-control"})
+                </td>
+                <td class="col-sm-3"></td>
+                <td class="col-sm-3"></td>
+            </tr>
+            <tr>
+                <td class="col-sm-3">联系人：</td>
+                <td class="col-sm-3">
+                    @Html.TextBoxFor(s => Model.Contact, new { Class = "form-control" })
+                </td>
+                <td class="col-sm-3"></td>
+                <td class="col-sm-3"></td>
+            </tr>
+            <tr>
+                <td class="col-sm-3">联系方式：</td>
+                <td class="col-sm-5">
+                    @Html.TextBoxFor(s => Model.ContactTel, new { Class = "form-control" })
+                </td>
+                <td class="col-sm-1"></td>
+                <td class="col-sm-3"></td>
+            </tr>
+
+            <tr>
+                <td class="col-sm-3">企业标志：</td>
+                <td width="100%" colspan="4">
+                    <p style="font-size: 12px;color: #999999;padding-left: 4px;">请上传640*640的图片，大小不要超过2M</p>
+                    <div style="height: 190px" id="uploadContainer" data-image-type="3" data-max="1" data-callback-element="infoCallBack" data-url="/File/ImageUpload" data-accept="image/png,image/jpeg" data-size="2048" data-multiple="multiple" data-path="/File/ShowImage/{0}" data-parttern="single" data-cross-domain="true">
+                    </div>
+                    <input id="infoCallBack" name="infoCallBack" type="text" value="@Model.EIMG" style="display: none" />
+                   
+                </td>
+               
+            </tr>
+            
+            <tr>
+                <td class="col-sm-3">企业标志（小尺寸）：</td>
+                <td width="100%" colspan="4">
+                    <p style="font-size: 12px;color: #999999;padding-left: 4px;">请上传220*40的图片，大小不要超过2M</p>
+                    <div style="height: 70px" id="uploadContainer1" data-image-type="10" data-max="1" data-callback-element="infoCallBack1" data-url="/File/ImageUpload" data-accept="image/png,image/jpeg" data-size="2048" data-multiple="multiple" data-path="/File/ShowImage/{0}" data-parttern="single" data-cross-domain="true" >
+                    </div>
+                    <input id="infoCallBack1" name="infoCallBack1" type="text" value="@Model.TitleLogo" style="display: none" />
+                   
+                </td>
+                
+            </tr>
+            
+
+            <tr>
+                <td class="col-sm-3"></td>
+                <td class="col-sm-3">
+                    <input id="submitEdit" type="button" value="保存" class="btn btn-primary btn" />
+                   
+                </td>
+                <td class="col-sm-3"></td>
+                <td class="col-sm-3"></td>
+            </tr>
+
+
+        </tbody>
+    </table>
+    <input type="hidden" id="imgurl" value="@Model.EIMG"/>
+    </div>
+
+
+@section scripts
+{
+    <script src="~/Plugin/upload/jquery-upload.js"></script>
+    <script src="~/Plugin/window/jquery-window.js"></script>
+    <script src="~/Plugin/pager/jquery-pager.js"></script>
+    <script src="~/Scripts/EnterpriseInfo/Index.js"></script>
+
+    <script>
+       
+        $(document).on("mousewheel", ".w-title-content", function () {
+          
+        });
+    </script>
+}
