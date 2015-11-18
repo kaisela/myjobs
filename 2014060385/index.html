@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+
+  	<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <title>CSS3实现水位充满文字特效 - huiyi8素材</title>
+
+    <style>
+
+.loading{
+  width: 210px;
+  height: 210px;
+  font-size: 0;
+  background:  ;
+  margin: 0 auto;
+  border-radius:105px ;
+  background-size: 210px 210px;
+  background: rgba(197, 225, 235, 0.6);
+}
+
+.loading-text {
+  width: 190px;
+  height: 190px;
+  background: rgba(197, 225, 235, 1);
+  display: inline-block;
+  margin:10px;
+  border-radius: 95px;
+  color: #fff;
+	text-align: center;
+}
+.loaded-text {
+  width: 190px;
+  height: 190px;
+  background:url("loaded.png");
+  display: inline-block;
+  margin:10px;
+  background-size:190px 190px;
+}
+.loading-text .percent{
+	font-size: 48px;
+	height: 80px;
+	margin-top: 40px;
+}
+.loading-text .text{
+	font-size: 15px;
+	height: 40px;
+	margin-top: 0px;
+}
+.wave-bg {
+	background: none;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	margin: 0px;
+}
+@keyframes wave-animation {
+  0% {
+    background-position: 0 bottom;
+  }
+
+  100% {
+    background-position: 190px bottom;
+  }
+}
+
+@keyframes wave2-animation {
+  0% {
+    background-position: 0 bottom;
+  }
+
+  100% {
+    background-position: -190px bottom;
+  }
+}
+
+@keyframes loading-animation {
+  0% {
+    background-size: 190px 0px;
+  }
+
+  100% {
+    background-size: 190px 200px;
+  }
+}
+.wave {
+  background-image: url("hou.png");
+  -moz-background-clip:border-box;
+  -o-background-clip: border-box;
+  -webkit-background-clip: border-box;
+  background-clip:border-box;
+  display: inline-block;
+  color: transparent;
+  text-shadow: 0px 0px rgba(255, 255, 255, 0.06);
+  animation: wave-animation 1s infinite linear, loading-animation 10s infinite linear;
+  background-size: 190px 200px;
+  background-repeat: repeat-x;
+  opacity: 1;
+}
+
+.wave-2{
+	background-image: url("qian.png");
+	 animation: wave2-animation 1s infinite linear, loading-animation 10s infinite linear;
+}
+</style>
+
+    <script src="js/prefixfree.min.js"></script>
+
+</head>
+
+<body>
+
+
+
+
+<!-- For Firefox -->
+<div>
+	<div class="loading" style="position: relative;">
+		<div id="loading">
+			<div class="loading-text">
+			</div>
+		  <div class="loading-text wave-bg wave"></div>
+		  <div class="loading-text wave-bg wave wave-2"></div>
+		  <div class="loading-text wave-bg">
+		  	<div id="percent" class="percent">
+		  		0%
+		  	</div>
+		  	<div class="text">
+		  		开店中，请稍等片刻...
+		  	</div>
+			</div>
+		</div>
+		<div id="loaded" style="display: none;">
+			<div class="loaded-text">
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+
+<div style="text-align:center;margin:550px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+<p><font color="#FFFFFF">适用浏览器：360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. 不支持IE8及以下浏览器。</font></p>
+<p><font color="#FFFFFF">来源：</font><a href="http://www.huiy8.com/" target="_blank"><font color="#FFFFFF">huiyi8素材</font></a></p>
+</div>
+
+</body>
+</html>
+<script type="text/javascript" src="jquery.js" ></script>
+<script>
+var count = 0;
+var timer = window.setInterval(function(){
+	count++;
+		$("#percent").html(((count * 2)*10)+"%");
+		if(count == 5){
+			window.clearInterval(timer);
+			$("#loading").hide();
+			$("#loaded").show();
+		}
+	},2000);
+</script>

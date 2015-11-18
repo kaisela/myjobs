@@ -12,12 +12,15 @@
 		<div id="myDiv" style="margin-top: 20px;">
 			Right click or Ctrl+click me to get a custom context menu.
 			Click anywhere else to get the default context menu.
+			<input type="button" value="mouseEvent" id="myBtn"/>
 		</div>
 		<ul id="myMenu" style="position:absolute;display:none;background-color:silver">
-			<li><a href="http://www.nczonline.net">Nicholas’ site</a></li>
-			<li><a href="http://www.wrox.com">Wrox site</a></li>
-			<li><a href="http://www.yahoo.com">Yahoo!</a></li>
+			<li id="one"><a href="javascript:;">Nicholas’ site</a></li>
+			<li id="two"><a href="javascript:;">Wrox site</a></li>
+			<li id="three"><a href="javascript:;">Yahoo!</a></li>
 		</ul>
+		
+		
 	</body>
 </html>
 <script type="text/javascript" src="js/eventUtil.js" ></script>
@@ -42,8 +45,6 @@
 //		event = EventUtil.getEvent(event);
 //		console.log(event.data);
 //	});
-	
-	
 	var div = document.getElementById("myDiv");
 	EventUtil.addHandler(div, "contextmenu", function(event){
 		event = EventUtil.getEvent(event);
@@ -55,7 +56,39 @@
 	});
 	EventUtil.addHandler(document, "click", function(event){
 		document.getElementById("myMenu").style.display = "none";
+		//alert(1);
 	});
-
-
+	
+	var menuDiv = document.getElementById("myMenu");
+	EventUtil.addHandler(menuDiv,"click",function(event){
+		var e = EventUtil.getEvent(event);
+		var target = EventUtil.getTarget(e);
+		EventUtil.stopPropagation(e);
+		var html = "";
+		if(target.getElementsByTagName("a").length != 0){
+			html = target.getElementsByTagName("a")[0].innerHTML;
+		}
+		if(target.tagName == "A"){
+			html = target.innerHTML;
+		}
+		switch(target.id || target.parentElement.id){
+			case "one" :
+				alert(html);
+				break;
+			case "two" :
+				alert(html);
+				break;
+			case "three" :
+				alert(html);
+				break;
+		}
+	});
+	
+	var myBtn = document.getElementById("myBtn");
+	EventUtil.addHandler(myBtn,"click",function(event){
+		alert("你是谁？");
+	});
+	var myE = document.createEvent("MouseEvents"); 
+	myE.initMouseEvent("click", true, true, document.defaultView, 0, 0, 0, 0, 0,false, false, false, false, 0, null);
+	myBtn.dispatchEvent(myE);
 </script>
