@@ -17,15 +17,22 @@ var controlCheckbox = document.getElementById("mainCheckbox"),
 	addBtn = document.getElementById("addNewObserver"),
 	container = document.getElementById("observersContainer");
 	extend(new Subject(),controlCheckbox);
-	controlCheckbox["onclick"] = new Function("controlCheckbox.Notify(controlCheckbox.checked)");
+	controlCheckbox["onclick"] = function(){
+		var checked = controlCheckbox.checked;
+		controlCheckbox.Notify(checked);
+	}
 	addBtn["onclick"] = AddNewObserver;
 	function AddNewObserver(){
 		var check = document.createElement("input");
 		check.type = "checkbox";
 		extend(new Observer(),check);
-		check.Update = function(value) {
-			console.log("check update");
-			this.checked = value;
+		check.Update = function(value,index) {
+			if(index%2 == 0){
+				this.checked = value;
+			}else{
+				this.checked = !value;
+			}
+			
 		};
 		controlCheckbox.AddObserver(check);
 		container.appendChild(check);

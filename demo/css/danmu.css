@@ -1,0 +1,66 @@
+.danmu {
+	position: fixed;
+	top: 10px;
+	left: 10px;
+}
+
+.danmu .switch-div {
+	position: relative;
+}
+
+.danmu .switch {
+	font-size: 14px;
+	border: #7f7f7f 1px solid;
+	border-radius: 3px;
+	color: #666;
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+}
+
+.danmu .close-line {
+	position: absolute;
+	top: -5px;
+	left: 13px;
+	width: 2px;
+	background: #7f7f7f;
+	z-index: 10px;
+	height: 35px;
+	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	display: none;
+}
+
+.danmu .list {}
+
+.danmu .list ul {}
+
+.danmu .list ul li {
+	box-sizing: border-box;
+	position:fixed;
+	max-width: 60%;
+	background: rgba(0, 0, 0, .5);
+	display: inline-block;
+	border-radius: 4px;
+	padding: 10px;
+}
+
+.danmu .list ul li .name {
+	color: rgba(255, 255, 255, .5);
+	font-size: 11px;
+}
+
+.danmu .list ul li .text {
+	
+	color: rgb(255, 255, 255);
+	font-size: 12px;
+	max-height: 54px;
+	display: -webkit-box;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}

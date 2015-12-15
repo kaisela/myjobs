@@ -1,3 +1,4 @@
+//观察者
 function ObserverList(){
 	this.observerList = [];
 }
@@ -76,7 +77,7 @@ Subject.prototype.Notify = function(value){
 	console.log(value);
 	var observerCount = this.observers.Count();
 	for(var i=0; i < observerCount; i++){
-		this.observers.Get(i).Update(value);
+		this.observers.Get(i).Update(value,i);
 	}
 };
 

@@ -1,0 +1,284 @@
+// plugin definition  
+define(["jquery", "iscroll", "imgload"], function($, IScroll) {
+	$.fn.Loading = function(options) {
+		// iterate and reformat each matched element 
+		var defaults = {
+			url: null, //列表的链接地址
+			ajaxOps: { //链接请求的ajax配置
+				type: "get",
+				data: {},
+				dataType: "json",
+				async: true
+			},
+			callback: function() {}, //请求完成之后的回调函数，可在此函数中追加列表
+			curAjaxId: null, //tab页面切换时，保证当前容器在同一时间内，只存在一个请求
+			loadType: "load", //默认滚动到底部自动加载，值有："uplaod"下拉加载，"download"上拉加载
+			isShowEmpty: true, //没有列表记录时，是否显示空记录页面。为false时，没有数据记录则显示没有更多
+			offsetHeight: 0, //页面高度减去此参数，就是列表容器的高度
+			upLoad: false
+		};
+		var loadAjax = null;
+		var ops = $.extend(defaults, options);
+		var defer = $.Deferred();
+		var oldDef = null;
+		return this.each(function() {
+			var me = $(this);
+			var winHeight = me.height();
+			var appendBody = me;
+			var scrollDiv = me.children().first();
+			var flag = true;
+			var ajaxQueue = [];
+			var loading = false;
+			var _scroll = null;
+			var _this = this;
+			function init() {
+				me.height($(window).height() - ops.offsetHeight);
+				if (_scroll == null) {
+					_scroll = new IScroll("#" + me.attr("id"), {
+						scrollbars: true,
+						mouseWheel: true,
+						interactiveScrollbars: true,
+						shrinkScrollbars: 'scale',
+						fadeScrollbars: true,
+						probeType: 3
+					});
+					_scroll.on('scrollStart', function() {
+						ops.loadType = "load-start";
+						changeLoad();
+					});
+					_scroll.on('scrollEnd', function() {
+						docuHeight = scrollDiv.height();
+						winHeight = me.height();
+						if (docuHeight + this.y <= winHeight + 55) {
+							ops.loadType = "load";
+							changeLoad();
+							request();
+						}
+					});
+					_scroll.on('refresh', function() {
+						docuHeight = scrollDiv.height();
+						winHeight = me.height();
+						if (docuHeight <= winHeight && ops.upLoad) {
+							me.find(".load").remove();
+						}
+					});
+				}
+				me.css("overflow", "hidden");
+				console.log(67);
+				$.when(load(true, defer)).done(function (data, isInit) {
+                   oldDef = defer;
+               });
+				insertLoad();
+			}
+			init();
+			function _refreshScroll() {
+				if (_scroll) {
+					_scroll.refresh();
+				}
+			}
+
+			function scrollToElement(el, time, offsetX, offsetY, easing) {
+				if (_scroll) {
+					_scroll.scrollToElement(el, time, offsetX, offsetY, easing);
+				}
+			}
+			
+			function request() {
+				
+				if (flag) {
+					loading = true;
+					var defer1 = $.Deferred();
+					if (oldDef && oldDef.state() == "resolved") {
+						oldDef = defer1;
+						console.log(93);
+						$.when(load(false, defer1)).done(function(data, isInit) {
+							oldDef = defer1;
+						});
+					}
+
+				}
+			}
+
+			function _getloadHtml() {
+				var loadHtml = [];
+				switch (ops.loadType) {
+					case "load":
+						loadHtml.push('<div class="loading">');
+						loadHtml.push('<img class="lodImg" src="../img/load.gif" />');
+						loadHtml.push('<p>加载中</p>');
+						loadHtml.push('</div>');
+						break;
+					case "upload":
+						loadHtml.push('<p class="center">下拉加载更多</p>');
+						break;
+					case "download":
+						loadHtml.push('<p class="center">上拉加载更多</p>');
+						break;
+					case "load-start":
+						loadHtml.push('<p class="center">释放加载</p>');
+						break;
+					case "no-more":
+						loadHtml.push('<p class="center">没有更多</p>');
+						break;
+				}
+				return loadHtml.join("");
+			}
+
+			function insertLoad() {
+				changeLoad();
+				switch (ops.loadType) {
+					case "upload":
+						scrollDiv.prepend(load)
+						break;
+					case "load":
+					case "download":
+						scrollDiv.append(load)
+						break;
+				}
+			}
+
+			function changeLoad() {
+				var loadHtml = me.find(".load").get(0);
+				if (typeof loadHtml != "undefined") {
+					loadHtml = me.find(".load");
+				}else{
+					loadHtml = $("<div class='load'></div>");
+				}
+				loadHtml.html(_getloadHtml());
+				return loadHtml;
+			}
+
+			function loadSuccess(data, isInit) {
+				var _htmlempty = false;
+				var ajaxOps = ops.ajaxOps;
+				if (ajaxOps.dataType == "json") {
+					if (data.end == "true" || data.end == true || data.End == "true" || data.End) {
+						flag = false;
+					}
+				}
+				if (typeof ops.callback == "function") {
+					ops.callback(data, isInit);
+					me.find("img").imgLoad({
+						callback: function() {
+							if (!flag) {
+								ops.loadType = "no-more";
+								//changeLoad();
+							}
+							if (ajaxOps.dataType == "json" && !flag && (data.data == null || data.data.length == 0) && isInit && ops.isShowEmpty) {
+								
+							}
+							
+							_refreshScroll();
+							
+						}
+					});
+				}
+			}
+
+			function load(isInit, dtd) {
+				var ajaxOps = ops.ajaxOps;
+				if (isInit) {
+					ajaxOps.data.pageIndex = 1;
+				} else {
+					ajaxOps.data.pageIndex = (ajaxOps.data.pageIndex + 1);
+				}
+				if (ops.curAjaxId && window[ops.curAjaxId] && isInit) {
+
+					window[ops.curAjaxId].abort();
+					ajaxOps.data.pageIndex = 1;
+				}
+
+				window[ops.curAjaxId] = $.ajax({
+					type: ajaxOps.type,
+					url: ops.url,
+					async: ajaxOps.async,
+					data: ajaxOps.data,
+					dataType: ajaxOps.dataType,
+					loadDiv: appendBody,
+					success: function(data) {
+						loadSuccess(data, isInit);
+						dtd.resolve(data, isInit);
+					},
+					error: function(data, status, e) {}
+				});
+
+				return dtd.promise();
+			}
+
+			function setParam(obj) {
+				flag = !(obj.end);
+				ops.ajaxOps.data = $.extend(ops.ajaxOps.data, obj);
+				if (obj.pageIndex == 1) {
+					appendBody.find(".load").remove();
+					appendBody.append(_getloadHtml());
+					_refreshScroll();
+				}
+				console.log("214")
+				$.when(load(true, defer)).done(function(data, isInit) {
+					oldDef = defer;
+				})
+			}
+
+			function reSetHeight(height) {
+				me.height(height);
+			}
+
+			function reLoading() {
+				//load(true);
+			}
+			me[0].t = {
+				setParam: function(values) {
+					setParam(values);
+				},
+				reLoading: function() {
+					reLoading();
+				},
+				refresh: function() {
+					_refreshScroll();
+				},
+				scrollToElement: function(el, time, offsetX, offsetY, easing) {
+					scrollToElement(el, time, offsetX, offsetY, easing);
+				},
+				reSetHeight: function(height) {
+					reSetHeight(height);
+				}
+			};
+
+		});
+		return $this;
+	};
+
+	$.fn.setParam = function(values) {
+		if (this[0] && this[0].t) {
+			return this[0].t.setParam(values);
+		}
+		return null;
+	};
+	$.fn.reLoading = function() {
+		if (this[0] && this[0].t) {
+			return this[0].t.reLoading();
+		}
+		return null;
+	};
+	$.fn.refresh = function() {
+		if (this[0] && this[0].t) {
+			return this[0].t.refresh();
+		}
+		return null;
+	};
+
+	$.fn.reSetHeight = function(height) {
+		if (this[0] && this[0].t) {
+			return this[0].t.reSetHeight(height);
+		}
+		return null;
+	};
+
+	$.fn.scrollToElement = function(el, time, offsetX, offsetY, easing) {
+		if (this[0] && this[0].t) {
+			return this[0].t.scrollToElement(el, time, offsetX, offsetY, easing);
+		}
+		return null;
+	}
+
+});

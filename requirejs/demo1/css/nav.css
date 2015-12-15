@@ -1,0 +1,96 @@
+.navigation {
+	border-top: #e5e5e5 solid 1px;
+	background: #fff;
+	margin-bottom: 10px;
+	position: relative;
+	border-bottom: #e5e5e5 solid 1px;
+}
+
+.fixed-tab {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	z-index: 100;
+}
+
+.navigation .show-icon {
+	display: -webkit-flex;
+	display: flex;
+	display: -webkit-box;
+	height: 50px;
+	width: 100%;
+}
+
+.navigation li {
+	-webkit-flex: 1;
+	-webkit-box-flex: 1;
+	flex: 1;
+	position: relative;
+	display: block;
+	text-align: center;
+	color: #666666;
+}
+
+.navigation .show-icon li {
+	height: 50px;
+}
+
+.navigation .show-icon li a {
+	display: block;
+	width: 100%;
+	position: relative;
+	font-size: 14px;
+	line-height: 32px;
+	color: #999;
+}
+
+.navigation .show-icon li p {
+	font-size: 12px;
+	line-height: 16px;
+	margin-top: -4px;
+}
+
+.navigation .show-icon .icon-book:before {
+	font-family: iconfont;
+	content: "\e6f3";
+	font-size: 22px;
+}
+
+.navigation li.active {
+	color: #ef5350;
+}
+
+.navigation li.active a {
+	color: #ef5350;
+}
+
+.navigation .hide-icon {
+	display: -webkit-flex;
+	display: flex;
+	display: -webkit-box;
+	height: 40px;
+	line-height: 40px;
+	width: 100%;
+}
+
+.navigation .hide-icon li {
+	height: 40px;
+}
+
+.navigation .hide-icon li a {
+	display: none;
+}
+
+.navigation .hide-icon li p {
+	font-size: 14px;
+}
+
+.navigation .bottom-line {
+	position: absolute;
+	bottom: 0px;
+	width: 25%;
+	left: 0;
+	height: 2px;
+	background: #ef5350;
+}

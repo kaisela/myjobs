@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+
+	<head>
+		<title>requirejs入门（一）</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<script data-main="main" src="require.js"></script>
+		<style>
+			.wrap {
+				width: 40%;
+				margin: 0 auto;
+				position: relative;
+				overflow: hidden; //隐藏超出的内容
+			}
+			
+			.carousel {
+				position: absolute; //定位图片
+				transition: all 0.001s ease-in 0s; //轮播动画
+			}
+			
+			img {
+				width: 100%;
+				display: none;
+			}
+			
+			div {
+				width: 40%;
+			}
+			
+			.button {
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div>
+			<img src="point_hand_0.png" />
+			<img src="point_hand_1.png" />
+			<img src="point_hand_3.png" />
+			<img src="point_hand_4.png" />
+		</div>
+
+		<input data-src="06.mp3,32.mp3,1.mp3" type="button" value="play" style="margin-top: 100px;width: 100px; height: 50px;" />
+		<input data-src="12345.mp3" type="button" value="play" style="margin-top: 100px;width: 100px; height: 50px;" />
+		<input data-src="17.mp3,46.mp3" type="button" value="play" style="margin-top: 100px;width: 100px; height: 50px;" />
+	</body>
+
+</html>
+<script>
+	
+</script>
