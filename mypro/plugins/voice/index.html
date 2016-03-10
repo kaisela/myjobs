@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>hello world</title>
+    <link rel="stylesheet" type="text/css" href="../../css/commons/style.css">
+    <link rel="stylesheet/less" type="text/css" href="../../less/voice.less"/>
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/less.min.js" type="text/javascript"></script>
+    <script src="voice-plugin.js" type="text/javascript"></script>
+</head>
+<body >
+	<!--<div class="voice-cover">
+		<div class="voice-loading">
+			<canvas id="canvas" width="186px" height="186px">
+				
+			</canvas>
+			<div class="voice-icon-con">
+				<i class="icon-yuyin"></i>
+				<span class="second">2&nbsp;&quot;</span>
+			</div>	
+			<a class="re-record" href="javascript:;">重录</a>
+		</div>
+		<div class="bottons">
+			<a class="voice-btn cancel-btn" href="javascript:;">取消</a>
+			<a class="voice-btn end-btn" href="javascript:;">结束录音</a>
+		</div> 
+	</div>-->
+	<input type="button" id="record" value="点击录音"/>
+</body>
+</html>
+<script>
+	$("body").VoiceRecord({
+		startRecord: function() {
+			alert("开始录音");
+		},
+		endCallBack: function(second) {
+			alert("结束录音，录音时间："+second+" s");
+		},
+		reRecordCallBack: function(){
+			alert("重新录音");
+		}
+	});
+	$("#record").on("click",function(e){
+		$("body").startRecord();
+	});
+</script>

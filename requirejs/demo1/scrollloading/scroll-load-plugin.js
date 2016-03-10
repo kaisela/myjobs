@@ -270,33 +270,28 @@ define(["jquery", "iscroll", "imgload"], function($, IScroll) {
 		});
 		return $this;
 	};
-
+	//重新设置ajax请求参数，包括url等
 	$.fn.setParam = function(values) {
 		if (this[0] && this[0].t) {
 			return this[0].t.setParam(values);
 		}
 		return null;
 	};
-	$.fn.reLoading = function() {
-		if (this[0] && this[0].t) {
-			return this[0].t.reLoading();
-		}
-		return null;
-	};
+	//刷新scroll列表，内容有变的情况下，需要刷新列表，具体看参详iscroll
 	$.fn.refresh = function() {
 		if (this[0] && this[0].t) {
 			return this[0].t.refresh();
 		}
 		return null;
 	};
-
+	//重新设置列表外围容器的高度
 	$.fn.reSetHeight = function(height) {
 		if (this[0] && this[0].t) {
 			return this[0].t.reSetHeight(height);
 		}
 		return null;
 	};
-
+	//滚动到列表内，某个元素内,具体参详is
 	$.fn.scrollToElement = function(el, time, offsetX, offsetY, easing) {
 		if (this[0] && this[0].t) {
 			return this[0].t.scrollToElement(el, time, offsetX, offsetY, easing);

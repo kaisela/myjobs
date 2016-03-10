@@ -1,0 +1,123 @@
+@import "base";
+
+/*消息窗口*/
+
+.text-edit-block{
+    background: white;
+    .msg-box{
+        width: 100%;
+        padding: 10px;
+        .edit{
+            img{
+                display: inline-block;
+                margin-top: -2px;
+                margin-left: 2px;
+                margin-right: 2px;
+            }
+        }
+    }
+    .doing-box{
+      width: 100%;
+      padding-top: 10px;
+      background: white;
+      .tool-bar{
+          width: 100%;
+          border-bottom:@borderValue ;
+          i {
+                font-size: 24px;
+                margin-left: 16px;
+                line-height: 40px;
+            }
+          i.active{
+              color:#3284ff;
+          }
+          .icon-yuyin{
+              display: inline-block;
+              float: right;
+              margin-right: 10px;
+          }
+      }
+      
+      .warp{
+            background: white;
+            padding: 10px;
+            margin-top: 10px;
+        }
+      
+      
+    }
+}
+
+.img-box ul{
+    width: 100%;
+    padding-top: 10px;
+}
+.img-box ul li{
+    float: left;
+    width: 22.5%;
+    padding-bottom:22.5% ;
+    margin-right: 3%;
+    margin-bottom: 3%;
+    position: relative;
+    background-position: 50% 50%;
+    background-size:150% ;
+    background-repeat:no-repeat ;
+    
+}
+.img-box ul li:last-child{
+    border: 1px dotted #b4b4b4;
+    float: left;
+    cursor: pointer;
+    position: relative;
+}
+.img-box ul li:nth-child(4n){
+    margin-right: 0;
+}
+.img-box ul li:last-child:before{
+    content: "";
+    display: block;
+    width: 2px;
+    height: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -20px;
+    margin-left: -1px;
+    background:#b4b4b4 ;
+}
+
+.img-box ul li:last-child:after{
+    content: "";
+    display: block;
+    width: 40px;
+    height: 2px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -1px;
+    margin-left: -20px;
+    background:#b4b4b4 ;
+}
+
+.img-box ul li img{
+    width: 80px;
+    height: 80px;
+}
+
+.face-act{
+    width: 100%;
+    padding: 10px 0;
+    overflow: hidden;
+    -webkit-user-select: none;
+}
+.face-act li{
+    float: left;
+    width: 26px;
+    height: 26px;
+    margin: 5px;
+    background: url(../img/faces/faceact.png) no-repeat scroll left top;
+    background-size:100% ;
+}
+
+
+

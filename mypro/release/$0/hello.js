@@ -1,0 +1,1 @@
+var http=require("http");http.createServer(function(e,t){t.writeHead(200,{"Content-Type":"text/plain"}),respone.write(),t.write("Hello World"),t.end()}).listen(8888),console.log("nodejs start listen 8888 port!");

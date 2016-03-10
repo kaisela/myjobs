@@ -1,0 +1,171 @@
+/******************************************************************************
+** STRUCTURE OF DYNAMICALLY CREATED ELEMENTS
+*******************************************************************************
+**
+** <div id="ORIGINAL_IDWidgContainer" class="widgContainer">
+**     <ul id="ORIGINAL_IDWidgToolbar" class="widgToolbar">
+**         <li id="BUTTON_ID" class="widgEditButton">
+**             <a></a>
+**         </li>
+**         <li class="widgEditSelect">
+**             <select>
+**             </select>
+**         </li>
+**     </ul>
+**     <iframe id="ORIGINAL_IDWidgIframe" class="widgIframe">
+**     </iframe>
+**     <textarea id="ORIGINAL_IDWidgTextarea" class="widgEditor">
+**     </textarea>
+** </div>
+*/
+
+/* TOOLBAR BUTTONS */
+
+.widgToolbar a
+{
+	display: block;
+	width: 24px;
+	height: 24px;
+	overflow: hidden;
+	background-repeat: no-repeat;
+	text-indent: -1000em;
+	text-decoration: none;
+}
+
+
+
+.widgToolbar li.widgEditButton
+{
+	background-image: url();
+	background-repeat: no-repeat;
+	background-position: bottom right;
+}
+
+.widgButtonBold
+{
+	background-image: url(icons.gif);
+	background-position: 0px 3px;
+}
+
+.widgButtonHTML
+{
+	background-image: url(icons.gif);
+	background-position: -260px 3px;
+}
+
+.widgButtonImage 
+{
+	background-image: url(icons.gif);
+	background-position: -380px 3px;
+}
+
+.widgButtonItalic 
+{
+	background-image: url(icons.gif);
+	background-position: -60px 3px;
+	
+}
+
+.widgButtonLink
+{
+	background-image: url(icons.gif);
+	background-position: -500px 3px;
+}
+
+.widgButtonOrdered
+{
+	background-image: url(icons.gif);
+	background-position: -80px 3px;
+}
+
+.widgButtonUnordered
+{
+	background-image: url(icons.gif);
+	background-position: -20px 3px;
+}
+
+.widgSource a
+{
+	background-image: url(icons.gif);
+	cursor: default;
+}
+
+.widgSource li.on a, .widgSource li.on a:hover
+{
+	background-position: 0 0;
+}
+
+.widgSource .widgButtonHTML
+{
+	background-image: url(icons.gif);
+	background-position: -280px 3px;
+}
+
+.widgSource .widgButtonHTML:hover
+{
+	cursor: pointer;
+}
+
+
+
+
+/* TOOLBAR */
+
+.widgToolbar
+{
+	list-style: none;
+	width: 100%;
+	height: 42px;
+	margin: 0;
+	padding: 0 0 0 2px;
+	border: 1px solid #CCCCCC;
+	background-image: url(../images/widgeditor_toolbar_bg.gif);
+	background-repeat: repeat-x;
+}
+
+* html .widgToolbar
+{
+	width: auto;
+}
+
+.widgToolbar li
+{
+	display: inline;
+	float: left;
+	width: 26px;
+	height: 26px;
+	margin-top: 9px;
+	margin-left: 7px;
+	line-height: 30px;
+}
+
+
+
+
+/* EDITING AREA */
+
+.widgIframe
+{
+	clear: left;
+	width: 100%;
+	height: 200px;
+	border-top-width: 1px;
+}
+
+.widgContainer textarea.widgEditor
+{
+	clear: left;
+	width: 100%;
+	height: 200px;
+	border-top-width: 1px;
+	padding: 0;
+}
+
+
+
+
+/* EDITOR CONTAINER */
+
+.widgContainer
+{
+}

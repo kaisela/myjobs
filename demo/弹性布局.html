@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2016 by tiger02 (http://jsbin.com/zolupe/3/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+
+<style id="jsbin-css">
+.flex, .item {
+  background: #f55;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.wrap, .wrap1 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  width: 100%;
+  border: 1px solid #abc;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.inner {
+  -webkit-box-flex: 1;
+  display: -webkit-box;
+  overflow: hidden;
+}
+
+.flex {
+  -webkit-box-flex: 1;
+  margin-right: 1px;
+  margin-bottom: 1px;
+  padding-top: 33.3%;
+  font-size: 0;
+  position: relative;
+}
+
+
+.wrap1 .inner:nth-child(1) .box1 {
+  padding-top: 66.6%;
+  width: 66.6%;
+}
+.wrap1 .box2 {
+  display: -webkit-box;
+  width: 33.3%;
+  -webkit-box-orient: vertical;
+}
+.wrap1 .box2 .flex {
+  padding-top: 33.3%;
+}
+
+.inner:nth-child(2) .flex:nth-child(3) {
+  margin-right: 0;
+}
+.inner:nth-child(2) .box3 .flex:nth-child(2) {
+  margin-right: 1px;
+}
+
+.box2 .flex {
+  margin-right: 0;
+}
+
+.inner:nth-child(2) .flex {
+  margin-bottom: 0;
+}
+</style>
+</head>
+<body>
+  <p>上下划分版</p>
+  <div class="wrap1">
+    <div class="inner">
+      <div class="flex box1">1</div>
+      <div class="box2">
+        <div class="flex">2</div>
+        <div class="flex">3</div>
+      </div>
+    </div>
+    <div class="inner">
+      <div class="flex">4</div>
+      <div class="flex">5</div>
+      <div class="flex">6</div>
+    </div>
+  </div>
+
+
+</body>
+</html>

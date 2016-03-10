@@ -1,0 +1,112 @@
+*{
+	box-sizing: border-box;
+}
+
+.address-picker {
+    position: absolute;
+  margin: 0;
+  padding: 0;
+  background: #F2F2F2;
+  color: #333;
+  top: 0px;
+  width: 100%;
+  display: none;
+}
+.address-picker .top-tabs{
+	position: fixed;
+	top: 0px;
+	z-index: 10000;
+	width: 100%;
+	display: block;
+	background: #f2f2f2;
+}
+.address-picker ul.tabs {
+	margin: 10px auto;
+	display: block;
+	padding-left: 8px;
+}
+.address-picker ul.tabs {
+	background: none;
+	border-radius: 3px;
+	overflow: hidden;
+}
+
+.address-picker ul.tabs > li {
+	float: left;
+	border: none;
+	text-align: center;
+	position: relative;
+}
+.address-picker ul.tabs > li:last-child .icon-rArrow{
+	display: none;
+}
+.address-picker ul.tabs > li:last-child a{
+	padding-right: 10px;
+}
+.address-picker ul.tabs > li .icon-rArrow{
+	position: absolute;
+	right: 0px;
+	top:4px;
+}
+.address-picker ul.tabs > li >a {
+	display: block;
+	line-height: 30px;
+	color: #666;
+	font-size: 16px;
+	background: none;
+	width: 100%;
+	text-align: center;
+	padding: 0px 10px;
+	
+	padding-right: 24px;
+}
+.address-picker ul.tabs > li.active >a {
+	color: #ef5350;
+}
+
+.address-picker .tab-blcok{
+	width: 100%;
+	padding: 10px;
+}
+.address-content {
+    border-top:0px;
+    margin: 0;
+    position: relative;
+    z-index: 3001;
+    padding-top: 52px;
+    
+}
+.address-content > .tab-pane {
+    display: none;
+}
+
+.address-content > .active {
+    display: block;
+}
+.address-picker .tab-pane{
+	padding: 0 10px ;
+	background: #fff;
+}
+.address-picker > div.address-content > div.tab-pane button{
+	display: block;
+	width: 100%;
+	text-align: left;
+    font-size: 16px;
+    padding-left: 8px;
+    color: #808080;
+	height:60px;
+	background: #fff;
+	border-bottom: 1px solid #e5e5e5;
+	box-sizing: border-box;
+}
+.address-picker > div.address-content > div.tab-pane button.active{
+	color:#ef5350;
+}
+.address-picker > div.address-content > div.tab-pane button.active:hover{
+	color:#ef5350;
+	background-color:#fff;
+}
+.address-picker > div.address-content > div.tab-pane button:hover{
+	background-color:#f9f9f9;
+	color:#ef5350;
+}

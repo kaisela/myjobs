@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>hello world</title>
+    <link rel="stylesheet/less" type="text/css" href="../../less/img-preview.less"/>
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/less.min.js" type="text/javascript"></script>
+    <script src="img-preview.js"></script>
+</head>
+<body>
+	<!--<div class="img-preview" style="display: none;">
+		<ul class="img-view">
+			<li>
+				<img class="" src="http://pic15.nipic.com/20110703/1812958_142601294193_2.jpg">
+			</li>
+			<li>
+				<img class="" src="http://pic15.nipic.com/20110703/1812958_142601294193_2.jpg">
+			</li>
+		</ul>
+		<div class="bar">
+			<a class="back" href="javascript:;"><i class="icon-back"></i></a>
+			<div class="num-view"><span class="current-index">1</span>/<span class="totle-index">5</span></div>
+			<a class="del" href="javascript:;"><i class="icon-rubbish"></i></a>
+		</div>
+	</div>-->
+	<div class="img-preview" id="imgs"></div>
+</body>
+</html>
+<script>
+	var imgList = ['http://img0w.pconline.com.cn/pconline/1206/04/2811737_14.jpg',
+					'http://d01.res.meilishuo.net/pic/_o/7c/b4/65d1cd1b94c845ab31a5c13951ca_600_600.jpeg',
+					'http://pic.yesky.com/uploadImages/2014/214/14/5H554759LT03.jpg',
+					'http://img5.duitang.com/uploads/item/201412/17/20141217083452_ViXsP.thumb.700_0.png',
+					'http://img1.gtimg.com/jiangsu/pics/hv1/178/11/1719/111780958.jpg',
+					'http://www.ilewed.com/bbs/data/attachment/forum/201308/13/095041ij4opd4j4qy2up4i.jpg'];
+//var imgList = ['img_1094.jpg','img_1094.jpg','img_1094.jpg'];
+
+	$("#imgs").imgPreview({
+		imgs:imgList
+	});
+</script>

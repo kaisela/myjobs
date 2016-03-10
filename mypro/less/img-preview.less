@@ -1,0 +1,64 @@
+@import "base";
+
+.img-preview{
+    .cover(88888,1);
+    display: none;
+    .img-view{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        li{
+            position:absolute;
+            width: 100%;
+            height: 100%;
+            .display-flex;
+            .transition;
+            .box-align(center);
+            img{
+                margin: 0 auto;
+            }
+            .loading{
+                position: absolute;
+                z-index: 100;
+                width: 30px;
+                height: 30px;
+            }
+        }
+    }
+    .bar{
+        position: absolute;
+        bottom: 0px;
+        background: rgba(0,0,0,.5);
+        padding: @padding-Value;
+        width: 100%;
+        color: #fff;
+        .display-flex;
+        .back{
+            .flex-num(1);
+            text-align: left;
+            color: #fff;
+        }
+        .num-view{
+            .flex-num(1);
+            text-align: center;
+            .current-index{
+                margin-right: 5px;
+            }
+            .totle{
+                margin-left: 5px;
+            }
+            
+        }
+        .del{
+            .flex-num(1);
+            text-align: right;
+            .icon-rubbish:before{
+                content: "\e736";
+                font-family: iconfont;
+                font-size: 20px;
+                color: #fff;
+            }
+        }
+    }
+    
+}

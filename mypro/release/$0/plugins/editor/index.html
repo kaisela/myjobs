@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>hello world</title>
+    <link rel="stylesheet/less" type="text/css" href="/css//less/editor.css"/>
+    <link rel="stylesheet/less" type="text/css" href="/css//less/voice.css"/>
+    <link rel="stylesheet/less" type="text/css" href="/css//less/img-preview.css"/>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/less.min.js" type="text/javascript"></script>
+    <script src="/plugins/voice/voice-plugin.js" type="text/javascript"></script>
+    <script src="/plugins/img-preview/img-preview.js" type="text/javascript"></script>
+</head>
+<body>
+	<div class="text-edit-block" style="">
+			<div class="msg-box">
+				<textarea class="edit" placeholder="在此输入内容..."></textarea>
+			</div>
+
+			<div class="doing-box">
+				<div class="tool-bar">
+					<i class="icon-img active"></i>
+					<i class="icon-face"></i>
+					<i class="icon-yuyin"></i>
+				</div>
+				<div class="warp">
+					<div class="img-box" style="display: block;">
+						<ul>
+							
+							<li class="add-img"></li>
+							
+						</ul>
+						<div class="clearfix"></div>
+					</div>
+					<div class="face-box" style="display: none;">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="img-preview" id="imgs"></div>
+</body>
+</html>
+<script type="text/javascript" src="/plugins/editor/faceJson.js" ></script>
+<script>
+	$(function(){
+		var editBlock = $(".text-edit-block");
+		editBlock.imgs=[];
+		$("body").VoiceRecord();
+		$(".icon-yuyin").on("click",function(e){
+			$("body").startRecord();
+		});
+		$("#imgs").imgPreview({
+			imgs:editBlock.imgs,
+			delCallback:function(i){
+				editBlock.find(".img:eq("+i+")").remove();
+			}
+		});
+		
+		editBlock.find(".icon-img").on("click",function(){
+			$(this).addClass("active");
+			editBlock.find(".icon-face").removeClass("active");
+			editBlock.find(".img-box").show();
+			editBlock.find(".face-box").hide();
+		});
+		
+		editBlock.find(".icon-face").on("click",function(){
+			$(this).addClass("active");
+			editBlock.find(".icon-img").removeClass("active");
+			editBlock.find(".img-box").hide();
+			editBlock.find(".face-box").show();
+		});
+		
+		editBlock.find(".add-img").on("click",function(){
+			$(this).before('<li class="img" style="background-image: url(http://img0w.pconline.com.cn/pconline/1206/04/2811737_14.jpg);"></li>');
+			$("#imgs").addImg('http://img0w.pconline.com.cn/pconline/1206/04/2811737_14.jpg');
+			
+		});
+		editBlock.on("click",".img",function(){
+			$("#imgs").setIndex($(this).index(".img"));
+			$("#imgs").showView();
+		});
+		
+		var text = editBlock.find(".edit").get(0);
+			var cursorPosition = {
+				positionStart: 0,
+				positionEnd: 0,
+				Jstext: text
+			};
+			editBlock.find(".edit").on("keyup", function() {
+				cursorPosition.positionStart = cursorPosition.Jstext.selectionStart;
+				cursorPosition.positionEnd = cursorPosition.Jstext.selectionEnd;
+			});
+			editBlock.find(".edit").on("input", function() {
+				cursorPosition.positionStart = cursorPosition.Jstext.selectionStart;
+				cursorPosition.positionEnd = cursorPosition.Jstext.selectionEnd;
+			});
+			editBlock.find(".edit").on("click", function() {
+				cursorPosition.positionStart = cursorPosition.Jstext.selectionStart;
+				cursorPosition.positionEnd = cursorPosition.Jstext.selectionEnd;
+			});
+
+			function insertText(obj, str) {
+				if (document.selection) {
+					var sel = document.selection.createRange();
+					sel.text = str;
+				} else if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
+					var cursorPos,
+						endPos = obj.selectionEnd,
+						tmpStr = obj.value;
+					cursorPos = cursorPosition.positionStart;
+					obj.value = tmpStr.substring(0, cursorPosition.positionStart) + str + tmpStr.substring(cursorPosition.positionEnd, tmpStr.length);
+					cursorPos += str.length;
+					cursorPosition.positionStart = cursorPosition.positionEnd = cursorPos;
+				} else {
+					obj.value += str;
+				}
+			}
+			//			选择表情
+			editBlock.on("click",".face-act li", function(e) {
+				e.stopPropagation();
+				var dataName = $(this).attr("data-name");
+				insertText(text, dataName);
+			});
+		
+	});
+	
+</script>

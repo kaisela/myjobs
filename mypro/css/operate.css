@@ -1,0 +1,87 @@
+
+.operate-con .operate{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	color: #333;
+	background-color: #f2f2f2;
+	overflow: hidden;
+	z-index: 8888888;
+	font-size: 17px;
+}
+
+.operate .cancel{
+	line-height: 48px;
+	color: #da5c5e;
+	width: 100%;
+	text-align: center;
+	background-color: #fff;
+	border: 0px;
+	font-size: 17px;
+	border-top: 1px #e6e6e6 solid;
+}
+
+.operate .title{
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	color: #999;
+	font-size: 12px;
+	background: #fff;
+	border-bottom:1px #e6e6e6 solid;
+}
+.operate-con{
+	position: absolute;
+	top:0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	overflow: hidden;
+	z-index: 888888;
+	display: none;
+	background: rgba(0,0,0,.5);
+	
+}
+.operate-con.hide{
+	top:120%;
+	-webkit-transform: translate3d(0,120%,0);
+	transform: translate3d(0,120%,0);
+}
+
+.operate-con-bg {
+	background: rgba(0,0,0,.5);
+}
+.operate-con .operate{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: auto!important;
+	background-color: #fffcfc;
+	overflow: hidden;
+	z-index: 8888888;
+	-webkit-transition: all 0.3s;
+	transition: all 0.3s;
+	-webkit-transform: translate3d(0,120%,0)!important;
+	transform: translate3d(0,120%,0)!important;
+}
+.operate-con .operate.show{
+	-webkit-transform: translate3d(0,0,0)!important;
+	transform: translate3d(0,0,0)!important;
+}
+.operate .items {
+	height: auto!important;
+	overflow: hidden;
+	background-color: #fff;
+	margin-bottom: 10px;
+}
+.operate .items .item-btn{
+	line-height: 48px;
+	height: 48px;
+	text-align: center;
+	border-bottom: 1px #e6e6e6 solid;
+}
+.operate .items .item-btn.active{
+	
+}

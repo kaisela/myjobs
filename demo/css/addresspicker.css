@@ -1,0 +1,182 @@
+.dropdown-menu{
+border: 0px;
+}
+.address-picker {
+  margin: 0;
+  padding: 0;
+}
+
+.address-picker ul li a:hover {
+    cursor: pointer;
+}
+
+.address-tabs.background-blue {
+    background-color: #EFF3F8;
+    border: 1px solid #C5D0DC;
+    padding-top: 6px;
+}
+
+/* .address > li > a {
+     float: left;
+     position: relative;
+ }*/
+
+.address-tabs {
+    width: 100%;
+    border: 1px solid #1695a1;
+    display: inline-block;
+    margin: 0;
+    position: relative;
+    top: 6px;
+    border-bottom: 0px;
+	background-color:#e9f7f8;
+
+}
+
+.address-tabs > li {
+    display: inline-block;
+	margin-bottom:0px;
+	margin:0px;
+}
+
+.address-tabs > li > a {
+    display: inline-block;
+	border: 0px;
+  	width:79px;
+  	height:40px;
+  	line-height:40px;
+  	text-align:center;
+  	padding:0px;
+  	border-radius:0px;
+  	margin:0px;
+	color:#14a8b6;
+   /* position: relative;*/
+}
+
+.address-tabs.padding-12 {
+}
+
+.address-tabs.tab-color-blue > li.active > a {
+  color: #fff;
+  background-color: #6bc2ca;
+  border-width:0px;
+}
+
+.address-tabs.tab-color-blue > li.active > a:hover {
+  color: #fff;
+  background-color: #6bc2ca;
+  border: 0px;
+  width:79px;
+  height:40px;
+  line-height:40px;
+  text-align:center;
+  padding:0px;
+}
+
+
+
+
+
+.address-content {
+    border: 1px solid #1695a1;
+    border-top:0px;
+    margin: 0;
+    position: relative;
+    z-index: 3001;
+    
+}
+
+.address-content > .tab-pane {
+    display: none;
+}
+
+.address-content > .active {
+    display: block;
+}
+
+
+.address-content > div.tab-pane > label  {
+    margin-right: 5px;
+}
+
+
+.address-picker > div.address-content > div.tab-pane button{
+    padding:0 10px 0 10px;
+    margin: 0;
+    font-size: 14px;
+    color: #808080;
+	height:30px;
+	text-align:center;
+}
+.address-picker > div.address-content > div.tab-pane button.active{
+	color:#ff9000;
+}
+.address-picker > div.address-content > div.tab-pane button.active:hover{
+	color:#ff9000;
+	background-color:#fff;
+}
+.address-picker > div.address-content > div.tab-pane button:hover{
+    text-decoration: none;
+	background-color:#f9f9f9;
+	color:#ff9000;
+}
+.street-picker > div.street-content > ul {
+    list-style: none outside none;
+    margin: 0;
+
+}
+.street-picker > div.street-content > ul > li{
+    border-bottom: 1px solid #EEEEEE;
+    padding: 3px 10px;
+    cursor: pointer;
+}
+
+
+.street-picker > div.street-content > ul > li:hover {
+    color: #4C8FBD
+}
+
+.street-picker > div.street-nav > a {
+    cursor: pointer;
+}
+.tab-pane tr{
+	border-bottom:solid 1px #f7f7f7;
+	padding: 5px 0;
+}
+.tab-pane .tr-label{
+	vertical-align:top;
+	width:60px;
+	padding-left:12px;
+	color:#13bdcd;
+	font-weight:bold;
+	padding-top:6px;
+}
+.address-picker > div.address-content >div.prov{
+	padding:2px 0px 5px 0px;
+}
+.address-picker > div.address-content >div.prov button{
+	width:64px;
+	padding:0px;
+}
+.address-picker > div.address-content >div.prov button:hover{
+	width:64px;
+	padding:0px;
+}
+.pane{
+	padding:2px 0px 5px 20px;
+}
+
+@media screen and (max-width: 768px){
+	.address-picker > div.address-content > div.tab-pane button{
+	    padding:0 20px 0 20px;
+	}
+	.address-picker > div.address-content >div.prov button{
+		width:85px;
+		padding:0px;
+	}
+	.address-picker > div.address-content >div.prov button:hover{
+		width:85px;
+		padding:0px;
+	}
+	
+}

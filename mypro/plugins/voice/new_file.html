@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Making things move</title>
+<meta charset="gbk">
+<script src="../../js/jquery.js"></script> 
+<script type="text/javascript">
+$(document).ready(function() {	
+   var canvas = $("#myCanvas");
+   var context = canvas.get(0).getContext("2d");
+			
+   var canvasWidth = canvas.width();
+   var canvasHeight = canvas.height();		
+   var playAnimation = true;
+				
+   var startButton = $("#startAnimation");
+   var stopButton = $("#stopAnimation");
+    var canvas1 = $("#myCanvas1");
+    var context1 = canvas1.get(0).getContext("2d");
+    context1.arc(150,150,100,0,2*Math.PI,true); 
+    context1.stroke();//填充绘制的圆
+    context1.beginPath();
+    context1.arc(300,300,100,0,2*Math.PI,true); 
+    context1.strokeStyle="red";
+    context1.stroke();//填充绘制的圆
+	
+    startButton.hide();
+    startButton.click(function() {
+      $(this).hide();
+      stopButton.show();
+      playAnimation = true;
+      animate();
+   });
+				
+   stopButton.click(function() {
+     $(this).hide();
+     startButton.show();				
+     playAnimation = false;
+   });
+				
+   // Class that defines new shapes to draw
+   var Shape = function(x, y,radius,angle) {
+     this.x = x;
+     this.y = y;
+     this.radius=radius;
+     this.angle = angle;
+    };
+				
+				
+   var shapes = new Array();
+   shapes.push(new Shape(150, 150, 100,5));
+   shapes.push(new Shape(300, 300, 100,10));
+		
+ function animate() {
+  context.clearRect(0, 0, canvasWidth, canvasHeight);
+  var shapesLength = shapes.length;
+  for (var i = 0; i < shapesLength; i++) {
+    var tmpShape = shapes[i];				
+    var x = tmpShape.x+(tmpShape.radius*Math.cos(tmpShape.angle*(Math.PI/180)));
+    var y = tmpShape.y+(tmpShape.radius*Math.sin(tmpShape.angle*(Math.PI/180)));
+				
+    if(i==0) tmpShape.angle += 5;
+    else tmpShape.angle += 10;
+    if (tmpShape.angle > 360) {
+      tmpShape.angle = 0;	
+    };					
+					
+    context.fillRect(x, y, 10, 10);
+  };
+				
+  if (playAnimation) {
+    setTimeout(animate, 33);
+  };
+ };
+				
+  animate();
+});
+</script>
+</head>
+
+<body>
+ <div>
+   <button id="startAnimation">Start</button>
+   <button id="stopAnimation">Stop</button>
+ </div>
+ <canvas id="myCanvas" width="800" height="500" style="z-index:2;position:absolute"></canvas>
+ <canvas id="myCanvas1" width="800" height="500" style="z-index:1;position:absolute"></canvas>
+
+</body>
+</html>

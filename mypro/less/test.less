@@ -1,0 +1,9 @@
+@import "base";
+.box {
+  color: saturate(@baseFontColor, 5%);
+  border-color: lighten(@baseFontColor, 30%);
+  background-color: @baseFontColor;
+  div { .box-shadow(0 0 5px, 30%) }
+  .transform .rate(30deg);
+  .border-radius(0px,10px,5px,15px);
+}

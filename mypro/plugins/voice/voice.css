@@ -1,0 +1,117 @@
+.voice-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+  z-index: 88888;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+}
+.voice-cover .voice-loading {
+  position: relative;
+  width: 186px;
+  height: 186px;
+  border-radius: 50%;
+  background: #d1d7dd;
+  border: #b7bcc1 1px solid;
+  margin: 0 auto;
+  margin-top: 80px;
+}
+.voice-cover .voice-icon-con {
+  width: 166px;
+  height: 166px;
+  position: absolute;
+  top: 9px;
+  left: 9px;
+  border-radius: 50%;
+  background: linear-gradient(top, #ffffff, #e6e7eb);
+  background: -webkit-linear-gradient(top, #ffffff, #e6e7eb);
+  /*Safari5.1 Chrome 10+*/
+  background: -o-linear-gradient(top, #ffffff, #e6e7eb);
+  /*Opera 11.10+*/
+  border: #bec4c9 1px solid;
+  text-align: center;
+}
+.voice-cover .voice-icon-con .icon-yuyin {
+  display: block;
+  font-size: 48px;
+  color: #2792ff;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+.voice-cover .voice-icon-con .second {
+  color: #333333;
+  font-size: 18px;
+  display: inline-block;
+  margin-top: 3px;
+  padding-left: 5px;
+}
+.voice-cover .re-record {
+  position: absolute;
+  display: block;
+  background: linear-gradient(top, #ffffff, #e6e8eb);
+  background: -webkit-linear-gradient(top, #ffffff, #e6e8eb);
+  /*Safari5.1 Chrome 10+*/
+  background: -o-linear-gradient(top, #ffffff, #e6e8eb);
+  /*Opera 11.10+*/
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  top: 140px;
+  left: 170px;
+  font-size: 18px;
+  color: #333333;
+  text-align: center;
+  line-height: 60px;
+  text-underline: none;
+  border: 1px solid #8d8e8f;
+}
+.voice-cover .re-record:hover {
+  background: linear-gradient(top, #e6e8eb, #ffffff);
+  background: -webkit-linear-gradient(top, #e6e8eb, #ffffff);
+  /*Safari5.1 Chrome 10+*/
+  background: -o-linear-gradient(top, #e6e8eb, #ffffff);
+  /*Opera 11.10+*/
+}
+.voice-cover .bottons {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  padding: 10px;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+}
+.voice-cover .bottons .voice-btn {
+  display: block;
+  flex: 1;
+  -webkit-flex: 1;
+  -webkit-box-flex: 1;
+  background: linear-gradient(top, #e6e8eb, #ffffff);
+  background: -webkit-linear-gradient(top, #e6e8eb, #ffffff);
+  /*Safari5.1 Chrome 10+*/
+  background: -o-linear-gradient(top, #e6e8eb, #ffffff);
+  /*Opera 11.10+*/
+  font-size: 20px;
+  color: #333333;
+  height: 65px;
+  line-height: 65px;
+  text-align: center;
+  border-radius: 4px;
+  width: 50%;
+}
+.voice-cover .bottons .voice-btn:hover {
+  background: linear-gradient(top, #e6e8eb, #ffffff);
+  background: -webkit-linear-gradient(top, #e6e8eb, #ffffff);
+  /*Safari5.1 Chrome 10+*/
+  background: -o-linear-gradient(top, #e6e8eb, #ffffff);
+  /*Opera 11.10+*/
+}
+.voice-cover .bottons .cancel-btn {
+  margin-right: 10px;
+}
+.voice-cover .bottons .end-btn {
+  margin-left: 10px;
+}

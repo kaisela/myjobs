@@ -835,6 +835,7 @@ IScroll.prototype = {
 /* REPLACE START: _translate */
 			var u = navigator.userAgent, app = navigator.appVersion;
 			var flag = !((!!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/))||(u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1) || (u.indexOf('iPad') > -1))
+			
 			if(flag){
 				this.scrollerStyle[utils.style.transform] = 'translate(' + x + 'px,' + y + 'px)' + this.translateZ;
 			}else{

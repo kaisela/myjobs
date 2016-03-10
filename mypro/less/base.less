@@ -1,0 +1,754 @@
+@charset "utf-8";
+@bobyBackground:#f2f2f2;
+@baseFontColor:#666666;
+@lighterFontColer:#999;
+@deepFontColor:#333;
+@baseFontSize:14px;
+@smallFontSize:12px;
+@bigFontSize:16px;
+@FontFamily:"方正黑体简体","微软雅黑" ,sans-serif;
+@borderValue:1px solid #e5e5e5;
+@iconFontSize:18px;
+@padding-Value:10px;
+*{
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -webkit-appearance: none;
+}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td { margin:0; padding:0;
+    font-size:@baseFontSize; font-family:@FontFamily;  }
+
+td,th,caption { font-size:@bigFontSize; }
+h1, h2, h3, h4, h5, h6 { font-weight:normal; font-size:@bigFontSize; }
+address, caption, cite, code, dfn, em, strong, th, var ,i{ font-style:normal; font-weight:normal;}
+
+ol,ul,li { list-style:none; }
+input, textarea, select, button, option { font-size:@bigFontSize;outline:none; }
+textarea{ resize:none;}
+table { border-collapse:collapse; }
+a{text-decoration:none;}
+body{
+    margin:0; 
+    padding:0;
+    font-size:@bigFontSize; 
+    font-family: @FontFamily;
+    background-color: @bobyBackground;
+    color: @baseFontColor;
+    /*padding-bottom:44px;*/
+}
+@font-face {font-family: 'iconfont';
+    src: url('../iconfont/iconfont.eot'); /* IE9*/
+    src: /*url('../iconfont/iconfont.eot?#iefix') format('embedded-opentype'),  IE6-IE8 */
+    /*url('../iconfont/iconfont.woff') format('woff'),  chrome、firefox */
+    url('../iconfont/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('../iconfont/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+@font-face {
+  font-family: 'iconfont';
+  src: url('//at.alicdn.com/t/font_1447912907_9865785.eot'); /* IE9*/
+  src: url('//at.alicdn.com/t/font_1447912907_9865785.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/font_1447912907_9865785.woff') format('woff'), /* chrome、firefox */
+  url('//at.alicdn.com/t/font_1447912907_9865785.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/font_1447912907_9865785.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+                    
+.clearfix{
+    clear: both;
+}
+.container{
+    width: 100%;
+    overflow-x: hidden;
+}
+.icon-xian{
+    font-family: iconfont;
+    color: #d84046;
+    font-size: @iconFontSize;
+}
+.icon-xian:before{
+    content: "\e618";
+    font-family: iconfont;
+    color: #d84046;
+    font-size: @iconFontSize;
+}
+.icon-video:before{
+    content: "\e6ec";
+    font-family: iconfont;
+    color: #858585;
+    font-size: @iconFontSize;
+}
+.icon-voice:before{
+    content: "\e6eb";
+    font-family: iconfont;
+    color: #858585;
+    font-size: @iconFontSize;
+    margin-left: 8px;
+}
+.icon-cu{
+    font-family: iconfont;
+    color: #ffab40;
+    font-size: @iconFontSize;
+}
+.icon-cu:before{
+    content: "\e612";
+}
+.icon-xin{
+    font-family: iconfont;
+    color: #a8d142;
+    font-size: @iconFontSize;
+}
+.icon-xin:before{
+    content: "\e611";
+}
+.icon-zen{
+    font-family: iconfont;
+    color: #64b0db;
+    font-size: @iconFontSize;
+}
+.icon-zen:before{
+    content: "\e652";
+}
+.icon-jian:before{
+    font-family: iconfont;
+    color: #9d55b8;
+    font-size: @iconFontSize;
+    content: "\e6e2";
+}
+.icon-ma:before{
+    font-family: iconfont;
+    color: #4ad3ab;
+    font-size: @iconFontSize;
+    content: "\e6e3";
+}
+
+.icon-huan:before{
+    font-family: iconfont;
+    color: #64b0db;
+    font-size: @iconFontSize;
+    content: "\e610";
+}
+.icon-rArrow:before{
+    content: "\e61f";
+    font-family: iconfont;
+}
+.icon-qrc:before{
+    content: "\e6b6";
+    font-family: iconfont;
+    font-size: 24px;
+}
+.icon-shop:before{
+    content: "\e6ef";
+    font-family: iconfont;
+    font-size: 26px;
+}
+.icon-yuyue{
+    color:#00bb9c;
+}
+.icon-mingpian{
+    color:#ea8010;
+}
+.icon-kehu{
+    color:#4fa0d9;
+}
+.icon-saoma{
+    color:#00bb9c;
+}
+.icon-caigou{
+    color:#ff650d;
+}
+.icon-dingdan{
+    color:#00bb9c;
+}
+.icon-daogou{
+    color:#4fa0d9;
+}
+.icon-yijia{
+    color:#ea8010;
+}
+.icon-mengdian{
+    color:#ff5d00;
+}
+.icon-shangpin{
+    color:#49a4fd;
+}
+.icon-geren{
+    color:#4fa0d9;
+}
+.icon-erweima{
+    color:#4fa0d9;
+}
+.icon-jiemeng{
+    color:#4fa0d9;
+}
+.icon-jingjia{
+    color:#ea8010;
+}
+.icon-paihang{
+    color:#ff650d;
+}
+.icon-pingbi{
+    color:#4fa0d9;
+}
+.icon-xiaofei{
+    color:#00bb9c;
+}
+.icon-pingjia{
+    color:#ea8010;
+}
+.icon-gonggao{
+    color:#ea8010;
+}
+.icon-huodong{
+    color:#11cd6e;
+}
+.icon-taolun{
+    color:#11cd6e;
+}
+.icon-zhishi{
+    color:#ea8010;
+}
+.icon-taocan{
+    color:#4fa0d9;
+}
+.icon-taocan{
+    color:#ea8010;
+}
+.icon-shuju{
+    color:#00bb9c;
+}  
+.icon-gouwuche{
+    color: #ffc63a;
+}
+.icon-dizhi{
+    color: #1db0e7;
+} 
+/*类目Icon*/
+
+.icon-jiaofangbidu:before{
+    content: "\e633";
+    font-family: iconfont;
+    
+}
+.icon-qianqizhunbei:before{
+    content: "\e632";
+    font-family: iconfont;
+    
+}
+.icon-zhutichaigai:before{
+    content: "\e631";
+    font-family: iconfont;
+    
+}
+.icon-shuidian:before{
+    content: "\e62e";
+    font-family: iconfont;
+    
+}
+.icon-fangshui:before{
+    content: "\e634";
+    font-family: iconfont;
+    
+}
+.icon-niwa:before{
+    content: "\e626";
+    font-family: iconfont;
+    
+}
+.icon-mugong:before{
+    content: "\e627";
+    font-family: iconfont;
+    
+}
+.icon-youqi:before{
+    content: "\e635";
+    font-family: iconfont;
+    
+}
+.icon-gongcheng:before{
+    content: "\e62f";
+    font-family: iconfont;
+    
+}
+.icon-yanshou:before{
+    content: "\e630";
+    font-family: iconfont;
+    
+}
+.icon-ruzhuguanli:before{
+    content: "\e636";
+    font-family: iconfont;
+    
+}
+.icon-sjiancai:before{
+    content: "\e637 ";
+    font-family: iconfont;
+    
+}
+.icon-tel:before {
+    content: "\e602";
+    font-family: iconfont;
+    font-size: 20px;
+    color: #11cd6e;
+}
+.icon-linyu:before{
+    content: "\e63b ";
+    font-family: iconfont;
+    
+}
+.icon-dengshi:before{
+    content: "\e639 ";
+    font-family: iconfont;
+    
+}
+.icon-chuweidianqi:before{
+    content: "\e638 ";
+    font-family: iconfont;
+    
+}
+.icon-keting:before{
+    content: "\e63d";
+    font-family: iconfont;
+    
+}
+.icon-woshi:before{
+    content: "\e63e ";
+    font-family: iconfont;
+    
+}
+.icon-chufang:before{
+    content: "\e640 ";
+    font-family: iconfont;
+    
+}
+.icon-weishengjian:before{
+    content: "\e63f";
+    font-family: iconfont;
+    
+}
+.icon-canting:before{
+    content: "\e641";
+    font-family: iconfont;
+
+}
+.icon-shufang:before{
+    content: "\e642";
+    font-family: iconfont;
+    
+}
+.icon-ertongfang:before{
+    content: "\e643";
+    font-family: iconfont;
+    
+}
+.icon-beijingqiang:before{
+    content: "\e647 ";
+    font-family: iconfont;
+    
+}
+.icon-xuanguan:before{
+    content: "\e648";
+    font-family: iconfont;
+    
+}
+
+.icon-yangtai:before{
+    content: "\e646";
+    font-family: iconfont;
+    
+}
+
+.icon-yimaojian:before{
+    content: "\e645 ";
+    font-family: iconfont;
+    
+}
+.icon-zoudao:before{
+    content: "\e644";
+    font-family: iconfont;
+    
+}
+
+.icon-dibanb:before{
+    content: "\e685";
+    font-family: iconfont;
+}
+.icon-linyufang:before{
+    content: "\e694 ";
+    font-family: iconfont;
+    
+}
+.icon-bathroom:before{
+    content: "\e68a";
+    font-family: iconfont;
+    
+}
+.icon-diaodingb:before{
+    content: "\e686";
+    font-family: iconfont;
+    
+}
+.icon-chugui:before{
+    content: "\e695";
+    font-family: iconfont;
+    
+}
+.icon-chuweiwujin:before{
+    content: "\e690";
+    font-family: iconfont;
+    
+}
+.icon-shafa:before{
+    content: "\e67f";
+    font-family: iconfont;
+    
+}
+.icon-chaji:before{
+    content: "\e692";
+    font-family: iconfont;
+    
+}
+.icon-chuanggui:before{
+    content: "\e693";
+    font-family: iconfont;
+    
+}
+.icon-yigui:before{
+    content: "\e696";
+    font-family: iconfont;
+    
+}
+.icon-yizi:before{
+    content: "\e67d";
+    font-family: iconfont;
+    
+}
+.icon-chuangdian:before{
+    content: "\e699";
+    font-family: iconfont;
+    
+}
+.icon-deng:before{
+    content: "\e691";
+    font-family: iconfont;
+}
+.icon-ranqizao:before{
+    content: "\e683";
+    font-family: iconfont;
+    
+}
+.icon-reshuiqi:before{
+    content: "\e697";
+    font-family: iconfont;
+    
+}
+.icon-paper:before{
+    content: "\e687";
+    font-family: iconfont;
+    
+}
+.icon-men:before{
+    content: "\e68c ";
+    font-family: iconfont;
+    
+}
+.icon-door:before{
+    content: "\e680";
+    font-family: iconfont;
+    
+}
+.icon-sguancai:before{
+    content: "\e688 ";
+    font-family: iconfont;
+    color: #999999;
+}
+
+.icon-jiaju:before{
+    content: "\e676";
+    font-family: iconfont;
+    
+}
+.icon-Cube:before{
+    content: "\e67e";
+    font-family: iconfont;
+    
+}
+.icon-houdong:before{
+    content: "\e6a4";
+    font-family: iconfont;
+    
+}
+.icon-lvguo:before{
+    content: "\e6a5";
+    font-family: iconfont;
+    
+}
+
+.icon-diangong:before{
+    content: "\e6a6";
+    font-family: iconfont;
+    
+}
+.icon-jiazhuang:before{
+    content: "\e6a7";
+    font-family: iconfont;
+    
+}
+
+.icon-cizhuan:before{
+    content: "\e68d";
+    font-family: iconfont;
+
+}
+.icon-shuicao:before{
+    content: "\e68f";
+    font-family: iconfont;
+    
+}
+.icon-jieju:before{
+    content: "\e682";
+    font-family: iconfont;
+
+}
+.icon-dians:before{
+    content: "\e6aa";
+    font-family: iconfont;
+
+}
+.icon-qitagui:before{
+    content: "\e6ab";
+    font-family: iconfont;
+    
+}
+
+.icon-youqi:before{
+    content: "\e635";
+    font-family: iconfont;
+    
+}
+.icon-youyanji:before{
+    content: "\e63a";
+    font-family: iconfont;
+    
+}
+.icon-wendu:before{
+    content: "\e68b";
+    font-family: iconfont;
+    
+}
+
+.icon-dianch:before{
+    content: "\e681";
+    font-family: iconfont;
+    font-size: 20px;
+    
+}
+.icon-chuanghu:before{
+    content: "\e698";
+    font-family: iconfont;
+    
+}
+.icon-bancai:before{
+    content: "\e689";
+    font-family: iconfont;
+}
+
+.icon-shicaib:before{
+    content: "\e6ad";
+    font-family: iconfont;
+    
+}
+
+.icon-chufangdianqi:before{
+    content: "\e6ac";
+    font-family: iconfont;
+    
+}
+.icon-down:before{
+    content: "\e69d";
+    font-family: iconfont;
+}
+.icon-back:before {
+  content: "\e6b8";
+  font-family: iconfont;
+  font-size: @iconFontSize;
+}
+.icon-duigou:before{
+    content: "\e6ed";
+    font-family: iconfont;
+    font-size: @iconFontSize;
+}
+.icon-time:before{
+    content: "\e6ee";
+    font-family: iconfont;
+    
+}
+.icon-hongbao{
+    content: "\e6d9";
+    font-family: iconfont;
+}
+.icon-update:before{
+    content: "\e721";
+    font-family: iconfont;
+}
+.icon-add:before{
+    content: "\e720";
+    font-family: iconfont;
+}
+.icon-yuyin:before{
+    content: "\e722";
+    font-family: iconfont;
+}
+.icon-face:before{
+    content: "\e708";
+    font-family: iconfont;
+}
+.icon-img:before{
+    content: "\e6f0";
+    font-family: iconfont;
+}
+/*=============================icon font end =================================*/
+//一行显示不全出现...
+.ellipsis-one{
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+//两行显示不全出现...
+.ellipsis-two{
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.input{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius: 0;
+}
+.img { border:none;display:block;max-width: 100%; }
+.box-shadow(@style, @c) when (iscolor(@c)) {
+  -webkit-box-shadow: @style @c;
+  box-shadow:         @style @c;
+}
+.box-shadow(@style, @alpha: 50%) when (isnumber(@alpha)) {
+  .box-shadow(@style, rgba(0, 0, 0, @alpha));
+}
+.border-radius(@top,@right,@bottom,@left){
+    border-radius: @top @right @bottom @left;
+}
+.border-radius(@radius:2px){
+    border-radius: @radius;
+}
+.transform {
+    .rate(@deg){
+       transform:rotate(@deg);
+        -ms-transform:rotate(@deg);     /* IE 9 */
+        -moz-transform:rotate(@deg);    /* Firefox */
+        -webkit-transform:rotate(@deg); /* Safari 和 Chrome */
+        -o-transform:rotate(@deg);  /* Opera */ 
+    }
+        
+    .roteX(@deg){
+        transform:rotateZ(@deg);
+        -ms-transform:rotateZ(@deg);     /* IE 9 */
+        -moz-transform:rotateZ(@deg);    /* Firefox */
+        -webkit-transform:rotateZ(@deg); /* Safari 和 Chrome */
+        -o-transform:rotateZ(@deg);  /* Opera */
+    }
+    .roteY(@deg){
+        transform:rotateY(@deg);
+        -ms-transform:rotateY(@deg);     /* IE 9 */
+        -moz-transform:rotateY(@deg);    /* Firefox */
+        -webkit-transform:rotateY(@deg); /* Safari 和 Chrome */
+        -o-transform:rotateY(@deg);  /* Opera */
+    }
+    .roteZ(@deg){
+        transform:rotateZ(@deg);
+        -ms-transform:rotateZ(@deg);     /* IE 9 */
+        -moz-transform:rotateZ(@deg);    /* Firefox */
+        -webkit-transform:rotateZ(@deg); /* Safari 和 Chrome */
+        -o-transform:rotateZ(@deg);  /* Opera */
+    }
+}
+
+.transition(@property:all,@duration:.2s,@timing:linear,@delay:0s)
+{
+    transition: @property @duration @timing @delay;
+    /* Firefox 4 */
+    -moz-transition:@property @duration @timing @delay;
+    /* Safari and Chrome */
+    -webkit-transition:@property @duration @timing @delay;
+    /* Opera */
+    -o-transition:@property @duration @timing @delay;
+}
+
+.display-flex{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+}
+.flex-num(@num){
+    flex: @num;
+    -webkit-flex: @num;
+    -webkit-box-flex: @num;
+}
+.box-align(@param){
+    align-items: @param;
+    -webkit-align-items: @param;
+    -webkit-box-align: @param;
+}
+.cover(@zIndex,@alpha){
+    position: absolute;
+    top:0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: hidden;
+    z-index: @zIndex;
+    display: none;
+    background: rgba(0,0,0,@alpha);
+    
+}
+
+.linear-gradient(@first,@startColor,@endColor){
+    background:linear-gradient(@first,@startColor,@endColor);
+    background: -webkit-linear-gradient(@first,@startColor,@endColor);   /*Safari5.1 Chrome 10+*/
+    background: -o-linear-gradient(@first,@startColor,@endColor);  /*Opera 11.10+*/
+}
+/*========================================ui-form=========================*/
+@formBackground:#fff;
+form .input-con{
+    padding: 10px;
+    background: @formBackground;
+    margin-bottom: 10px;
+}
+form input{
+    .input;
+    border:none;
+    height: 32px;
+    width: 100%;
+    line-height: 32px;
+}
+textarea{
+    .input;
+    border: none;
+    width: 100%;
+    height: 60px;
+    resize: none;
+}
+form .form-inline{
+    .display-flex;
+    .input;
+    line-height: 200%;
+}
+form .form-inline .label{
+    .flex-num(1);
+    margin-top: 20%;
+}
+form .form-inline .btn-switch-con{
+    .flex-num(1);
+}

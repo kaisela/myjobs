@@ -1,10 +1,84 @@
+
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=no" />
-		<title></title>
-	</head>
-	<body>
-	</body>
+<head>
+  <meta charset="utf-8">
+
+  <title>JS Bin</title>
+
+<style>
+/** 实战版 **/
+.flex-item {
+  background: #f55;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.wrap-box {
+  display: -webkit-box;
+  width: 100%;
+}
+
+.flex-inner {
+  -webkit-box-flex: 1;
+  display: -webkit-box;
+}
+
+.flex-item {
+  -webkit-box-flex: 1;
+  font-size: 0;
+  position: relative;
+}
+.wrap-6 {
+    -webkit-box-orient: horizontal;
+}
+.wrap-6 .flex-inner {
+    -webkit-box-flex: 0;
+    -webkit-box-orient: vertical;
+}
+.wrap-6 .flex-inner:first-child {
+    width: 66.6%;
+}
+.wrap-6 .flex-inner:last-child {
+    width: 33.3%;
+}
+.wrap-6 .flex-item {
+    padding-top: 100%;
+}
+.wrap-6 .flex-box2 .flex-item {
+    padding-top: 50%;
+}
+.wrap-6 .flex-box2 {
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+}
+.wrap-6 .flex-inner:first-child,
+.wrap-6 .flex-box2 .flex-item:first-child {
+    margin-right: 1px;
+}
+.wrap-6 .flex-box1,
+.wrap-6 .flex-inner:last-child .flex-item:first-child,
+.wrap-6 .flex-inner:last-child .flex-item:nth-child(2) {
+    margin-bottom: 1px;
+}
+</style>
+</head>
+<body>
+  <div class="wrap-box wrap-6">
+    <div class="flex-inner">
+      <div class="flex-box1 flex-item"></div>
+      <div class="flex-box2">
+        <div class="flex-item"></div>
+        <div class="flex-item"></div>
+      </div>
+    </div>
+    <div class="flex-inner">
+      <div class="flex-item"></div>
+      <div class="flex-item"></div>
+      <div class="flex-item"></div>
+    </div>
+  </div>
+
+
+</body>
 </html>
