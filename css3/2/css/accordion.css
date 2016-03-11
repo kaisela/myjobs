@@ -1,0 +1,79 @@
+.accordionMenu{
+	background: #fff;
+	color:#424242;
+	font:12px arial ,verdana,sans-serif;
+	margin: 0 auto;
+	padding: 10px;
+	width: 500px;
+}
+
+.accordionMenu h2{
+	margin: 5px 0;
+	padding: 0;
+	position: relative;
+}
+
+.accordionMenu h2:before{
+	border: 5px solid #fff;
+	border-color:#fff transparent transparent transparent;
+	width: 0px;
+	height: 0px;
+	content: '';
+	display: block;
+	position: absolute;
+	right: 10px;
+	top:15px;
+}
+
+.accordionMenu h2 a{
+	background:#8f8f8f;
+	background: -ms-linear-gradient(top,#cecece,#8f8f8f);
+	background: -o-linear-gradient(top,#cecece,#8f8f8f);
+	background: -webkit-linear-gradient(top,#cecece,#8f8f8f);
+	background: -moz-linear-gradient(top,#cecece,#8f8f8f);
+	background: -webkit-gradient(linear,0 0 ,0 100%,from(#cecece),to(#8f8f8f));
+	background: linear-gradient(top,#cecece,#8f8f8f);
+	border-radius:5px;
+	color:#424242;
+	display:block;
+	font-size: 13px;
+	font-weight:normal;
+	margin:0px;
+	padding:10px 10px;
+	text-shadow:2px 2px 2px #aeaeae;
+	text-decoration:none;
+}
+
+.accordionMenu :target h2 a,
+.accorfionMenu h2 a:hover,
+.accorfionMenu h2 a:active,
+.accorfionMenu h2 a:focus{
+	background: -ms-linear-gradient(top,#6bb2ff,#2288dd);
+	background: -o-linear-gradient(top,#6bb2ff,#2288dd);
+	background: -webkit-linear-gradient(top,#6bb2ff,#2288dd);
+	background: -moz-linear-gradient(top,#6bb2ff,#2288dd);
+	background: -webkit-gradient(linear,0 0 ,0 100%,from(#6bb2ff),to(#2288dd));
+	background: linear-gradient(top,#6bb2ff,#2288dd);
+	color:#fff;
+}
+
+.accordionMenu p{
+	margin: 0;
+	padding: 0 10px;
+	height: 0px;
+	overflow: hidden;
+	-moz-transition:height 0.5s ease-in;
+	-o-transition: height 0.5s ease-in;
+	-webkit-transition: height; 0.5s ease-in;
+	transition: height; 0.5s ease-in;
+}
+
+/*显示内容的关键代码*/
+.accordionMenu :target p{
+	height: 100px;
+	overflow: auto;
+}
+.accordionMenu :target h2:before{
+	border-color: transparent transparent #fff transparent;
+	
+}
