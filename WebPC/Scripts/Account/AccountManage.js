@@ -1,3 +1,0 @@
-﻿$("btn").on("click", function() {
-
-});
